@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<functions>
+    <function>
+        <name>register</name>
+        <uri>register</uri>
+    </function>
+    <function>
+        <name>loginManual</name>
+        <uri>loginManual</uri>
+    </function>
+    <function>
+        <name>logSocial</name>
+        <uri>logSocial</uri>
+    </function>
+    <function>
+        <name>form</name>
+        <uri>form</uri>
+    </function>
+    <function>
+        <name>load_country</name>
+        <uri>load_country</uri>
+    </function>
+    <function>
+        <name>load_provinces</name>
+        <uri>load_provinces</uri>
+    </function>
+    <function>
+        <name>load_cities</name>
+        <uri>load_cities</uri>
+    </function>
+    <function>
+        <name>getdatos</name>
+        <uri>getdatos</uri>
+    </function>
+    <function>
+        <name>activar</name>
+        <uri>activar</uri>
+    </function>
+    <function>
+        <name>recovPass</name>
+        <uri>recovPass</uri>
+    </function>
+    <function>
+        <name>changePass</name>
+        <uri>changePass</uri>
+    </function>
+    <function>
+        <name>upDatePass</name>
+        <uri>upDatePass</uri>
+    </function>
+    <function>
+        <name>upDateDatosPer</name>
+        <uri>upDateDatosPer</uri>
+    </function>
+    <function>
+        <name>updateUser</name>
+        <uri>updateUser</uri>
+    </function>
+    
+</functions>

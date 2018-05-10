@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modules>
+    <module>
+        <name>homepage</name>
+        <uri>homepage</uri>
+    </module>
+    <module>
+        <name>courses</name>
+        <uri>courses</uri>
+    </module>
+    <module>
+        <name>contact</name>
+        <uri>contact</uri>
+    </module>
+    <module>
+        <name>profile</name>
+        <uri>profile</uri>
+    </module>
+
+</modules>

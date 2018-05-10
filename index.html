@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+    <html ng-app="appLibra" ng-app lang="en">
+        <head>
+            <!--INICIO HEAD -->
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title>Libra : Learn Easy</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+            <!-- Bootstrap css file-->
+            <link href="frontend/assets/css/bootstrap.min.css" rel="stylesheet">
+            <link href="frontend/assets/css/bootstrap-social.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            
+            <!-- Default Theme css file -->
+            <link id="switcher" href="frontend/assets/css/themes/default-theme.css" rel="stylesheet">
+            <!-- Main structure css file -->
+            <link href="frontend/assets/css/style.css" rel="stylesheet">   
+            <!-- Google fonts -->
+            <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>   
+            <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>        
+            <!-- Dropzone -->
+            <link rel="stylesheet" type="text/css" href="frontend/assets/dropzone/downloads/dropzone.css">        
+            <!-- Datepicker CSS -->
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+            <!-- TOASTER -->
+            <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
+
+
+
+
+            <!-- AJAX -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+            <!-- Datepicker JS-->
+            <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
+            <!-- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+
+
+
+
+
+            <!-- *******************************AngularJS******************************* -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-animate.min.js" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-cookies.min.js" ></script>
+            <!-- VALIDACION DE FORMULARIOS -->
+            <script src="frontend/assets/js/jcs-auto-validate/jcs-auto-validate.min.js"></script>
+
+
+            <script src="frontend/app.js"></script>
+
+
+
+            <script src="frontend/module/contact/controller/contact.controller.js"></script>
+
+            <script src="frontend/apiConnector.js"></script>
+            <script src="frontend/common.service.js"></script>
+        </head>
+        <!--FIN HEAD -->
+
+        <!--INICIO BODY -->
+        <body>
+            <!-- MENU -->    
+            <div class="sticky" ng-include="'frontend/assets/inc/menu.html'"></div>
+            <!-- CONTENIDO -->    
+            <div ng-view></div>
+            <!-- <div ng-include='"frontend/assets/inc/accept_cookies.view.html"'></div> -->
+            <!-- FOOTER -->    
+            <div ng-include="'frontend/assets/inc/footer.html'"></div>
+
+
+
+
+            <!-- ****************************SCRIPTS**************************** -->
+
+            <!-- Bootstrap js -->
+            <script src="frontend/assets/js/bootstrap.min.js"></script>
+            
+            <!-- TOASTER -->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+            <script src="frontend/assets/js/toaster/toasterMind.js"></script>
+
+
+        </body>
+        <!--FIN BODY -->
+    </html>
+

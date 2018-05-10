@@ -1,0 +1,150 @@
+
+<section id="imgBanner">
+      <h2>User Profile</h2>
+</section>
+
+
+
+
+<section id="primerForm">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-3 col-md-6">
+				<center>
+					<img src="" id="fotoperfil" class="img-circle grande"><br><br>
+					<h3><span id="user_name"></span></h3>
+				</center>
+			</div>
+		</div><br>
+		<br>
+		<br>
+
+		
+		<form id="formProfile">
+
+			<div class="row">
+
+				
+
+				<div class="col-md-6">					
+					
+					<div class="form-group ">
+						<label class="control-label " for="name">Name/Surname</label>  
+		                <input id="name" name="name" type="text" placeholder="Peter Smith" value="" class="form-control input-md inputKeyup" required="required" value="">
+		                <span id="sp_name" ></span>
+		            </div>
+
+		            <div class="form-group ">
+		                <label class="control-label" for="birth_date">Date of Birth</label>  
+		                <input id="birth_date" name="birth_date" type="text" placeholder="YYYY-MM-DD" class="form-control input-md inputKeyup" required="" value="">
+		                <span id="sp_birth_date"></span>
+		            </div>
+
+		            <div class="form-group ">
+		                <label class="control-label " for="genere">Genere</label>  
+		                <div> 
+		                    <label class="radio-inline" for="genere-0">
+		                      <input type="radio" name="genere" class="genere" value="Man" > Man
+		                    </label> 
+		                    <label class="radio-inline" for="genere-1">
+		                      <input type="radio" name="genere" class="genere" value="Woman"> Woman
+		                    </label>
+		                    <label class="radio-inline" for="genere-2">
+		                      <input type="radio" name="genere" class="genere" value="NaNa" checked> NaNa
+		                    </label>
+		                </div>
+		            </div>
+					
+					<div class="form-group ">
+		                <label class="control-label" for="country">Country</label>  
+	                    <select id="country" name="country" class="form-control input-md selUb" required="">
+	                        <option selected="" value=""></option>
+	                    </select>
+	                    <span id="sp_country"></span>
+		            </div>
+
+		            <div class="form-group ">
+		                <label class="control-label" for="province">Province</label>  
+		                <select id="province" name="province" class="form-control input-md selUb" required="">
+		                    <option selected="" value=""></option>
+		                </select>
+		                <span id="sp_province"></span>
+		            </div>
+				</div>
+
+				<div class="col-md-6">
+		            <div class="form-group ">
+		                <label class="control-label" for="city">City</label>  
+		                <select id="city" name="city" class="form-control input-md selUb" required="">
+		                    <option selected="" value=""></option>
+		                </select>
+		                <span id="sp_birth_date"></span>
+		            </div>
+
+					<div class="form-group ">
+	                    <label class="control-label" for="phone">Number Phone</label>
+	                    <input id="phone" name="phone" type="tel" placeholder="9 Numbers. Ex: 602145478"  class="form-control input-md inputKeyup" required="" value="">
+	                    <span id="sp_phone"></span>
+		            </div>
+
+
+		            <div class="form-group ">
+		                <label class="control-label" for="email">Email</label>
+		                <input id="email" name="email" type="email" placeholder="joe_24@mail.com" class="form-control input-md inputKeyup" required="" value="">
+		                <span id="sp_email"></span>
+		            </div>
+
+		            <div class="form-group ">
+		                <label class="control-label" for="password">Password</label>
+		                <input id="password" name="password" type="password" placeholder="***********" class="form-control input-md inputKeyup" required=""  value="">
+		                <a href="#" class="formatPass">View Format</a>
+		                <span id="sp_password"></span>
+		            </div>
+
+		            <div class="form-group ">
+		                <label class="control-label" for="rePassword">Re-enter password</label>
+		                <input id="rePassword" name="rePassword" type="password" placeholder="***********" class="form-control input-md inputKeyup" required=""  value="">
+		                <span id="sp_rePassword"></span>
+		            </div>	            
+
+		            <div class="form-group ">
+		                <label class="control-label">Interests</label>
+		                <div id="div_intereses">
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses"  value="Backend"/>Backend
+		                    </label> 
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses" value="Frontend"/>Frontend
+		                    </label>
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses" value="OS"/>OS
+		                    </label>
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses" value="Diseny"/>Diseny
+		                    </label>
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses" value="Robotics"/>Robotics
+		                    </label>
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses" value="Security"/>Security
+		                    </label>
+		                </div>
+		                <br>
+		                <span id="sp_intereses"></span>
+		            </div>
+
+				</div>
+			</div> <!--End Row -->
+		</form>
+		<br>
+		<br>
+		<br>
+		<div class="row">				
+			<a id="submit1" class="col-md-offset-5 col-md-2 btn btn-primary">Submit</a>				
+		</div>
+	</div>
+</section>
+
+<!-- Dropzone -->
+<script type="text/javascript" src="<?php echo JS_DROPZONE ?>dropzone.min.js"></script>
+<script type="text/javascript" src="<?php echo PROFILE_JS_PATH ?>profileForm.js">  </script>
