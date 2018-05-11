@@ -102,10 +102,13 @@
                     </div>
                     <div class="singCourse_content">
                       <h3 class="singCourse_title">
-                        <a href="" class="courseDetalles"></a>
+                        <a href="" class="courseDetalles">{{(course.title).substring(0, 100)}}</a>
                       </h3>
                       <p class="singCourse_price">
-                        
+                        {{course.price | currency: '€ '}}
+                      </p>
+                      <p>
+                        {{(course.courseDescr).substring(0, 150)+" ..."}}
                       </p>
                     </div>
                     <div class="singCourse_author">
@@ -126,7 +129,7 @@
 
 
       <br><br><br>
-      <div class="btn btn-primary col-md-offset-4 col-md-4" id="viewMore">View More</div>
+      <div class="btn btn-primary col-md-offset-4 col-md-4" id="viewMore" ng-click="moreCourses()">View More</div>
       </div>
     </section>
     <!--=========== END OUR COURSES SECTION ================-->  
@@ -162,17 +165,17 @@
               <div class="course_nav" id="categories">
 
 
-                  <div class="col-md-4 margin_img_home">
+                  <div class="col-md-4 margin_img_home" ng-repeat="category in categories">
                     <div class="single_course">
                       <div class="singCourse_imgarea">
-                        <img class="mediana" src="frontend/assets/img/slider/dev5.jpg" alt="">
+                        <img class="mediana" src="{{category.photoCategory}}" alt="">
                         <div class="mask">
                           <a href="" class="course_more classCategory">Courses of this category</a>
                         </div>
                       </div>
                       <div class="singCourse_content">
                         <h3>
-                          <a href="" class="classCategory"></a>
+                          <a href="" class="classCategory">{{category.course}}</a>
                         </h3>
                       </div>
                     </div>
@@ -185,7 +188,7 @@
         </div><!-- end div row -->
         <!-- End Our courses content -->
       <br><br><br>
-      <div class="btn btn-primary col-md-offset-4 col-md-4" id="viewMoreCategories">View More</div>
+      <div class="btn btn-primary col-md-offset-4 col-md-4" id="viewMoreCategories" ng-click="moreCategories()">View More</div>
       </div>
     </section>
 
