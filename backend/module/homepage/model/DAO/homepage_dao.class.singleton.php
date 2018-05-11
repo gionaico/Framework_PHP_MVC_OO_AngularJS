@@ -25,14 +25,8 @@ class homepage_dao {
     }
    
     public function obtain_category_DAO(){
-        $json = array();
-        $tmp = array();
-
-        $category = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/Proyectos/GiovannyProy4/resources/ListOfCategoryCourse.json');
-        // $json = json_decode($category);
-
-          
-              return $category;
-
+        $category = file_get_contents(SITE_ROOT.'/resources/ListOfCategoryCourse.json');          
+        return $category;
     }
+    
 }//End productDAO

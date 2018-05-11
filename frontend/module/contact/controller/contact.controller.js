@@ -7,8 +7,10 @@ appLibra.controller('contactCtrl', function ($scope, services) {
         inputSubject: "",
         inputMessage: ""
     };
+    $scope.loaderImg=false;
 
     $scope.SubmitContact = function (valido) {
+    	$scope.loaderImg=true;
         var data = {
         	"inputName": $scope.contact.inputName, 
         	"inputEmail": $scope.contact.inputEmail, 
@@ -20,8 +22,8 @@ appLibra.controller('contactCtrl', function ($scope, services) {
 
         services.post('contact', 'process_contact', contact_form)
         	.then(function (response) {
-        		console.log(response);
-
+        		/*console.log(response);*/
+        		$scope.loaderImg=false;
 	            if (response.success) {
 		            var toasts = new Toast('Sending email', 'info', 'toast-bottom-right', response.mensaje, 15000);
 		    		delayToasts(toasts,0);

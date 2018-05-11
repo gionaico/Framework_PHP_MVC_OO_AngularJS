@@ -8,24 +8,24 @@ class controller_courses {
         $_SESSION['module'] = "courses";
     }
         
-    function list_courses() {        
+    /*function list_courses() {        
         loadView( "module/courses/view/", "courses.html"); 
     }
 
     function courseForm() {
         loadView( "module/courses/view/", "courseForm.html"); 
-        // $this->cargarVistas("courseForm");      
+            
     }
 
     function details() {
         loadView( "module/courses/view/", "courseDetails.html"); 
-        /*$this->cargarVistas("courseDetails");        */
+        
     }
 
     function new_course() {
         loadView( "module/courses/view/", "courseCreado.html"); 
-        /*$this->cargarVistas("courseCreado");        */
-    }    
+        
+    }   */ 
 
 
     function getCoursesFiltrados(){

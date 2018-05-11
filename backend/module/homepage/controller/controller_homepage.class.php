@@ -7,18 +7,15 @@ class controller_homepage {
         $_SESSION['module'] = "homepage";
     }
 
-    function homepage() {
+    /*function homepage() {
         loadView( "module/homepage/view/", "homepage.html"); 
-    }
+    }*/
 
     function getCourses() {
 
-        if (isset($_POST["getCourses"]) && $_POST["getCourses"] == true) {
-			        
-	        $evio_loadModel = loadModel(MODEL_HOMEPAGE, "homepage_model", "mejoresCursos");
-		    echo json_encode($evio_loadModel);
-		    exit;
-		}
+        $evio_loadModel = loadModel(MODEL_HOMEPAGE, "homepage_model", "mejoresCursos");
+	    echo json_encode($evio_loadModel);
+	    exit;
     }
 
     function idCourse(){
@@ -49,14 +46,10 @@ class controller_homepage {
 		}
     }
 
-    function getCategorias(){
-    	if ((isset($_POST["getCategorias"])) && ($_POST["getCategorias"] == true)) {  
-			$json = array();	        
-	        
-	        $json = loadModel(MODEL_HOMEPAGE, "homepage_model", "obtain_category");  
-	    	echo ($json);
-	    	exit;
-		}
+    function getCategorias(){ 	        	        
+        $json = loadModel(MODEL_HOMEPAGE, "homepage_model", "obtain_category");  
+    	echo ($json);
+    	exit;
     }
 
 }

@@ -1,19 +1,10 @@
 
 
 <!--=========== BEGIN SLIDER SECTION ================-->
-    <section id="slider">
+  <section id="slider">
         <style>
           .item img {width:100%; max-height:1200px;display: block;}
-          
-
- /*          #imgsl2{
-  position:fixed;
-  left: 400px;
-  top: 100px;
-  font-size: 10px;
-} */
-
-      </style>
+        </style>
 
       <div id="myCarousel" class="carousel slide" data-interval="false">
         <!-- Indicators -->
@@ -64,7 +55,7 @@
           <span class="sr-only">Next</span>
         </a>  
       </div>
-    </section>
+  </section>
 
     <!--=========== BEGIN OUR COURSES SECTION ================-->
     <section id="ourCourses">
@@ -82,11 +73,12 @@
               </form>
             </center>
             <!-- ................. end search ................. -->
+
             <br>
             <br>
             <br>
             <br>
-            <br>
+            <br>            
             <div class="title_area">
               <h2 class="title_two">Cursos mejor valorados</h2>
               <span></span> 
@@ -94,15 +86,45 @@
           </div>
         </div>
         <!-- End Our courses titile -->
+
+
         <!-- Start Our courses content -->
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="ourCourse_content" id="div_listCou">
+                <div class="col-md-4 margin_img_home" ng-repeat="course in courses">
+                  <div class="single_course">
+                    <div class="singCourse_imgarea">
+                      <img src="backend/{{course.avatar}}" alt="" class="mediana">
+                      <div class="mask">
+                        <a href="" class="course_more courseDetalles">View Course</a> 
+                      </div>
+                    </div>
+                    <div class="singCourse_content">
+                      <h3 class="singCourse_title">
+                        <a href="" class="courseDetalles"></a>
+                      </h3>
+                      <p class="singCourse_price">
+                        
+                      </p>
+                    </div>
+                    <div class="singCourse_author">
+                      
+                    </div>
+                  </div>
+                </div>
 
+                <!-- <div ng-repeat="course in courses">
+                  <div>{{course.title}}</div>
+                  
+                </div> -->
             </div><!-- end div ourCourse_content -->
           </div>
         </div><!-- end div row -->
         <!-- End Our courses content -->
+
+
+
       <br><br><br>
       <div class="btn btn-primary col-md-offset-4 col-md-4" id="viewMore">View More</div>
       </div>
@@ -136,9 +158,26 @@
         <!-- Start Our courses content -->
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="ourCourse_content" id="">
-             
+            <div class="ourCourse_content" id="">             
               <div class="course_nav" id="categories">
+
+
+                  <div class="col-md-4 margin_img_home">
+                    <div class="single_course">
+                      <div class="singCourse_imgarea">
+                        <img class="mediana" src="frontend/assets/img/slider/dev5.jpg" alt="">
+                        <div class="mask">
+                          <a href="" class="course_more classCategory">Courses of this category</a>
+                        </div>
+                      </div>
+                      <div class="singCourse_content">
+                        <h3>
+                          <a href="" class="classCategory"></a>
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+
 
               </div>
             </div><!-- end div ourCourse_content -->
