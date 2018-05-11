@@ -24,6 +24,17 @@
                     }
                 })
 
+                /*Courses Details*/
+                .when("/course/:id", {
+                    templateUrl: "frontend/module/courses/view/courseDetails.html",
+                    controller: "courseDetailsCtrl",
+                    resolve: {
+                        coursetDetails: function (services, $route) {
+                            return services.get('courses', 'coursetDetails', $route.current.params.id);
+                        }
+                    }
+                })
+
                 /*Contact*/
                 .when("/contact", {
                     templateUrl: "frontend/module/contact/view/contact.html", 

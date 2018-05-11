@@ -1,6 +1,6 @@
 
-<script type="text/javascript" src="<?php echo COURSES_JS_PATH ?>courseDetails.js">  </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSqOoI0Dz0NsL3-lLYzBC2tS4PVfDZ0Jc&libraries=places" ></script>
+<!-- <script type="text/javascript" src="<?php echo COURSES_JS_PATH ?>courseDetails.js">  </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSqOoI0Dz0NsL3-lLYzBC2tS4PVfDZ0Jc&libraries=places" ></script> -->
 
 
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
@@ -20,34 +20,34 @@
             <div class="courseArchive_content">              
              <div class="singlecourse_ferimg_area">
                <div class="singlecourse_ferimg">
-                 <img src="" id="img" alt="img">
+                 <img src="backend/{{courseDet.avatar}}" id="img" alt="img">
                </div>  
                 <div class="singlecourse_bottom">
                   <div class="col-md-12">
-                    <h2 id="title"></h2>
+                    <h2 id="title">{{courseDet.title}}</h2>
                   </div>
                   <div class="row"> 
                     <div class="col-md-6 col-sm-1">
                       <div class="col-md-12">
                         <b class="singlecourse_author" style="color:#809fff">Duration: &nbsp;</b>
-                        <span id="duration" class="singlecourse_author"></span>                      
+                        <span id="duration" class="singlecourse_author">{{courseDet.duration}}</span>                      
                       </div>
 
                       <div class="col-md-12">
                         <b class="singlecourse_author" style="color:#809fff">Lenguage: &nbsp;</b>
-                        <span id="lenguage" class="singlecourse_author"></span>                      
+                        <span id="lenguage" class="singlecourse_author">{{courseDet.lenguage}}</span>                      
                       </div>
                     </div>
 
                     <div class="col-md-6 col-sm-1">
                       <div class="col-md-12">
                         <b class="singlecourse_author" style="color:#809fff">Level: &nbsp;</b>
-                        <span id="level" class="singlecourse_author"></span>
+                        <span id="level" class="singlecourse_author">{{courseDet.levelCour}}</span>
                       </div>
 
                       <div class="col-md-12">
                         <b class="singlecourse_author" style="color:#809fff">Category: &nbsp;</b>
-                        <span id="category" class="singlecourse_author"></span>
+                        <span id="category" class="singlecourse_author">{{courseDet.category}}</span>
                       </div>
                     </div>
 
@@ -59,10 +59,10 @@
              </div>
              <div class="single_course_content">
                <h3 >Abaut this course</h3>
-               <p id="detalles"></p>
+               <p id="detalles">{{courseDet.courseDescr}}</p>
 
                <h3 >Abaut this teacher</h3>
-               <p id="detalles_teacher"></p>
+               <p id="detalles_teacher">{{courseDet.personalDescr}}</p>
                <table class="table table-striped course_table">
                 <thead>
                   <tr>          

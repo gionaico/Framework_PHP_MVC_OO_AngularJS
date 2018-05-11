@@ -134,15 +134,22 @@ class controller_courses {
         }
     }
 
-    function coursetDetails(){
-        if ((isset($_POST["coursetDetails"])) && ($_POST["coursetDetails"] == true)) {
-            $id=$_SESSION["idCourse"];
-            
-            $evio_loadModel = loadModel(MODEL_COURSES, "courses_model", "courseDetails", $id);
+    function coursetDetails(){       
+        // echo ($_GET['param']);exit;
+        $id=$_GET['param'];
+        $res=array(
+                "success"=>false
+            );
 
-            echo json_encode($evio_loadModel);
-            exit;
+        try{
+            $course = loadModel(MODEL_COURSES, "courses_model", "courseDetails", $id);
+            $res["datos"] =$course;
+            $res["success"]=true;            
+        }catch(Exception $e){
+            $res["mensaje"] ="Error en servidor. Intentalo mas tarde...";            
         }
+        echo json_encode($res);
+        exit;        
     }
 
 
