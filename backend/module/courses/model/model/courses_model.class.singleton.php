@@ -42,5 +42,8 @@
         public Function keyword($arrArgument){           
             return $this->bll->keyword_BLL($arrArgument);
         }
+        public Function getAllCourses($arrArgument){           
+            return $this->bll->getAllCourses_BLL($arrArgument);
+        }
 
     }

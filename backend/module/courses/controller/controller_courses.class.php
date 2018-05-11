@@ -27,6 +27,22 @@ class controller_courses {
         
     }   */ 
 
+    function getAllCourses(){
+        $res=array(
+                "success"=>false
+            );
+        try {
+            $courses=loadModel(MODEL_COURSES, "courses_model", "getAllCourses");
+            $res["success"]=true;
+            $res["category"]=$_GET['param'];
+            $res["datos"]=$courses;
+        } catch (Exception $e) {
+            $res["mensaje"] ="Error en servidor. Intentalo mas tarde...";            
+        }
+        echo json_encode($res);
+        exit; 
+    }
+
 
     function getCoursesFiltrados(){
         if (isset($_POST["getCoursesFiltrados"]) && $_POST["getCoursesFiltrados"] == true) {

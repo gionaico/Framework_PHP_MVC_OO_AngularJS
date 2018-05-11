@@ -24,13 +24,24 @@
                     }
                 })
 
-                /*Courses Details*/
+                /*Course Details*/
                 .when("/course/:id", {
                     templateUrl: "frontend/module/courses/view/courseDetails.html",
                     controller: "courseDetailsCtrl",
                     resolve: {
-                        coursetDetails: function (services, $route) {
+                        courseDetails: function (services, $route) {
                             return services.get('courses', 'coursetDetails', $route.current.params.id);
+                        }
+                    }
+                })
+
+                /*Courses Category*/
+                .when("/courses/:id", {
+                    templateUrl: "frontend/module/courses/view/courses.html",
+                    controller: "coursesCategoryCtrl",
+                    resolve: {
+                        coursesCategory: function (services, $route) {
+                            return services.get('courses', 'getAllCourses', $route.current.params.id);
                         }
                     }
                 })

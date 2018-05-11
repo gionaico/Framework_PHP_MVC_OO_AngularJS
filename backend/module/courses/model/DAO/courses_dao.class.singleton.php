@@ -43,14 +43,9 @@
         }
 
        public function obtain_category_DAO(){
-            $json = array();
-            $tmp = array();
-
             $category = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/Proyectos/GiovannyProy4/resources/ListOfSubcategoryCourse.json');
-            
-
-              
-                  return $category;
+  
+            return $category;
 
         }
 
@@ -58,6 +53,11 @@
             $sql = "SELECT * FROM courses WHERE id='".$id."'";
             return $db->listar($db->ejecutar($sql));
             
+        }
+
+        public function getAllCourses_DAO($db, $arr) {
+            $sql = "SELECT * FROM courses";
+            return $db->listar($db->ejecutar($sql));            
         }
 
         public function obtain_subCategory_DAO(){

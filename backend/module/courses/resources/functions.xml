@@ -76,4 +76,8 @@
         <name>consultaFiltrada</name>
         <uri>consultaFiltrada</uri>
     </function>
+    <function>
+        <name>getAllCourses</name>
+        <uri>getAllCourses</uri>
+    </function>
 </functions>

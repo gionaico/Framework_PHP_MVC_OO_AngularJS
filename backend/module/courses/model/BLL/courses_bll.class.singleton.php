@@ -46,4 +46,7 @@
         public function keyword_BLL($arrArgument){    
             return $this->dao->keyword_DAO($this->db,$arrArgument);      
         }
+        public function getAllCourses_BLL($arrArgument){    
+            return $this->dao->getAllCourses_DAO($this->db,$arrArgument);      
+        }
     }
