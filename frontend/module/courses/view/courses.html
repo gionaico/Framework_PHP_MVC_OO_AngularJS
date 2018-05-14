@@ -31,267 +31,67 @@
         text-align: right;
       }
     </style>
-    <!--=========== BEGIN COURSE BANNER SECTION ================-->
+
     <section id="imgBanner">
       <h2>Our Courses</h2>
     </section>
-    <!--=========== END COURSE BANNER SECTION ================-->
     
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
-    <section id="courseArchive">
+  <section id="courseArchive">
       <div class="container">
-        <div class="row" id="row_primero">
-            <!-- start course archive sidebar -->
-          <div class="col-lg-4 col-md-4 col-sm-4">
-            <div class="courseArchive_sidebar">
-              <!-- start single sidebar -->
-              <div class="single_sidebar">
-                <h2>List maps <span class="fa fa-angle-double-right"></span></h2>
-
-                <div>
-                  <a id="vewMap" href="#">
-                    <img class="grande" src="<?php echo IMG_COURSES?>googlemaps.jpg" alt="">
-                  </a>
-                </div>
-                <br>
-
-                <h2>Filters <span class="fa fa-angle-double-right"></span></h2>
-                <ul class="news_tab">
-
-                  <li>
-                    <div class="media">
-                      <div class="media-left">
-                        <label class="news_img" >Max price</label>
-                      </div>
-                      <div class="media-body">
-                        <div class="col-md-11">
-                          <p>
-                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                          </p>                           
-                          <div id="slider-range-min"></div>
-                        </div>                                              
-                      </div>
-                    </div>
-                  </li>
-
-
-                  <li>
-                    <div class="media">
-                      <div class="media-left">
-                        <label class="news_img">Lenguage</label>
-                        <br>
-                      </div>
-                      <div class="media-body">
-                        <br>
-                        <p>
-                         <select id="courseLenguge" name="courseLenguge" class="form-control input-md lenguage" required="">
-                            <option selected="" value=""></option>
-                            <option value="Spanish">Spanish</option>
-                            <option value="English">English</option>
-                            <option value="Portuguese">Portuguese</option>
-                            <option value="German">German</option>
-                            <option value="all">All lenguges</option>
-                        </select>                        
-                        </p>                       
-                      </div>
-                    </div>
-                  </li>
-
-
-                  <li>
-                    <div class="media">
-                      <div class="media-left">
-                        <label class="news_img">Level</label>
-                        <br>
-
-                      </div>
-                      <div class="media-body">
-                        <br>
-                        <p>
-                        <label class="radio-inline" for="level-0">
-                          <input type="radio" name="level" id="level-0" class="level" value="Basic" > Basic
-                        </label> <br>
-                        <label class="radio-inline" for="level-1">
-                          <input type="radio" name="level" id="level-1" class="level" value="Medio"> Medio
-                        </label><br>
-                        <label class="radio-inline" for="level-2">
-                          <input type="radio" name="level" id="level-2" class="level" value="Expert"> Expert
-                        </label><br>
-
-                        <label class="radio-inline" for="level-3">
-                          <input type="radio" name="level" id="level-3" class="level" value="all"> All
-                        </label><br>
-                        
-                        </p>
-                       
-                      </div>
-                    </div>
-                  </li>
-
-
-
-
-                  <li>
-                    <div class="media">
-                      <div class="media-left">
-                        <label class="news_img">Category</label>
-                        <br>
-
-                      </div>
-                      <div class="media-body">
-                        <br>
-                        <p>
-                         <select id="subject" name="subject" class="form-control input-md selectCF" required="">
-                            <option selected="" value=""></option>
-
-                        </select>
-                        
-                        </p>
-                       
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div class="media">
-                      <div class="media-left">
-                        <label class="news_img">Sub-category</label>
-                        <br>
-
-                      </div>
-                      <div class="media-body">
-                        <br>
-                        <p>
-                        <select id="subSubject" name="subSubject" class="form-control input-md selectCF" required="">
-                            <option selected="" value=""></option>
-                        </select>
-                        
-                        </p>
-                       
-                      </div>
-                    </div>
-                  </li>
-
-                  
-                </ul>
-              </div>
-             </div>
-          </div>
-
-
-          <!-- start course content -->
-          <div class="col-lg-8 col-md-8 col-sm-8">
-            <br>
-            <br>
-            <br>
-            
-            <!-- ................. start search ................. -->
-            <center>
-              <form name="search_prod" id="search_prod" class="search_prod">
-                  <input type="text" value="" placeholder="Search Course ..." class="input_search" id="keyword" list="datalist">
-                  <!-- <div id="results_keyword"></div> -->                  
-                  <button name="Submit" id="Submit" class="button_search" type="button">Search</button>
-                   
-              </form>
-            </center>
-            <!-- ................. end search ................. -->
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <!-- ...... div courseArchive_content............... -->
-            <div class="courseArchive_content">
-              <!-- list courses -->
-              <div class="row" id="div_listCou"></div>
-              <!-- Paginacion -->
+          <!-- Filtros -->          
+          <div class="row" id="row_primero">         
               <center>
-                  <div class="pagination" id="pag"></div>
-              </center>              
-            </div>
+                    <input type="text" value="" placeholder="Search Course ..." class="input_search" id="keyword" list="datalist">
+              </center>
+          </div><br><br><br><br>
+          <!-- Mensaje -->
+          <div class="row" ng-show="sinDatos">
+            <center>No hay cursos con los filtros deseados.</center><br><br><br><br>
           </div>
-          
-
-        
-          <!-- start course archive sidebar -->
-        </div><!-- end div row -->
-        <div class="row" id="rowSegundo" style="display:none">
-          <div class="col-lg-9 col-md-9 col-sm-9">
-            <div class="col md-12">
-              <button class="btn btn-primary" id="go_back">Go back</button>  
-            </div>
-            <br>
-            <div id="map" style="width: 100%; height: 550px"></div>
-          </div>  
-
-          <div class="col-lg-3 col-md-3 col-sm-3">
-              <div class="courseArchive_sidebar">
-                <div class="single_sidebar">
-                  <h2>Courses list <span class="fa fa-angle-double-right"></span></h2>
-                  <div id="results"></div>
-                  <!-- <ul class="news_tab">
-
-                    <li>
-                      <div class="media">          
-                        <div class="media-body">
-                          <div class="col-md-11">
-                            <p>
-                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ratione aut officia impedit quos, consequatur minus corporis velit iure nostrum esse culpa tempore animi, nihil est dolorum, fugit veniam commodi.
-                            </p>                           
-                            <div id="slider-range-min"></div>
-                          </div>                                              
-                        </div>
+          <!-- Cursos -->
+          <div class="row" ng-show="coursesPintados">
+              <div class="col-md-4 margin_img_home" ng-repeat="course in courlistPintar">
+                  <div class="single_course">
+                      <div class="singCourse_imgarea">
+                          <img src="backend/{{course.avatar}}" alt="" class="mediana">
+                          <div class="mask">
+                              <a href="" class="course_more courseDetalles">View Course</a> 
+                          </div>
                       </div>
-                    </li>
-
-                    <li>
-                      <div class="media">          
-                        <div class="media-body">
-                          <div class="col-md-11">
-                            <p>
-                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ratione aut officia impedit quos, consequatur minus corporis velit iure nostrum esse culpa tempore animi, nihil est dolorum, fugit veniam commodi.
-                            </p>                           
-                            <div id="slider-range-min"></div>
-                          </div>                                              
-                        </div>
+                      <div class="singCourse_content">
+                          <h3 class="singCourse_title">
+                              <a href="" class="courseDetalles">{{course.title}}</a>
+                          </h3>
+                          <p class="singCourse_price">
+                            {{course.price}}
+                          </p>
+                          <p>
+                            {{(course.courseDescr).substring(0, 150)+" ..."}}
+                          </p>
                       </div>
-                    </li>
-
-                  </ul> -->
-                </div>
+                      <div class="singCourse_author">
+                        
+                      </div>
+                  </div>
               </div>
           </div>
-        </div>
+          <!-- Paginacion -->
+          <div class="row">              
+              <center>
+                  <ul uib-pagination
+                      class="pagination-sm"
+                      total-items="totalItems"
+                      ng-model="currentPage"
+                      max-size="5"
+                      boundary-links="true"                      
+                      items-per-page="itemsPage"
+                      rotate="false"
+                      ng-change="pageChanged()">                        
+                  </ul>
+              </center>
+          </div>            
       </div>
-    </section>
-    <!--=========== END COURSE BANNER SECTION ================-->
+  </section>
 
-
-
-     <div style="display: none">
-      <div id="info-content">
-        <table>
-          <tr id="iw-url-row" class="iw_table_row">
-            <td id="iw-icon" class="iw_table_icon"></td>
-            <td id="iw-url"></td>
-          </tr>
-<!--           <tr id="iw-address-row" class="iw_table_row">
-            <td class="iw_attribute_name">Title:</td>
-            <td id="iw-title"></td>
-          </tr> -->
-          <tr id="iw-phone-row" class="iw_table_row">
-            <td class="iw_attribute_name">Lenguage:</td>
-            <td id="iw-lenguage"></td>
-          </tr>
-          <tr id="iw-rating-row" class="iw_table_row">
-            <td class="iw_attribute_name">Price:</td>
-            <td id="iw-price"></td>
-          </tr>
-          <tr id="iw-website-row" class="iw_table_row">
-            <td class="iw_attribute_name">Level:</td>
-            <td id="iw-level"></td>
-          </tr>
-        </table>
-      </div>
-    </div>
 
