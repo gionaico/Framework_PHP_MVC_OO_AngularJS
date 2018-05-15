@@ -1,6 +1,6 @@
 console.log("courseController");
 
-appLibra.controller('coursesCategoryCtrl', function ($scope, $timeout, services, coursesCategory) {
+appLibra.controller('coursesCategoryCtrl', function ($scope, $timeout, services, coursesCategory, courses_map) {
     window.scrollTo(0, 0);
     /*Categoria que viene por ulr*/
     var category=coursesCategory.category;
@@ -9,6 +9,7 @@ appLibra.controller('coursesCategoryCtrl', function ($scope, $timeout, services,
     /*Mensaje cuando no hay datos a mostrar*/
     $scope.sinDatos=false;
     var array=[];
+    $scope.markers = [];
         
 	if (category!=" ") {
         for (var i =0; i<datos.length; i++) {
@@ -40,6 +41,7 @@ appLibra.controller('coursesCategoryCtrl', function ($scope, $timeout, services,
         $scope.reverse = !$scope.reverse;
     };
 
+    courses_map.cargarmap($scope.file, $scope);
 
 });
 

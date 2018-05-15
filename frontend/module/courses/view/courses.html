@@ -1,6 +1,5 @@
-<!--     <script type="text/javascript" src="<?php echo JS_PATH ?>jquery.twbsPagination.min.js"></script>
-    <script type="text/javascript" src="<?php echo COURSES_JS_PATH ?>courses.js">  </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSqOoI0Dz0NsL3-lLYzBC2tS4PVfDZ0Jc" async defer></script> -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSqOoI0Dz0NsL3-lLYzBC2tS4PVfDZ0Jc" async defer></script>
 
     <style>      
       .placeIcon {
@@ -60,6 +59,7 @@
                     </div>
 
                     <div class="col-md-12 pull-right">
+                      <br>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                               Order By
@@ -72,7 +72,7 @@
                                   </a>
                                 </li>
                                 <li>
-                                  <a class="pointer" ng-click="sort_with('subject');">Category
+                                  <a class="pointer" ng-click="sort_with('subject');">Category A-Z / Z-A
                                       <i class="glyphicon glyphicon-sort"></i>
                                   </a>
                                 </li>
@@ -149,8 +149,22 @@
                       rotate="false">                       
                   </ul>
               </center>
-          </div>            
-      </div>
+          </div> 
+
+          <!-- Courses en MAPA -->
+          <div class="row"><br>
+          <br>
+          <br>
+          <br>
+          <br>
+            <div class="title_area">
+                <h2 class="title_two">Courses Map</h2>
+                <span></span> 
+            </div>
+
+            <div class="col-md-12" id="mapholder" style="border-color: black; " ></div>
+          </div>           
+      </div><!-- End container -->
   </section>
 
 
