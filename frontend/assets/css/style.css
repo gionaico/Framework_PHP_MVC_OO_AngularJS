@@ -37,7 +37,9 @@ License URI: http://www.gnu.org/licenses/gpl.html
 /* .next,.prev{
   display: none !important;  
 } */
-
+.pointer {
+    cursor: pointer;
+}
 #menu_principal{
   padding-right:50px;
 }

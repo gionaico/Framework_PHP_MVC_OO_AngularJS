@@ -39,55 +39,114 @@
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
   <section id="courseArchive">
       <div class="container">
+
+
           <!-- Filtros -->          
           <div class="row" id="row_primero">         
-              <center>
-                    <input type="text" value="" placeholder="Search Course ..." class="input_search" id="keyword" list="datalist">
-              </center>
-          </div><br><br><br><br>
-          <!-- Mensaje -->
-          <div class="row" ng-show="sinDatos">
-            <center>No hay cursos con los filtros deseados.</center><br><br><br><br>
+              <div class="col-sm-3 pull-left">
+                    <label>PageSize:</label>
+                    <select ng-model="data_limit" class="form-control">
+                        <option>3</option>
+                        <option>9</option>
+                        <option>12</option>
+                        <option>15</option>
+                    </select>
+              </div>
+
+                <div class="col-sm-6 pull-right">
+                    <div class="col-md-12">
+                      <label>Search:</label>
+                      <input type="text" ng-model="search" ng-change="filter()" placeholder="Search" class="form-control" />
+                    </div>
+
+                    <div class="col-md-12 pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              Order By
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                  <a class="pointer" ng-click="sort_with('price');">Price
+                                      <i class="glyphicon glyphicon-sort"></i>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a class="pointer" ng-click="sort_with('subject');">Category
+                                      <i class="glyphicon glyphicon-sort"></i>
+                                  </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
           </div>
+          <br><br><br><br>
+
+          <div class="row">
+              <center>
+                    <h5>Showing {{ searched.length }} of {{ entire_user}} entries</h5>
+              </center> 
+          </div>
+          
+
+
+
           <!-- Cursos -->
-          <div class="row" ng-show="coursesPintados">
-              <div class="col-md-4 margin_img_home" ng-repeat="course in courlistPintar">
+          <div class="row" ng-show="filter_data > 0">
+              <div class="col-md-4 margin_img_home" ng-repeat="data in searched = (file | filter:search | orderBy : base :reverse) | beginning_data:(current_grid-1)*data_limit | limitTo:data_limit">
+                  <!-- details curso -->
                   <div class="single_course">
                       <div class="singCourse_imgarea">
-                          <img src="backend/{{course.avatar}}" alt="" class="mediana">
+                          <img src="backend/{{data.avatar}}" alt="" class="mediana">
                           <div class="mask">
-                              <a href="" class="course_more courseDetalles">View Course</a> 
+                              <a href="#/course/{{data.id}}" class="course_more courseDetalles">View Course</a> 
                           </div>
                       </div>
                       <div class="singCourse_content">
                           <h3 class="singCourse_title">
-                              <a href="" class="courseDetalles">{{course.title}}</a>
+                              <a href="#/course/{{data.id}}" class="courseDetalles">
+                                {{(data.title).substring(0, 25)+" ..."}}
+                              </a>
                           </h3>
                           <p class="singCourse_price">
-                            {{course.price}}
+                            {{data.price| currency: '€ '}}
                           </p>
                           <p>
-                            {{(course.courseDescr).substring(0, 150)+" ..."}}
+                            {{(data.courseDescr).substring(0, 150)+" ..."}}
                           </p>
                       </div>
                       <div class="singCourse_author">
                         
                       </div>
                   </div>
+
               </div>
           </div>
+
+
+          <!-- Mensaje si no hay registros -->
+          <div class="row" ng-show="filter_data == 0">
+              <div class="col-md-12">
+                  <center>                            
+                      <h4>No records found..</h4>
+                  </center>
+              </div>
+          </div>
+
+
           <!-- Paginacion -->
-          <div class="row">              
+          <div class="row" ng-show="filter_data > 0">
               <center>
                   <ul uib-pagination
                       class="pagination-sm"
-                      total-items="totalItems"
-                      ng-model="currentPage"
+                      total-items="filter_data"
+                      ng-model="current_grid"
                       max-size="5"
+                      on-select-page="page_position(page)"
                       boundary-links="true"                      
-                      items-per-page="itemsPage"
-                      rotate="false"
-                      ng-change="pageChanged()">                        
+                      items-per-page="data_limit"
+                      rotate="false">                       
                   </ul>
               </center>
           </div>            
