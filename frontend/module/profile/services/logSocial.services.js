@@ -6,7 +6,7 @@ appLibra.factory('SocialLogService', function($q){
 	    service.fbLogin = fbLogin;
 	    service.twLogin = twLogin;
 	    service.gogLogin = gogLogin;
-	    service.logOut = logOut;
+	    service.logout = logout;
 
 	var info = {};
 		info.success=false;
@@ -16,7 +16,7 @@ appLibra.factory('SocialLogService', function($q){
 
 	function fbLogin(authService){
 		var provider = new firebase.auth.FacebookAuthProvider();
-		
+
 		var promise = 
 			authService.signInWithPopup(provider).then(function(result) {
 				info.success=true;
@@ -51,12 +51,12 @@ appLibra.factory('SocialLogService', function($q){
             console.log('Se ha encontrado un error:', error);
         });
 	}
-
-	function logOut(){
+/*
+	function logout(authService){
 		authService.signOut();
 		console.log("cierre");
 	}
-
+*/
 
 	function ArrayRedesSociales(datos){
 		var datos={

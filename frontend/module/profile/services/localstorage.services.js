@@ -1,11 +1,12 @@
 appLibra.factory("localstorageService", ['$timeout', '$filter', '$q', function ($timeout, $filter, $q) { 
+        
         var service = {};
-            service.GetAll = GetAll;
+            service.GetAll  = GetAll;
             service.GetById = GetById;
+            service.Create  = Create;
+            service.Update  = Update;
+            service.Delete  = Delete;
             service.GetByUsername = GetByUsername;
-            service.Create = Create;
-            service.Update = Update;
-            service.Delete = Delete;
         return service;
 
         function GetAll() {
@@ -40,6 +41,7 @@ appLibra.factory("localstorageService", ['$timeout', '$filter', '$q', function (
 
         function Create(user) {
             var deferred = $q.defer();
+            
             $timeout(function () {
                 GetByUsername(user.usuario)
                     .then(function () {
@@ -51,10 +53,18 @@ appLibra.factory("localstorageService", ['$timeout', '$filter', '$q', function (
                         // save to local storage
                         users.push(user);
                         setUsers(users);
-                        deferred.resolve({ success: true, message: 'User created success' });
+                        deferred.resolve({ success: true, message: 'User created success LocStor and Cook' });
                     });
             }, 1000);
             return deferred.promise;
+        }
+
+        // private function
+        function getUsers() {
+            if(!localStorage.users){
+                localStorage.users = JSON.stringify([]);
+            }
+            return JSON.parse(localStorage.users);
         }
 
         function Update(user) {
@@ -86,15 +96,7 @@ appLibra.factory("localstorageService", ['$timeout', '$filter', '$q', function (
             deferred.resolve({ success: true, message: 'User deleted success' });
             return deferred.promise;
         }
-
         // private functions
-        function getUsers() {
-            if(!localStorage.users){
-                localStorage.users = JSON.stringify([]);
-            }
-            return JSON.parse(localStorage.users);
-        }
-        
         function setUsers(users) {
             localStorage.users = JSON.stringify(users);
         }

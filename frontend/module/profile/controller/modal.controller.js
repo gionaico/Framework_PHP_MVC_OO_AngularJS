@@ -1,5 +1,5 @@
 
-appLibra.controller('modalCtrl', function ($scope, $uibModalInstance, $location, $timeout, SocialLogService, services) {
+appLibra.controller('modalCtrl', function ($scope, $uibModalInstance, $location, $timeout, SocialLogService, services, cookiesService, userService) {
 
 	var config = {
 		apiKey: "AIzaSyAbhJKdbaDvpEDHh8rJBeJTVw8OgbKvcEA",
@@ -14,15 +14,20 @@ appLibra.controller('modalCtrl', function ($scope, $uibModalInstance, $location,
 	var authService = firebase.auth();
 
 	$scope.fbLogin=function(){
-
 		SocialLogService.fbLogin(authService).then(function (datos) {
 			if (datos.success) {
 				datos.info.tipo_registro="f";
 				services.post('profile', 'logSocial', datos.info)
 		        	.then(function (response) {
-		        		console.log(response);
+		        		cookiesService.SetCredentials(response.datos);
+		        		$scope.close();
+		        		/*if (response.datos.province==="") {
+		        			console.log("yes");
+		        		}*/
 		        			            
 		        	});
+		    }else{
+		    	console.log("pintar el error con toster");
 		    }
 		});
 	}
@@ -38,6 +43,8 @@ appLibra.controller('modalCtrl', function ($scope, $uibModalInstance, $location,
 	$scope.close = function () {
 		$uibModalInstance.dismiss('cancel');
 	};
+
+	// SocialLogService.logout();
 
 });
 

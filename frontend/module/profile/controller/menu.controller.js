@@ -1,4 +1,6 @@
-appLibra.controller('menuCtrl', function ($scope, $uibModal, $rootScope, $anchorScroll) {
+appLibra.controller('menuCtrl', function ($scope, $uibModal, $rootScope, userService) {
+	userService.login();
+
 
     $scope.open = function () {
         var modalInstance = $uibModal.open({
@@ -14,4 +16,9 @@ appLibra.controller('menuCtrl', function ($scope, $uibModal, $rootScope, $anchor
         });
     };
 
+    
+/*	$scope.logout = function () {
+		console.log("popopo");
+        userService.logout(authService);
+    };*/
 });

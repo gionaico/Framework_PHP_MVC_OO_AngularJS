@@ -224,7 +224,6 @@ class controller_profile {
             "avatar"=>$_POST['avatar'],
             "tipo_registro"=>$_POST['tipo_registro']
         ); 
-        echo json_encode($datos_user); exit;
         $usuario = loadModel(MODEL_PROFILE, "profile_model", "checkUser", $datos_user);
             // echo ($usuario);exit;
         if (count($usuario)<1) {
@@ -233,7 +232,8 @@ class controller_profile {
                 $json_data["success"]= true;
                 $json_data["mensaje"] = "Bienvenido ".$_POST['name']." , has iniciado sesion exitosamente";
 
-                $json_data["token"] = $this->ActualizarToken($datos_user);
+                $datos_user["type"]=0;
+                $json_data["datos"] = $datos_user;
                 
                 echo json_encode($json_data);
             }else{      
@@ -244,7 +244,13 @@ class controller_profile {
                 echo json_encode($json_data);
             }
         }else{
-            $json_data["token"] = $this->ActualizarToken($datos_user);
+            $json_data["datos"] = array(
+                "user"=>$usuario[0]['user_name'],
+                "type"=>$usuario[0]['type'],
+                "name"=>$usuario[0]['name'],
+                "avatar"=>$usuario[0]['avatar']
+            ); 
+            
             $json_data["success"]= true;
             $json_data["mensaje"] = "Bienvenido ".$_POST['name']." , has iniciado sesion exitosamente";
             
