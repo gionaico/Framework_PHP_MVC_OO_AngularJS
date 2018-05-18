@@ -22,24 +22,26 @@
          <div class="row">
            <div class="col-lg-8 col-md-8 col-sm-8">
              <div class="contact_form wow fadeInLeft">
-                <form id="contact_form" name="contact_form" class="submitphoto_form" ng-submit="SubmitContact( formulario.$valid )">
+                
+                <form id="contact_form" name="contact_form" class="submitphoto_form" ng-submit="SubmitContact( contact_form.$valid )" novalidate="novalidate">
                   <div class="form-group">
-                    <input id="inputName" name="inputName" type="text" class="f_cont wp-form-control wpcf7-text" placeholder="Your name" required ng-model="contact.inputName">
+                    <input id="inputName" name="inputName" type="text" class="form-control wpcf7-text" placeholder="Your name" required ng-model="contact.inputName" minlength="3">
+                  </div>
+                  <!-- es : {{contact_form.inputName.$valid}} -->
+                    
+
+                  <div class="form-group">
+                    <input type="email" id="inputEmail" name="inputEmail" class="form-control wpcf7-email" placeholder="Email address" required ng-model="contact.inputEmail" >
                   </div>
                     
 
                   <div class="form-group">
-                    <input type="email" id="inputEmail" name="inputEmail" class="f_cont wp-form-control wpcf7-email" placeholder="Email address" required ng-model="contact.inputEmail" >
+                    <input id="inputSubject" name="inputSubject" type="text" class="form-control wpcf7-text" placeholder="Subject" required ng-model="contact.inputSubject">
                   </div>
                     
 
                   <div class="form-group">
-                    <input id="inputSubject" name="inputSubject" type="text" class="f_cont wp-form-control wpcf7-text" placeholder="Subject" required ng-model="contact.inputSubject">
-                  </div>
-                    
-
-                  <div class="form-group">
-                    <textarea id="inputMessage" name="inputMessage" class="f_cont wp-form-control wpcf7-textarea" cols="30" rows="10" placeholder="What would you like to tell us" required ng-model="contact.inputMessage"></textarea>
+                    <textarea id="inputMessage" name="inputMessage" class="form-control wpcf7-textarea" cols="30" rows="10" placeholder="What would you like to tell us" required ng-model="contact.inputMessage"></textarea>
                   </div>
                     
                     

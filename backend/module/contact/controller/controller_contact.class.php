@@ -8,9 +8,10 @@
 
         public function process_contact() {
         	/// Obtenemos el json enviado
-			$data = file_get_contents('php://input');
+			// $data = file_get_contents('php://input');
 			// Los convertimos en un array
-			$data = json_decode( $data, true );
+			// $data = json_decode( $data, true );
+			$data=$_POST;
                 
             $res = array(
             			"success"=>false,

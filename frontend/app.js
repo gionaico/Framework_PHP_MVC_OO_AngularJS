@@ -35,6 +35,12 @@
                     }
                 })
 
+                /*Course Form*/
+                .when("/courseForm", {
+                    templateUrl: "frontend/module/courses/view/courseForm.html",
+                    controller: "courseFormCtrl",
+                })
+
                 /*Courses Category*/
                 .when("/courses/:id", {
                     templateUrl: "frontend/module/courses/view/courses.html",

@@ -21,7 +21,7 @@
             <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>   
             <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>        
             <!-- Dropzone -->
-            <link rel="stylesheet" type="text/css" href="frontend/assets/dropzone/downloads/dropzone.css">        
+            <link rel="stylesheet" type="text/css" href="frontend/assets/dropzone/downloads/css/dropzone.css">        
             <!-- Datepicker CSS -->
             <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
             <!-- TOASTER -->
@@ -35,8 +35,11 @@
             <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
             <!-- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+            <!-- Firebase -->
+            <!-- <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script> -->
+            <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
 
-
+           
 
 
 
@@ -47,19 +50,27 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-cookies.min.js" ></script>
             <!-- VALIDACION DE FORMULARIOS -->
             <script src="frontend/assets/js/jcs-auto-validate/jcs-auto-validate.min.js"></script>
+            <script src="frontend/jcs-autoValidate.js"></script>
+            
+            <!-- AngularFire -->
+            <!-- <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script> -->
             <!-- BOOTSTRAP AngularJS -->
-            <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script> -->
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
             <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
 
 
+            <!-- *******************************My APP******************************* -->
             <script src="frontend/app.js"></script>
-
-
             <!-- Controllers -->
             <script src="frontend/module/contact/controller/contact.controller.js"></script>
             <script src="frontend/module/homepage/controller/homepage.controller.js"></script>
             <script src="frontend/module/courses/controller/courseDetails.controller.js"></script>
             <script src="frontend/module/courses/controller/courses.controller.js"></script>
+            <script src="frontend/module/courses/controller/courseForm.controller.js"></script>
+            <script src="frontend/module/profile/controller/loginSocial.controller.js"></script>
+            <script src="frontend/module/profile/controller/menu.controller.js"></script>
+            <script src="frontend/module/profile/controller/modal.controller.js"></script>
+            
             
             <!-- Para toda la app -->
             <script src="frontend/apiConnector.js"></script>
@@ -67,6 +78,7 @@
 
             <!-- Services de cada modulo -->
             <script src="frontend/module/courses/services/courses_map.services.js"></script>
+            <script src="frontend/module/profile/services/logSocial.services.js"></script>
         </head>
         <!--FIN HEAD -->
 
@@ -87,7 +99,8 @@
 
             <!-- Bootstrap js -->
             <script src="frontend/assets/js/bootstrap.min.js"></script>
-            
+            <!-- Dropzone -->
+            <script type="text/javascript" src="frontend/assets/dropzone/downloads/dropzone.min.js"></script>
             <!-- TOASTER -->
             <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
             <script src="frontend/assets/js/toaster/toasterMind.js"></script>

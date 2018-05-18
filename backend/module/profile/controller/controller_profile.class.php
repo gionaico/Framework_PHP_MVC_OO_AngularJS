@@ -224,7 +224,7 @@ class controller_profile {
             "avatar"=>$_POST['avatar'],
             "tipo_registro"=>$_POST['tipo_registro']
         ); 
-
+        echo json_encode($datos_user); exit;
         $usuario = loadModel(MODEL_PROFILE, "profile_model", "checkUser", $datos_user);
             // echo ($usuario);exit;
         if (count($usuario)<1) {

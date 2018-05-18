@@ -1,4 +1,44 @@
 
+<style>
+.dropbtn {
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+</style>
+
     <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"></a>
     <!-- END SCROLL TOP BUTTON -->
@@ -6,7 +46,7 @@
     <!--=========== BEGIN HEADER SECTION ================-->
 <header id="header">
   <!-- BEGIN MENU -->
-    <div class="menu_area">
+    <div class="menu_area" ng-controller="menuCtrl">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">  
             <div id="menu_principal">
                 <div class="navbar-header">
@@ -36,7 +76,7 @@
                         </li>
 
                         <li id="li-logIn" >
-                            <a href="#" class="desactivate" data-toggle="modal" id="login" data-target="#modal_login ">Log in</a>
+                            <a class="desactivate pointer" ng-click="open()">Log in</a>
                         </li>
 
                         <li id="li-logOut" >
@@ -44,10 +84,21 @@
                         </li>
 
 
-                        <li class="dropdown" id="li-profile"> 
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <!--prueba <li class="dropdown">
+                          <a class="dropbtn">Dropdown</a>
+                          <div class="dropdown-content">
+                          
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                          </div>
+                        </li> -->
+
+
+                        <li class="dropdown pointer" id="li-profile"> 
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <img src="" id="avatar_menu" class="img-circle peque" alt="">
-                                <span id="userName"></span>
+                                <span id="userName"></span>nombreUsuario
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
@@ -72,186 +123,4 @@
 
 
 
-
-<!--=========== MODAL LIGIN ================--> 
-    <style>
-    #mdialTamanio{
-      width: 40% !important;
-    }
-  </style>
-
-<div id="LoginModal">
-  
-  <div class="modal fade"  id="modal_login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" hidden>
-        <div class="modal-dialog" id="mdialTamanio" role="document">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    
-                    <br>
-
-                    <div class=" row modal-title" id="myModalLabel2">
-                      <div class="col-md-6" >
-                          <a class="opcionesLog" href="#" id="titleLogin">
-                            <center><h4 style="border-bottom: 1px solid #000000;padding-bottom: 3px;">Log in</h4></center>
-                          </a>
-                      </div>
-
-                      <div class=" col-md-6" >
-                          <a class="opcionesLog" href="#" id="titleReg">
-                            <center><h4>Sing up</h4></center>
-                          </a>
-                      </div>
-                    </div>
-                </div>
-
-
-                <div class="modal-body" id="container">
-                    <div class="form-group infoInLogin" id="info_logPro" style="display: none;">
-                        <p class="text-center">Before to intro your product, please you have to make login. If you are not registered, please register bofore to make login.</p>
-                    </div>
-
-                    <div class="form-group infoInLogin" id="info_pay" style="display: none;">
-                        <p class="text-center">Before to pay your product, please you have to make login. If you are not registered, please register bofore to make login.</p>
-                    </div>
-                    
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div id="hacerLogin">
-
-                              <form id="loginForm">
-                                    <div class="form-group">
-                                        <input id="user_log" name="user_log" type="text" placeholder="your user name" value="" class="form-control input-md color_input inputKeyup" required="required" value="">
-                                        <span id="sp_user_log" ></span>
-                                    </div>
-
-                                    <div class="form-group ">
-                                        <input id="password_log" name="password_log" type="password" class="form-control input-md color_input inputKeyup" placeholder="your password" required=""  value="">
-                                        <span id="sp_password_log" ></span>
-                                    </div>
-                                    
-                                    <div class="form-group ">
-                                        <a type="button" class="col-md-12 btn btn-success 378" id="btn-login">LOGIN</a>
-                                        <br><br><br>
-                                        <a href="#" id="btn-recovPass" title="">Dont remember your password?</a>
-                                    </div>
-                            </form>
-
-                            </div>
-
-                            <div id="hacerRegistro" style="display: none;">
-                              <form id="registerForm">
-                                  <div class="form-group">
-                                        <input id="user_register" name="user_register" type="text" placeholder="your user name" value="" class="form-control input-md color_input inputKeyup" required="required" value="">
-                                        <span id="sp_user_register" ></span>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input id="email_register" name="email_register" type="email" placeholder="your_email@example.com" value="" class="form-control input-md color_input inputKeyup" required="required" value="">
-                                        <span id="sp_email_register" ></span>
-                                    </div>
-
-                                    <div class="form-group ">
-                                        <input id="password_register" name="password_register" type="password" class="form-control input-md color_input inputKeyup" placeholder="your password" required=""  value="">
-                                      <span id="sp_password_register" ></span>
-                                    </div>
-                                    
-                                    <div class="form-group ">       
-                                        <a href="#" type="button" class="col-md-12 btn btn-warning" id="btn-singUp" title="">SING UP</a>
-                                    </div>
-                            </form>
-
-                            </div>
-
-                          
-                        
-                        </div>
-                        <div class="col-md-6">
-                            
-                            <a class="btn btn-block btn-social btn-twitter" id="logintwitter">
-                              <span class="fa fa-twitter"></span> Sign in with Twitter
-                            </a>
-
-                            <a class="btn btn-block btn-social btn-facebook" id="loginfacebook">
-                              <span class="fa fa-facebook"></span> Sign in with facebook
-                            </a>
-
-                            <a class="btn btn-block btn-social btn-google" id="loginGoogle">
-                              <span class="fa fa-google"></span> Sign in with google
-                            </a>
-                        </div>
-
-                    </div>
-
-                   
-                </div>
-
-                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<!--=========== MODAL RECOVER PASSWORD ================--> 
-
-  
-  <div class="modal fade"  id="modalrecovPass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" hidden>
-        <div class="modal-dialog" id="mdialTamanio" role="document">
-            <div class="modal-content">
-
-                <div class="modal-header">                    
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class=" row modal-title" id="myModalLabel2">
-                        <div class=" col-md-6" >
-                            <a class="opcionesLog" href="#" id="titleReg">
-                              <center>
-                                  <h4>Recover Password</h4>
-                              </center>
-                            </a>
-                        </div>
-                    </div>                    
-                </div>
-            
-
-
-                <div class="modal-body" id="container">
-                    <div class="row">
-                        <div class="col-md-offset-2 col-md-8">
-                              <div class="form-group">
-                                  <input id="email_recovPass" name="email_recovPass" type="email" placeholder="Your email" value="" class="form-control input-md color_input inputKeyup" required="required" value="">
-                                  <span id="sp_email_recovPass" ></span>
-                              </div>
-
-                              <div class="form-group">
-                                  <input id="email_recovPass2" name="email_recovPass2" type="email" placeholder="Re-enter your email" value="" class="form-control input-md color_input inputKeyup" required="required" value="">
-                                  <span id="sp_email_recovPass2" ></span>
-                              </div>                                
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button id="doneRecovPass" type="button" class="btn btn-primary">Done</button>           
-                </div>
-
-
-            </div>
-        </div>
-  </div>
 

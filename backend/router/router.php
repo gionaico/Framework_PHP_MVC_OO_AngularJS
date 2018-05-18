@@ -21,6 +21,7 @@
     //ob_start(); 
     session_start();
     $_SESSION['module'] = "";
+    $_POST = json_decode(file_get_contents('php://input'), true);
 
     function handlerRouter() {
         /*---------------------------*/
