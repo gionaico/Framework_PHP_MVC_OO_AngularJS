@@ -84,7 +84,7 @@
                         </li>
 
 
-                        <!--prueba <li class="dropdown">
+                        <!-- prueba <li class="dropdown">
                           <a class="dropbtn">Dropdown</a>
                           <div class="dropdown-content">
                           
@@ -92,16 +92,25 @@
                             <a href="#">Link 2</a>
                             <a href="#">Link 3</a>
                           </div>
-                        </li> -->
+                        </li>  -->
 
 
                         <li class="dropdown pointer" ng-show="btnLogout"> 
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <img src="{{avatar}}" id="avatar_menu" class="img-circle peque" alt="">
-                                <span >{{nombre}}</span>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <div class="row" style="padding: 20px; min-width: 260px;">
+                                        <div class="col-md-6">
+                                            <img src="{{avatar}}" id="avatar_menu" class="img-circle medianaDos" alt="">
+                                        </div>
+                                        <div class="col-md-6" style="padding: 10px;">
+                                            <center style="color:white;">{{nombre}}</center>
+                                        </div>
+                                    </div>
+                                </li><br>
                                 <li>
                                     <a href="#/profile">Mi perfil</a>
                                 </li>

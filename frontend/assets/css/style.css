@@ -59,6 +59,9 @@ License URI: http://www.gnu.org/licenses/gpl.html
 img.mediana{
   width: 200px; height: 250px;
 }
+img.medianaDos{
+  width: 100px; 
+}
 img.grande{
   width: 335px; height: 200px;
 }

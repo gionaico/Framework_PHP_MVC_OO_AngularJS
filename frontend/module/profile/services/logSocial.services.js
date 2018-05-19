@@ -1,6 +1,6 @@
 
 appLibra.factory('SocialLogService', function($q){
-	var defered=$q.defer();
+	
     // var promise=defered.promise;
 	var service = {};
 	    service.fbLogin = fbLogin;
@@ -30,36 +30,42 @@ appLibra.factory('SocialLogService', function($q){
 
 
 	function fbLogin(){
+		var defered=$q.defer();
 		var provider = new firebase.auth.FacebookAuthProvider();
 
 		var promise = 
 			authService.signInWithPopup(provider).then(function(result) {
 				info.success=true;
 				info.info=ArrayRedesSociales(result);
+				// console.log(info.info);
 				defered.resolve(info);
 	        }).catch(function(err) {
 	        	info.error=err;
 	        	defered.reject(info);
 	      	});
-
+	        // console.log(defered.promise);
 		return defered.promise;
 	}
 
 	function twLogin(){
+		var defered=$q.defer();
 		var provider = new firebase.auth.TwitterAuthProvider();
 		var promise =
 	    	authService.signInWithPopup(provider).then(function(result) {
 	    		info.success=true;
 				info.info=ArrayRedesSociales(result);
+	    		// console.log(info.info);
 				defered.resolve(info);
 	      	}).catch(function(err) {
 	      		info.error=err;
 	        	defered.reject(info);
 	      	});
+	      	// console.log(defered.promise);
 		return defered.promise;
 	}
 
 	function gogLogin(){
+		var defered=$q.defer();
 		var provider = new firebase.auth.GoogleAuthProvider();
     	provider.addScope('email');
     	var promise =
@@ -75,8 +81,8 @@ appLibra.factory('SocialLogService', function($q){
 	}
 
 	function logout(){
-		console.log("cierre");
 		authService.signOut();
+		console.log("cierre");
 	}
 
 

@@ -1,12 +1,29 @@
 
-appLibra.controller('modalCtrl', function ($scope, $uibModalInstance, $location, $timeout, SocialLogService, services, cookiesService, userService) {
+appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance, $location, $timeout, SocialLogService, services, cookiesService, userService) {
 
+	$rootScope.formRegister = false;
+	$rootScope.formLogin = true;
+	$scope.login_form = {
+        user: "",
+        pass: ""
+    };
 	
+
+	$scope.viewRegister=function(){
+		$rootScope.formRegister = true;
+		$rootScope.formLogin = false;	
+	};
+
+	$scope.viewLogin=function(){
+		$rootScope.formRegister = false;
+		$rootScope.formLogin = true;
+	};	
 
 	$scope.fbLogin=function(){
 		SocialLogService.fbLogin().then(function (datos) {
 			if (datos.success) {
 				datos.info.tipo_registro="f";
+				console.log(datos.info);
 				services.post('profile', 'logSocial', datos.info)
 		        	.then(function (response) {
 		        		cookiesService.SetCredentials(response.datos);
@@ -30,8 +47,8 @@ appLibra.controller('modalCtrl', function ($scope, $uibModalInstance, $location,
 				services.post('profile', 'logSocial', datos.info)
 		        	.then(function (response) {
 		        		cookiesService.SetCredentials(response.datos);
-		        		$scope.close();
 		        		userService.login();
+		        		$scope.close();
 		        		/*if (response.datos.province==="") {
 		        			console.log("yes");
 		        		}*/
@@ -48,6 +65,7 @@ appLibra.controller('modalCtrl', function ($scope, $uibModalInstance, $location,
 		SocialLogService.twLogin().then(function (datos) {
 			if (datos.success) {
 				datos.info.tipo_registro="t";
+				console.log(datos.info);
 				services.post('profile', 'logSocial', datos.info)
 		        	.then(function (response) {
 		        		cookiesService.SetCredentials(response.datos);
@@ -64,7 +82,15 @@ appLibra.controller('modalCtrl', function ($scope, $uibModalInstance, $location,
 		});
 	}
 
+	$scope.manualLogin=function(valido){
+		var data = {
+        	"user": $scope.login_form.user, 
+        	"pass": $scope.login_form.pass};
+	}
 
+	$scope.manualRegister=function(){
+		
+	}
 
 	/*Cierra modal*/
 	$scope.close = function () {

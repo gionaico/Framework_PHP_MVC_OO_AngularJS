@@ -16,6 +16,7 @@ eventplanner.factory("userService", ['$location', '$rootScope', 'services', 'coo
                 $rootScope.avatar = user.avatar;
                 $rootScope.usuario = user.usuario;
                 $rootScope.nombre = user.nombre;
+                $rootScope.tipo = user.tipo;
                 
                 /*services.post('events', 'getfavorites', JSON.stringify({usuario: user.usuario})).then(function (response) {
                     $rootScope.userfavorites = response.replace(/['"]+/g, '');
@@ -33,7 +34,6 @@ eventplanner.factory("userService", ['$location', '$rootScope', 'services', 'coo
         }
 
         function logout() {
-            // facebookService.logout();
             cookiesService.ClearCredentials();
 
             $rootScope.btnLogin = true;
