@@ -1,4 +1,4 @@
-appLibra.factory("userService", ['$location', '$rootScope', 'services', 'cookiesService',function ($location, $rootScope, services, cookiesService, SocialLogService) {
+appLibra.factory("userService", ['$location', '$rootScope', 'services', 'cookiesService', 'SocialLogService',function ($location, $rootScope, services, cookiesService, SocialLogService) {
 
         var service = {};
             service.login = login;
@@ -33,9 +33,9 @@ appLibra.factory("userService", ['$location', '$rootScope', 'services', 'cookies
             }
         }
 
-        function logout(authService) {
-            // SocialLogService.logout(authService);
-            
+        function logout() {
+            SocialLogService.logout();
+
             cookiesService.ClearCredentials();
 
             $rootScope.btnLogin = true;

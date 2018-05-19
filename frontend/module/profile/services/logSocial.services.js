@@ -10,11 +10,26 @@ appLibra.factory('SocialLogService', function($q){
 
 	var info = {};
 		info.success=false;
-		
+
+	/*CONFIGURACION FIREBASE*/
+	var config = {
+		apiKey: "AIzaSyAbhJKdbaDvpEDHh8rJBeJTVw8OgbKvcEA",
+		authDomain: "libralearn-easyangularjs.firebaseapp.com",
+		databaseURL: "https://libralearn-easyangularjs.firebaseio.com",
+		projectId: "libralearn-easyangularjs",
+		storageBucket: "libralearn-easyangularjs.appspot.com",
+		messagingSenderId: "760092275449"
+	};
+
+	firebase.initializeApp(config);
+	var authService = firebase.auth();
 
 	return service;
 
-	function fbLogin(authService){
+	
+
+
+	function fbLogin(){
 		var provider = new firebase.auth.FacebookAuthProvider();
 
 		var promise = 
@@ -30,33 +45,40 @@ appLibra.factory('SocialLogService', function($q){
 		return defered.promise;
 	}
 
-	function twLogin(authService){
+	function twLogin(){
 		var provider = new firebase.auth.TwitterAuthProvider();
-    	authService.signInWithPopup(provider).then(function(result) {              
-    		info.info=ArrayRedesSociales(result);
-    		return info;
-      	}).catch(function(error) {
-      		console.log('Se ha encontrado un error:', error);
-      	});
+		var promise =
+	    	authService.signInWithPopup(provider).then(function(result) {
+	    		info.success=true;
+				info.info=ArrayRedesSociales(result);
+				defered.resolve(info);
+	      	}).catch(function(err) {
+	      		info.error=err;
+	        	defered.reject(info);
+	      	});
+		return defered.promise;
 	}
 
-	function gogLogin(authService){
+	function gogLogin(){
 		var provider = new firebase.auth.GoogleAuthProvider();
     	provider.addScope('email');
+    	var promise =
+	    	authService.signInWithPopup(provider).then(function(result) {
+	    		info.success=true;
+				info.info=ArrayRedesSociales(result);
+				defered.resolve(info);
+	        }).catch(function(err) {
+	      		info.error=err;
+	        	defered.reject(info);
+	      	});
+	    return defered.promise;
+	}
 
-    	authService.signInWithPopup(provider).then(function(result) {
-    		info.info=ArrayRedesSociales(result);
-    		return info;
-        }).catch(function(error) {
-            console.log('Se ha encontrado un error:', error);
-        });
-	}
-/*
-	function logout(authService){
-		authService.signOut();
+	function logout(){
 		console.log("cierre");
+		authService.signOut();
 	}
-*/
+
 
 	function ArrayRedesSociales(datos){
 		var datos={

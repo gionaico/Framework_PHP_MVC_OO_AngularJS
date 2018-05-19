@@ -17,8 +17,7 @@ appLibra.controller('menuCtrl', function ($scope, $uibModal, $rootScope, userSer
     };
 
     
-/*	$scope.logout = function () {
-		console.log("popopo");
-        userService.logout(authService);
-    };*/
+	$scope.logout = function () {
+        userService.logout();
+    };
 });

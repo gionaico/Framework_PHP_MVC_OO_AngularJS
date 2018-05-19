@@ -18,10 +18,11 @@ appLibra.factory("cookiesService", ['$cookies', 'localstorageService',
             var usuario = Base64_encode(user.user);
             var tipo = Base64_encode(user.type);
             var nombre = Base64_encode(user.name);
+            var avatar = Base64_encode(user.avatar);
             
             //almacenarlos en la cookie session
             $cookies.putObject("session", 
-            {usuario: usuario, avatar: user.avatar, tipo: tipo, nombre: nombre}, 
+            {usuario: usuario, avatar: avatar, tipo: tipo, nombre: nombre}, 
             {expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000)});
             
             //almacenarlos en localstorage

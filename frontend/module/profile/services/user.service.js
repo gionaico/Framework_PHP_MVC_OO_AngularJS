@@ -40,6 +40,7 @@ eventplanner.factory("userService", ['$location', '$rootScope', 'services', 'coo
 
             $rootScope.avatar = '';
             $rootScope.nombre = '';
+            $rootScope.usuario ='';
 
             $rootScope.adminV = false;
 
