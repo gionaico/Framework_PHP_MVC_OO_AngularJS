@@ -25,20 +25,21 @@
 
         if (count($usuario)==1) {
             if (!password_verify($value["password"], $usuario[0]["password"] )) {
-                $error['password'] = '<strong>*php</strong> The password for this user is incorrect';
+                $error['password'] = 'The password for this user is incorrect';
                 $valido = false;  
             }elseif ($usuario[0]["activado"]=="n") {
-                $error['user'] = '<strong>*php</strong> Este usuario aun no esta activo. Revisa tu email para activarlo.';
+                $error['user'] = 'Este usuario aun no esta activo. Revisa tu email para activarlo.';
                 $valido = false;
             }
         }else{
-            $error['user'] = '<strong>*php</strong> This user dont exist in our DB';
+            $error['user'] = 'This user dont exist in our DB';
             $valido = false;  
 
         }
 
         return $return = array('resultado' => $valido, 
-                                'error' => $error);
+                                'error' => $error,
+                                'datosUser'=>$usuario[0]);
     }
 
 
@@ -65,31 +66,31 @@
 
         if (($resultado!=null) && ($resultado)) {   
             if (!$resultado['user']) {
-                $error['user'] = '<strong>*php</strong> Please write min 4 caracters';
+                $error['user'] = 'Please write min 4 caracters';
                 $valido = false;
             }else{                
                 $compruebaUsuario = loadModel(MODEL_PROFILE, "profile_model", "checkUser", $value);
 
                 if (count($compruebaUsuario)>0) {
-                    $error['user'] = '<strong>*php</strong> This user already exist in our DB';
+                    $error['user'] = 'This user already exist in our DB';
                     $valido = false;  
                 }
             }
 
              if (!$resultado['email']) {
-                $error['email'] = '<strong>*php</strong> Please write min 4 caracters';
+                $error['email'] = 'Formato de email invalido';
                 $valido = false;
             }else{                
                 $compruebaEmail = loadModel(MODEL_PROFILE, "profile_model", "checkUserEmail", $value);
                 // $error['email'] = '<strong>*php'.$compruebaEmail.'</strong> This email already exist in our DB';
                 if (count($compruebaEmail)>0) {
-                    $error['email'] = '<strong>*php'.count($compruebaEmail).'</strong> This email already exist in our DB';
+                    $error['email'] = 'This email already exist in our DB';
                     $valido = false;  
                 }
             }
 
             if (!$resultado['password']) {
-                $error['password'] = '<strong>*php</strong> Invalid format';
+                $error['password'] = 'Invalid format';
                 $valido = false;
             }
                   
@@ -177,47 +178,47 @@ function validate($value) {
         $path_model=$_SERVER['DOCUMENT_ROOT'] . '/Proyectos/GiovannyProy4/module/profile/model/model/';        
 
         if (!$resultado['un']) {
-            $error['un'] = '<strong>*php</strong> Please write min 4 caracters';
+            $error['un'] = 'Please write min 4 caracters';
             $valido = false;
         }else{
             $arr=["user_name",$resultado['un']];
             $evio_loadModel = loadModel($path_model, "profile_model", "checkUser", $arr);
             if (!$evio_loadModel) {
-                $error['un'] = '<strong>*php</strong> This user already exist in our DB';
+                $error['un'] = 'This user already exist in our DB';
                 $valido = false;  
             }
         }       
 
         if (!$resultado['phone']) {
-            $error['phone'] = '<strong>*php</strong> Format must be min 9 numeric characters';
+            $error['phone'] = 'Format must be min 9 numeric characters';
             $valido = false;
         }else{
             $arr=["phone",$resultado['phone']];
             $evio_loadModel = loadModel($path_model, "profile_model", "checkUser", $arr);
             if (!$evio_loadModel) {
-                $error['phone'] = '<strong>*php</strong> This phone already exist in our DB';
+                $error['phone'] = 'This phone already exist in our DB';
                 $valido = false;  
             }
         }
 
         if (!$resultado['email']) {
-            $error['email'] = '<strong>*php</strong> Invalid Email';
+            $error['email'] = 'Invalid Email';
             $valido = false;
         }else{
             $arr=["email",$resultado['email']];
             $evio_loadModel = loadModel($path_model, "profile_model", "checkUser", $arr);
             if (!$evio_loadModel) {
-                $error['email'] = '<strong>*php</strong> This email already exist in our DB';
+                $error['email'] = 'This email already exist in our DB';
                 $valido = false;  
             }
         }
 
         if (!validateDate($resultado['birth_date'], 'Y-m-d')) {
-            $error['birth_date'] = '<strong>*php</strong> Invalid Date';
+            $error['birth_date'] = 'Invalid Date';
             $valido = false;
         }else{
             if (!validateAge($resultado['birth_date'])) {
-                $error['birth_date'] = '<strong>*php</strong> Your age must be greater than 18 years';
+                $error['birth_date'] = 'Your age must be greater than 18 years';
                 $valido = false;
             }
         }

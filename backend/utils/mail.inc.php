@@ -9,7 +9,7 @@
         switch ($arr['type']) {                
             case 'contact':
                 $subject = 'Tu Peticion a Libra LearnEasy ha sido enviada';
-                $ruta = '<a href=' . 'http://localhost/Proyectos/GiovannyProy4/homepage/homepage/'. '>aqu&iacute;</a>';
+                $ruta = '<a href=' . 'http://localhost/Proyectos/Framework_PHP_MVC_OO_AngularJS/#/'. '>aqu&iacute;</a>';
                 $body = 'Para visitar nuestra web, pulsa ' . $ruta;
                 break;
     
@@ -23,8 +23,10 @@
 
             case 'alta':
                 $subject = 'Tu Alta en Libra LearnEasy';
-                $ruta = '<a href=' . amigable("?module=profile&function=activar&param=" . $arr['token'], true) . '>aqu&iacute;</a>';
-                $body = 'Gracias por unirte a nuestra aplicaci&oacute;n. Para finalizar el registro, pulsa ' . $ruta;
+                $ruta = "<a href='http://".$_SERVER['HTTP_HOST']."/Proyectos/Framework_PHP_MVC_OO_AngularJS/#/profile/activar/" . $arr['token'] . "'>aqu&iacute;</a>";
+
+                $body = 'Gracias por uni
+                rte a nuestra aplicaci&oacute;n. Para finalizar el registro, pulsa '.$arr['token'].'' . $ruta;
                 break;
 
             case 'recoverPass':

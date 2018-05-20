@@ -74,4 +74,7 @@ class profile_bll{
     public function update_usuario_BLL($arrArgument){    
         return $this->dao->update_usuario_DAO($this->db,$arrArgument);
     }
+    public function userByToken_BLL($arrArgument){    
+        return $this->dao->userByToken_DAO($this->db,$arrArgument);
+    }
 }

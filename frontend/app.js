@@ -58,6 +58,14 @@
                     controller: "contactCtrl"
                 })
                 
+
+                //Activar Usuario
+                .when("/profile/activar/:token", {
+                    templateUrl: "frontend/module/homepage/view/homepage.html",
+                    controller: "verifyTokenCtrl"
+                })
+
+
                 .otherwise({
                   redirectTo: '/'
                 })

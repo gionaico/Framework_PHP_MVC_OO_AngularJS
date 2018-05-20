@@ -65,6 +65,9 @@ class profile_model {
     public function update_usuario($arrArgument) {
         return $this->bll->update_usuario_BLL($arrArgument);
     }
+    public function userByToken($arrArgument) {
+        return $this->bll->userByToken_BLL($arrArgument);
+    }
 
 
 }

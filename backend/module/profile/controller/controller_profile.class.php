@@ -10,14 +10,14 @@ class controller_profile {
     }
 
     /*-------------------------------------------*/
-    function form() {
+    /*function form() {
         loadView( "module/profile/view/", "profile.html"); 
     }
 
 
     function changePass(){         
          loadView( "module/profile/view/", "changePass.html");        
-    }
+    }*/
 
     function upDatePass(){         
          $datos_user["pass"]=  $_POST['password'];
@@ -82,6 +82,7 @@ class controller_profile {
             "email"=>$_POST['email_register'],
             "password"=>$_POST['password_register']
         );  
+
         $datos_user["token"] = md5(uniqid(rand(), true));
         $datos_user["avatar"] = "https://robohash.org/".$_POST['user_register'];
 
@@ -93,6 +94,7 @@ class controller_profile {
             if ($insertDatos) {
                 $json_data["success"]= true;
                 $json_data["mensaje"] = "Felicidades ".$_POST['user_register']." te has registrado correctamente. Recibiras un email para activar tu cuenta.";
+                $json_data["j"]=$datos_user["token"];
                 sendtoken($datos_user, "alta");
                 echo json_encode($json_data);
                 exit;
@@ -101,14 +103,15 @@ class controller_profile {
                 $resultado['error']['insersionDatos']="ERROR. Insersion de datos fallida";
                 $json_data["error"] = $resultado['error']['insersionDatos'];
 
-                header('HTTP/1.0 400 Bad error');
+                // header('HTTP/1.0 400 Bad error');
                 echo json_encode($json_data);
             }
         }else{      
+                // echo json_encode("nooo");exit;
             $json_data["success"] = false;
             $json_data["error"] = $resultado['error'];
 
-            header('HTTP/1.0 400 Bad error');
+            // header('HTTP/1.0 400 Bad error');
             echo json_encode($json_data);
         }
     }
@@ -119,11 +122,23 @@ class controller_profile {
                 'token' => $_GET['param'],
                 'activado' => "y"
             );
-        $activarUser = loadModel(MODEL_PROFILE, "profile_model", "activarUser", $datos_user);
-
-        if ($activarUser) {
-            header("Location: http://localhost/Proyectos/GiovannyProy4/homepage/homepage/");     
+        try {
+            $value = loadModel(MODEL_PROFILE, "profile_model", "activarUser", $datos_user);
+        } catch (Exception $e) {
+            $value = false;
         }
+
+        if ($value) {
+            $user = loadModel(MODEL_PROFILE, "profile_model", "userByToken", $datos_user);  
+            $json_data["datos"] = array(
+                "user"=>$user[0]['user_name'],
+                "type"=>$user[0]['type'],
+                "name"=>$user[0]['name'],
+                "avatar"=>$user[0]['avatar']
+            );
+        }
+        $json_data["success"]=$value;
+        echo json_encode($json_data);      
     }
 
 
@@ -132,11 +147,19 @@ class controller_profile {
         $datos_user=array(
                 "user"=>$_POST['user_log'],
                 "password"=>$_POST['password_log']
-            );  
+            );
         $resultado=valida_usuarioLog($datos_user);
+            // echo json_encode($resultado);  exit;
         if ($resultado["resultado"]) {
             $json_data["success"]= true;
             $json_data["mensaje"] = "Bienvenido ".$_POST['user_log']." , has iniciado sesion exitosamente";
+            // $json_data["datos"]=$resultado["datosUser"];
+            $json_data["datos"] = array(
+                "user"=>$resultado["datosUser"]['user_name'],
+                "type"=>$resultado["datosUser"]['type'],
+                "name"=>$resultado["datosUser"]['name'],
+                "avatar"=>$resultado["datosUser"]['avatar']
+            );
 
             $json_data["token"] = $this->ActualizarToken($datos_user);
 
@@ -145,8 +168,8 @@ class controller_profile {
             $json_data["success"] = false;
             $json_data["error"] = $resultado['error'];
 
-            header('HTTP/1.0 400 Bad error');
             echo json_encode($json_data);
+            // header('HTTP/1.0 400 Bad error');
         }
     }
 

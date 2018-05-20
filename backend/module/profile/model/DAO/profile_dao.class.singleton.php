@@ -247,7 +247,7 @@ class profile_dao {
 
     public function checkUserEmail_DAO($db, $arrArgument) {
       $email= $arrArgument["email"];      
-      $sql=("SELECT * FROM users WHERE email ='$email'"); /*and tipo_registro='m'*/
+      $sql=("SELECT * FROM users WHERE email ='$email' and tipo_registro='m'"); /*and tipo_registro='m'*/
       return $db->listar($db->ejecutar($sql));
     }
 
@@ -280,6 +280,12 @@ class profile_dao {
         $sql = "UPDATE users SET password='$pass' WHERE token='$token'";
 
         return $db->ejecutar($sql);      
+    }
+    public function userByToken_DAO($db, $arrArgument) {
+        $token = $arrArgument["token"];
+        $sql = "SELECT * FROM users WHERE token='$token'";
+
+        return $db->listar($db->ejecutar($sql));
     }
 
 

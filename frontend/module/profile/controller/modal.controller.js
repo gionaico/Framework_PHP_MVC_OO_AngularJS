@@ -3,10 +3,10 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
 
 	$rootScope.formRegister = false;
 	$rootScope.formLogin = true;
-	$scope.login_form = {
-        user: "",
-        pass: ""
-    };
+	$scope.login_form = {};
+	$scope.register_Form={};
+
+
 	
 
 	$scope.viewRegister=function(){
@@ -84,12 +84,48 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
 
 	$scope.manualLogin=function(valido){
 		var data = {
-        	"user": $scope.login_form.user, 
-        	"pass": $scope.login_form.pass};
+        	"user_log": $scope.login_form.user_log, 
+        	"password_log": $scope.login_form.password_log};
+
+        services.post('profile', 'loginManual', data)
+        	.then(function (response) {
+        		console.log(response);
+	            if (response.success) {
+	            	console.log(response);
+	            	cookiesService.SetCredentials(response.datos);
+	        		$scope.close();
+	        		userService.login();
+		            var toasts = new Toast('Sending email', 'success', 'toast-top-center', response.mensaje, 15000);
+		    		delayToasts(toasts,0);
+	            } else {
+	            	if (response.error.user) {
+		            	$scope.login_form.errPass="";
+		            	$scope.login_form.errUser=response.error.user;
+	            	}
+	            	if (response.error.password) {
+		            	$scope.login_form.errUser="";
+		            	$scope.login_form.errPass=response.error.password;
+	            	}
+	            }
+        	});
 	}
 
-	$scope.manualRegister=function(){
-		
+	$scope.manualRegister=function(valido){
+		var data = {
+        	"user_register": $scope.registerForm.user_register, 
+        	"email_register": $scope.registerForm.email_register,
+        	"password_register": $scope.registerForm.password_register};
+
+        services.post('profile', 'register', data)
+        	.then(function (response) {
+	            if (response.success) {
+	            	console.log(response);
+		            /*var toasts = new Toast('Sending email', 'info', 'toast-bottom-right', response.mensaje, 15000);
+		    		delayToasts(toasts,0);*/
+	            } else {
+	            	console.log(response);
+	            }
+        	});
 	}
 
 	/*Cierra modal*/
