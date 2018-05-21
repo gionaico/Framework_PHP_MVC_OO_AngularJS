@@ -31,7 +31,8 @@
 
             case 'recoverPass':
                 $subject = 'LearnEasy. Solicitud de recuperar password.';
-                $ruta = '<a href=' . amigable("?module=profile&function=changePass&param=" . $arr['token'], true) . '>aqu&iacute;</a>';
+                $ruta = "<a href='http://".$_SERVER['HTTP_HOST']."/Proyectos/Framework_PHP_MVC_OO_AngularJS/#/user/changePass/" . $arr['token'] . "'>aqu&iacute;</a>";
+
                 $body = 'Para realizar el cambio de password pulsa ' . $ruta;
                 break;
         }

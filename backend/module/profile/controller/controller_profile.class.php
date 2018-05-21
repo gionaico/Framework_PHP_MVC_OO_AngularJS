@@ -37,11 +37,10 @@ class controller_profile {
     }
     /*-------------------------------------------*/
     function recovPass(){
-        $datos_user["email"] = $_POST['email'];
+        $datos_user["email"] = $_POST['email1'];
+             
         $checkUserEmail = loadModel(MODEL_PROFILE, "profile_model", "checkUserEmail", $datos_user);
         $datos_user["user"] = $checkUserEmail[0]["user_name"];
-
-        
 
         if (count($checkUserEmail)==1) {   
             $datos_user["token"] = md5(uniqid(rand(), true));

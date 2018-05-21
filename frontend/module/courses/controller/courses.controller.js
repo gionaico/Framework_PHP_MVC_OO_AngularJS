@@ -1,4 +1,3 @@
-console.log("courseController");
 
 appLibra.controller('coursesCategoryCtrl', function ($scope, $timeout, services, coursesCategory, courses_map) {
     window.scrollTo(0, 0);

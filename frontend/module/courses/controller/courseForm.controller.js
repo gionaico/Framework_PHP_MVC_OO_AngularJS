@@ -1,7 +1,4 @@
 
-
-var pe=[];
-console.log(pe.length);
 appLibra.controller('courseFormCtrl', function ($scope) {
 	$scope.courseForm={};
 	$scope.regex = {

@@ -64,7 +64,7 @@
                                       <div class="form-group ">
                                           <button type="submit" class="col-md-12 btn btn-success" >LOGIN</button>
                                           <br><br><br>
-                                          <a id="btn-recovPass" title="">Dont remember your password?</a>
+                                          <a ng-click="openRecovPass()" class="pointer">Dont remember your password?</a>
                                       </div>
                               </form>
 lala{{login_form|json}}
@@ -129,55 +129,4 @@ yoyo{{registerForm|json}}
 
 
 
-
-<!--=========== MODAL RECOVER PASSWORD ================--> 
-
-  
-  <div class="modal fade"  id="modalrecovPass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" hidden>
-        <div class="modal-dialog" id="mdialTamanio" role="document">
-            <div class="modal-content">
-
-                <div class="modal-header">                    
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class=" row modal-title" id="myModalLabel2">
-                        <div class=" col-md-6" >
-                            <a class="opcionesLog" href="#" id="titleReg">
-                              <center>
-                                  <h4>Recover Password</h4>
-                              </center>
-                            </a>
-                        </div>
-                    </div>                    
-                </div>
-            
-
-
-                <div class="modal-body" id="container">
-                    <div class="row">
-                        <div class="col-md-offset-2 col-md-8">
-                              <div class="form-group">
-                                  <input id="email_recovPass" name="email_recovPass" type="email" placeholder="Your email" value="" class="form-control input-md color_input inputKeyup" required="required" value="">
-                                  <span id="sp_email_recovPass" ></span>
-                              </div>
-
-                              <div class="form-group">
-                                  <input id="email_recovPass2" name="email_recovPass2" type="email" placeholder="Re-enter your email" value="" class="form-control input-md color_input inputKeyup" required="required" value="">
-                                  <span id="sp_email_recovPass2" ></span>
-                              </div>                                
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button id="doneRecovPass" type="button" class="btn btn-primary">Done</button>           
-                </div>
-
-
-            </div>
-        </div>
-  </div>
 

@@ -59,10 +59,17 @@
                 })
                 
 
-                //Activar Usuario
+                /*Activar Usuario*/
                 .when("/profile/activar/:token", {
                     templateUrl: "frontend/module/homepage/view/homepage.html",
                     controller: "verifyTokenCtrl"
+                })
+
+
+                /*Cambiar password usuario*/
+                .when("/user/changePass/:token", {
+                    templateUrl: "frontend/module/profile/view/changePass.html",
+                    controller: "changePassCtrl"
                 })
 
 

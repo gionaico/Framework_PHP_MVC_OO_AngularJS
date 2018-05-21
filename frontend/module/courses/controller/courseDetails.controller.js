@@ -1,4 +1,3 @@
-console.log("enrta");
 
 appLibra.controller('courseDetailsCtrl', function ($scope, services, courseDetails, courses_map) {
     if (courseDetails.success) {

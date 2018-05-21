@@ -1,5 +1,5 @@
 
-appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance, $location, $timeout, SocialLogService, services, cookiesService, userService) {
+appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance, $uibModal, $location, $timeout, SocialLogService, services, cookiesService, userService) {
 
 	$rootScope.formRegister = false;
 	$rootScope.formLogin = true;
@@ -120,10 +120,12 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
         	.then(function (response) {
 	            if (response.success) {
 	            	console.log(response);
-		            /*var toasts = new Toast('Sending email', 'info', 'toast-bottom-right', response.mensaje, 15000);
-		    		delayToasts(toasts,0);*/
+	            	$scope.close();
+		            var toasts = new Toast('Register', 'info', 'toast-bottom-full-width', response.mensaje, 15000);
+		    		delayToasts(toasts,0);
 	            } else {
-	            	console.log(response);
+	            	var toasts = new Toast('Register', 'error', 'toast-top-full-width', response.mensaje, 15000);
+	            	delayToasts(toasts,0);
 	            }
         	});
 	}
@@ -133,6 +135,15 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
 		$uibModalInstance.dismiss('cancel');
 	};
 
+	$scope.openRecovPass = function () {
+		$scope.close();
+        var modalInstance2 = $uibModal.open({
+            animation: 'true',
+            templateUrl: 'frontend/module/profile/view/modalRecovPass.html',
+            controller: 'ModalRecovPassCtrl',
+            size: "md"
+        });
+    };
 
 });
 
