@@ -5,33 +5,35 @@
 
 <section id="primerForm">
     <div class="container">
-        <div class="row">           
-            <div class="col-md-offset-1  col-md-3">
-                <p class="text-right">
-                    <label class="control-label" for="password_nuevo">New password</label>
-                </p>                        
-            </div>
-            <div class="col-md-5">
-                <input id="password_nuevo" name="password_nuevo" type="password" placeholder="******" class="form-control input-md inputKeyup" required=""  value="<?php echo $pru; ?>">
-                <p class="text-right">                  
-                    <a href="#" class="formatPass">View Format</a>
-                </p>
-                <span id="sp_password_nuevo"></span>
-            </div>          
-        </div><br><br>
+        <form name="changePassForm" ng-submit="changePassw(changePassForm.$valid)" novalidate>
+            <div class="row form-group">           
+                <div class="col-md-offset-1  col-md-3">
+                    <p class="text-right">
+                        <label class="control-label" for="password_nuevo">New password</label>
+                    </p>                        
+                </div>
+                <div class="col-md-5">
+                    <input id="password_nuevo" name="password_nuevo" type="password" placeholder="******" class="form-control" required ng-model="datosChangPass.password_nuevo" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+                    <p class="text-right">                  
+                        <a ng-click="formatPass()" class="formatPass pointer">View Format</a>
+                    </p>
+                </div>          
+            </div><br><br>
 
-        <div class="row">           
-            <div class="col-md-offset-1  col-md-3">
-                <p class="text-right">
-                    <label class="control-label" for="password_nuevo2">Re-enter password</label>
-                </p>                        
+            <div class="row form-group">           
+                <div class="col-md-offset-1  col-md-3">
+                    <p class="text-right">
+                        <label class="control-label" for="password_nuevo2">Re-enter password</label>
+                    </p>                        
+                </div>
+                <div class="col-md-5">
+                    <input id="password_nuevo2" name="password_nuevo2" type="password" placeholder="******" class="form-control" required ng-model="datosChangPass.password_nuevo2" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+                    <span style="color: red;" ng-show="datosChangPass.difere">Los password no coinciden. Por favor intentalo nuevamente</span>
+                </div>          
+            </div><br><br>
+            <div class="row form-group">  
+                <button type="submit" class="col-md-offset-4 col-md-4 btn btn-success" id="btn-changePass">Done</button>
             </div>
-            <div class="col-md-5">
-                <input id="password_nuevo2" name="password_nuevo2" type="password" placeholder="******" class="form-control input-md inputKeyup" required=""  value="">
-                <span id="sp_password_nuevo2"></span>
-            </div>          
-        </div><br><br>
-
-        <button class="col-md-offset-4 col-md-4 btn btn-success" id="btn-changePass">Done</button>
+        </form>
     </div>
 </section>
