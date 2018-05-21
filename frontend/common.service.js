@@ -1,27 +1,31 @@
 
 appLibra.factory("CommonService", ['$rootScope','$timeout', function ($rootScope, $timeout) {
     var service = {};
-        service.alertError   = alertError;
-        service.alertInfo = alertInfo;
+        service.alert   = alert;
+        service.alertTimer= alertTimer;
 
     return service;
         
-    function alertError(mensaje){        
+    function alert(type, mensaje, title){        
         swal({
-          type: 'error',
-          title: 'Oops...',
-          text: ''+mensaje+'',
-          footer: '<a href>Why do I have this issue?</a>',
-        });
+          type: ''+type+'',
+          title: ''+title+'',
+          html: ''+mensaje+'',
+          animation: true,
+        });          
     }
 
-    function alertInfo(mensaje){        
+    function alertTimer(type, mensaje, title, tiempo){        
         swal({
-          type: 'info',
-          title: 'Oops...',
-          text: ''+mensaje+'',
-          footer: '<a href>Why do I have this issue?</a>',
-        });
+          type: ''+type+'',
+          title: ''+title+'',
+          html: ''+mensaje+'',
+          animation: true,
+          showConfirmButton: false,
+          timer: tiempo,
+        });          
     }
+
+    
 
 }]);

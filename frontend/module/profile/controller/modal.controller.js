@@ -29,10 +29,6 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
 		        		cookiesService.SetCredentials(response.datos);
 		        		$scope.close();
 		        		userService.login();
-		        		/*if (response.datos.province==="") {
-		        			console.log("yes");
-		        		}*/
-		        			            
 		        	});
 		    }else{
 		    	console.log("pintar el error fb con toster");
@@ -49,10 +45,6 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
 		        		cookiesService.SetCredentials(response.datos);
 		        		userService.login();
 		        		$scope.close();
-		        		/*if (response.datos.province==="") {
-		        			console.log("yes");
-		        		}*/
-		        			            
 		        	});
 		    }else{
 		    	console.log("pintar el error gog con toster");

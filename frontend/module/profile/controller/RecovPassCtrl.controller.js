@@ -1,4 +1,4 @@
-appLibra.controller('ModalRecovPassCtrl', function ($scope, $uibModal, $uibModalInstance,  services) {
+appLibra.controller('ModalRecovPassCtrl', function ($scope, $uibModal, $uibModalInstance,  services, CommonService) {
     $scope.recPass={};
     $scope.recPass.iguales=false;			
     $scope.recPass.Show_msnDB=false;
@@ -24,9 +24,16 @@ appLibra.controller('ModalRecovPassCtrl', function ($scope, $uibModal, $uibModal
 	        if (!response.success) {
 	        	$scope.recPass.Show_msnDB=true;
 	        	$scope.recPass.msnDB=response.mensaje;
+	        }else{
+	        	$scope.close();
+	        	CommonService.alert("success", response.mensaje, "Recover Password");
 	        }
 	        
 	    });
 
+	};
+	/*Cierra modal*/
+	$scope.close = function () {
+		$uibModalInstance.dismiss('cancel');
 	};
 });
