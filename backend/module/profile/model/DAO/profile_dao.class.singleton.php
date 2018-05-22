@@ -239,8 +239,6 @@ class profile_dao {
     public function checkUser_DAO($db, $arrArgument) {
       $user= $arrArgument["user"];      
       $sql=("SELECT * FROM users WHERE user_name ='$user'");
-      // echo $sql;
-        // exit;
       return $db->listar($db->ejecutar($sql));
     }
     

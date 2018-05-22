@@ -18,6 +18,20 @@ class controller_profile {
     function changePass(){         
          loadView( "module/profile/view/", "changePass.html");        
     }*/
+    function infoUser(){
+
+        $userId["user"]= $_GET['param'];
+        try {            
+            $usuario = loadModel(MODEL_PROFILE, "profile_model", "checkUser", $userId);
+            $datos["user"]= $usuario[0];
+            $datos["success"]=true;
+        } catch (Exception $e) {
+            $datos["success"]=false;
+            $datos["mensaje"]="Problemas de conexion. Intentalo de nuevo mas tarde.";
+        }
+        echo json_encode($datos);
+        exit;
+    }
 
     function upDatePass(){         
          $datos_user["pass"]=  $_POST['password'];
@@ -289,8 +303,8 @@ class controller_profile {
 
                         
             $json =  loadModel(MODEL_PROFILE, "profile_model", "obtain_countries", $url);
-            // echo $json;
-            //     exit;
+            echo $json;
+                exit;
             if($json){
                 echo $json;
                 exit;

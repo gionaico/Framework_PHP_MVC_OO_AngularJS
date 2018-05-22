@@ -72,6 +72,22 @@
                     controller: "changePassCtrl"
                 })
 
+                /*Cambiar password usuario*/
+                .when("/user/myProfile/", {
+                    templateUrl: "frontend/module/profile/view/profileForm.html",
+                    controller: "profileFormCtrl",
+                    resolve: {
+                        user: function (services, cookiesService) {
+                            var user = cookiesService.GetCredentials();
+                            console.log(user);
+                            if (user) {
+                                return services.get('profile', 'infoUser', user.usuario);
+                            }
+                            return false;
+                        }
+                    }
+                })
+
 
                 .otherwise({
                   redirectTo: '/'

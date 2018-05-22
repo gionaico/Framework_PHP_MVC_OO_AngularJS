@@ -1,0 +1,146 @@
+
+<section id="imgBanner">
+      <h2>User Profile</h2>
+</section>
+
+
+
+
+<section id="primerForm">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-3 col-md-6">
+				<center>
+					<img src="{{user.avatar}}" id="fotoperfil" class="img-circle grande"><br><br>
+					<h3><span>{{user.username}}</span></h3>
+				</center>
+			</div>
+		</div><br>
+		<br>
+		<br>
+
+		
+		<div class="row">
+			<form name="formUpdProf" ng-submit="SubmitUpdateProfile(formUpdProf.$valid)" novalidate>
+
+				<div class="col-md-6">					
+					
+					<div class="form-group ">
+						<label class="control-label " for="name">Name/Surname</label>  
+		                <input id="name" name="name" type="text" placeholder="Peter Smith" class="form-control" ng-model="user.name" minlength="3">
+		            </div>
+
+		            <div class="form-group ">
+		                <label class="control-label" for="birth_date">Date of Birth</label>  
+		                <input id="birth_date" name="birth_date" type="text" placeholder="YYYY-MM-DD" class="form-control " ng-model="user.birth_date">
+		                <span id="sp_birth_date"></span>
+		            </div>
+
+		            <div class="form-group ">
+		                <label class="control-label " for="genere">Genere</label>  
+		                <div> 
+		                    <label class="radio-inline" for="genere-0">
+		                      <input type="radio" name="genere" class="genere" value="Man"  ng-model="user.genere"> Man
+		                    </label> 
+		                    <label class="radio-inline" for="genere-1">
+		                      <input type="radio" name="genere" class="genere" value="Woman" ng-model="user.genere"> Woman
+		                    </label>
+		                    <label class="radio-inline" for="genere-2">
+		                      <input type="radio" name="genere" class="genere" value="NaNa" checked ng-model="user.genere"> NaNa
+		                    </label>
+		                </div>
+		            </div>
+					
+					<div class="form-group ">
+		                <label class="control-label" for="country">Country</label>  
+	                    <select id="country" name="country" class="form-control" ng-model="user.country" ng-options="item.sName for item in user.paises">
+	                        <option selected="" ></option>
+	                    </select>
+	                    <span id="sp_country"></span>
+		            </div>
+
+		            <div class="form-group ">
+		                <label class="control-label" for="province">Province</label>  
+		                <select id="province" name="province" class="form-control" ng-model="user.prov">
+		                    <option selected="" ></option>
+		                </select>
+		                <span id="sp_province"></span>
+		            </div>
+
+				</div><!-- end col-md6 -->
+
+				<div class="col-md-6">
+		            <div class="form-group ">
+		                <label class="control-label" for="city">City</label>  
+		                <select id="city" name="city" class="form-control" ng-model="user.city">
+		                    <option selected="" ></option>
+		                </select>
+		                <span id="sp_birth_date"></span>
+		            </div>
+
+					<div class="form-group ">
+	                    <label class="control-label" for="phone">Number Phone</label>
+	                    <input id="phone" name="phone" type="tel" placeholder="9 Numbers. Ex: 602145478"  class="form-control" ng-model="user.phone">
+	                    <span id="sp_phone"></span>
+		            </div>
+
+
+		            <div class="form-group ">
+		                <label class="control-label" for="email">Email</label>
+		                <input id="email" name="email" type="email" placeholder="joe_24@mail.com" class="form-control " required ng-model="user.email">
+		                <span id="sp_email"></span>
+		            </div>
+
+		            <div class="form-group ">
+		                <label class="control-label" for="password">Password</label>
+		                <input id="password" name="password" type="password" placeholder="***********" class="form-control "   pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" ng-model="user.pass1">
+		                <a class="formatPass">View Format</a>
+		            </div>
+
+		            <div class="form-group ">
+		                <label class="control-label" for="rePassword">Re-enter password</label>
+		                <input id="rePassword" name="rePassword" type="password" placeholder="***********" class="form-control"pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" ng-model="user.pass2">
+		                <span id="sp_rePassword"></span>
+		            </div>	            
+
+		            <div class="form-group ">
+		                <label class="control-label">Interests</label>
+		                <div id="div_intereses">
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses"  value="Backend"/>Backend
+		                    </label> 
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses" value="Frontend"/>Frontend
+		                    </label>
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses" value="OS"/>OS
+		                    </label>
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses" value="Diseny"/>Diseny
+		                    </label>
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses" value="Robotics"/>Robotics
+		                    </label>
+		                    <label class="checkbox-inline"  >
+		                          <input class="gio_checkbox " type="checkbox" name= "intereses" value="Security"/>Security
+		                    </label>
+		                </div>
+		                <br>
+		                <span id="sp_intereses"></span>
+		            </div>
+
+				</div>
+				<br>
+				<br>
+				<br>
+				<div class="form-group row">				
+					<button type="submit" class="col-md-offset-4 col-md-4 btn btn-primary">Submit</button>				
+				</div>
+			</form>
+		</div> <!--End Row -->
+	</div>
+</section>
+
+<!-- Dropzone -->
+<script type="text/javascript" src="<?php echo JS_DROPZONE ?>dropzone.min.js"></script>
+<script type="text/javascript" src="<?php echo PROFILE_JS_PATH ?>profileForm.js">  </script>

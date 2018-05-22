@@ -1,1 +1,5 @@
 error loadView general | 18.05.2018 13:06:03  |  User:   | Controller:profile | function:response 400
+error loadView general | 22.05.2018 11:18:29  |  User:   | Controller:user | function:response 400
+error loadView general | 22.05.2018 11:19:01  |  User:   | Controller:user | function:response 400
+error loadView general | 22.05.2018 11:19:14  |  User:   | Controller:user | function:response 400
+error loadView general | 22.05.2018 11:19:31  |  User:   | Controller:user | function:response 400
