@@ -301,12 +301,12 @@ class controller_profile {
 
             $url = 'http://www.oorsprong.org/websamples.countryinfo/CountryInfoService.wso/ListOfCountryNamesByName/JSON';
 
-                        
             $json =  loadModel(MODEL_PROFILE, "profile_model", "obtain_countries", $url);
-            echo $json;
-                exit;
-            if($json){
-                echo $json;
+
+            if ($json==false) {
+                $data = file_get_contents(RESOURCES."ListOfCountryNamesByName.json");
+                $paises = json_decode($data, true);
+                echo json_encode($paises);
                 exit;
             }else{
                 $json = "error";
@@ -317,13 +317,12 @@ class controller_profile {
 
     /*-------------------------------------------*/
     function load_provinces(){        
-        $jsondata = array();
-        $json = array();
-        
+        $jsondata["successs"]=false;
         $json =  loadModel(MODEL_PROFILE, "profile_model", "obtain_provinces");
 
         if($json){
             $jsondata["provinces"] = $json;
+            $jsondata["success"]=true;
             echo json_encode($jsondata);
             exit;
         }else{
@@ -336,12 +335,13 @@ class controller_profile {
     /*-------------------------------------------*/
     function load_cities(){
         if(  isset($_POST['idPoblac']) ){
-            $jsondata = array();
+            $jsondata["success"]=false;
             $json = array();
 
             $json =  loadModel(MODEL_PROFILE, "profile_model", "obtain_cities", $_POST['idPoblac']);
 
             if($json){
+                $jsondata["success"]=true;
                 $jsondata["cities"] = $json;
                 echo json_encode($jsondata);
                 exit;

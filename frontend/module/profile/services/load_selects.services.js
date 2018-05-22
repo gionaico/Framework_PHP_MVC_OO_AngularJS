@@ -15,11 +15,6 @@ function (services, $q) {
                 deferred.resolve({ success: false, datas: "error_load_pais" });
             } else {
                 deferred.resolve({ success: true, datas: data });
-
-                //$.each(data, function (i, valor) {
-                    //console.log(valor.sName);
-                    //console.log(valor.sISOCode);
-                //});
             }
         });
         return deferred.promise;
@@ -28,15 +23,11 @@ function (services, $q) {
     function loadProvincia() {
         var deferred = $q.defer();
         services.get("profile", "load_provinces", true).then(function (data) {
-            //console.log(data);
-            if (data === 'error') {
+            console.log(data);
+            if (!data.success) {
                 deferred.resolve({ success: false, datas: "error_load_provincias" });
             } else {
-                deferred.resolve({ success: true, datas: data.provincias });
-                //$.each(data.provincias, function (i, valor) {
-                    //console.log(valor.id);
-                    //console.log(valor.nombre);
-                //});
+                deferred.resolve({ success: true, datas: data.provinces });
             }
         });
         return deferred.promise;
@@ -45,14 +36,10 @@ function (services, $q) {
     function loadPoblacion(datos) {
         var deferred = $q.defer();
         services.post("profile", "load_cities", datos).then(function (data) {
-            //console.log(data);
-            if (data === 'error') {
+            if (!data.success) {
                 deferred.resolve({ success: false, datas: "error_load_poblaciones" });
             } else {
-                deferred.resolve({ success: true, datas: data.poblaciones });
-                //$.each(data.poblaciones, function (i, valor) {
-                    //console.log(valor.poblacion);
-                //});
+                deferred.resolve({ success: true, datas: data.cities });
             }
         });
         return deferred.promise;

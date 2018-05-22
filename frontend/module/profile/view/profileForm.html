@@ -53,7 +53,7 @@
 					
 					<div class="form-group ">
 		                <label class="control-label" for="country">Country</label>  
-	                    <select id="country" name="country" class="form-control" ng-model="user.country" ng-options="item.sName for item in user.paises">
+	                    <select id="country" name="country" class="form-control" ng-model="user.country" ng-options="item.sName for item in user.paises" ng-change="resetPais()">
 	                        <option selected="" ></option>
 	                    </select>
 	                    <span id="sp_country"></span>
@@ -61,7 +61,7 @@
 
 		            <div class="form-group ">
 		                <label class="control-label" for="province">Province</label>  
-		                <select id="province" name="province" class="form-control" ng-model="user.prov">
+		                <select id="province" name="province" class="form-control" ng-options="item.nombre for item in provinces"  ng-change="resetValues()" ng-model="user.province" ng-disabled="user.country.sISOCode!='ES'">
 		                    <option selected="" ></option>
 		                </select>
 		                <span id="sp_province"></span>
@@ -72,7 +72,7 @@
 				<div class="col-md-6">
 		            <div class="form-group ">
 		                <label class="control-label" for="city">City</label>  
-		                <select id="city" name="city" class="form-control" ng-model="user.city">
+		                <select id="city" name="city" class="form-control" ng-model="user.city" ng-options="item.poblacion for item in cities "  ng-disabled="user.country.sISOCode!='ES'">
 		                    <option selected="" ></option>
 		                </select>
 		                <span id="sp_birth_date"></span>

@@ -43,11 +43,43 @@ appLibra.controller('profileFormCtrl', function ($scope, $location, user, Common
             .then(function (response) {
                 if(response.success){
                     $scope.user.paises = response.datas;
-                    console.log(response);
                 }else{
-                    console.log("error");
+                    CommonService.alert("error", "Ha habido un problema a la hora de cargar paises", "Paises");
                 }
             });
 
-    }
+        $scope.resetPais = function () {
+            if ($scope.user.country.sISOCode == 'ES') {
+                load_selctLocation.loadProvincia()
+                .then(function (response) {
+                    // console.log(response);
+                    if(response.success){
+                        $scope.provinces = response.datas;
+                    }else{
+                        CommonService.alert("error", "Ha habido un problema a la hora de cargar provinces", "Provinces");
+                    }
+                });
+                $scope.cities = null;
+            }else{
+                $scope.user.province="";
+                $scope.user.city="";
+            }
+        };
+
+
+        $scope.resetValues = function () {
+            var datos = {idPoblac: $scope.user.province.id};
+            load_selctLocation.loadPoblacion(datos)
+            .then(function (response) {
+                console.log(response);
+                if(response.success){
+                    $scope.cities = response.datas;
+                }else{
+                    CommonService.alert("error", "Ha habido un problema a la hora de cargar cities", "Cities");
+                }
+            });
+        };
+
+
+    } /*end verificaDatos*/
 });
