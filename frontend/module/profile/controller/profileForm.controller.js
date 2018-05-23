@@ -1,15 +1,16 @@
-appLibra.controller('profileFormCtrl', function ($scope, $location, user, CommonService, load_selctLocation) {
+appLibra.controller('profileFormCtrl', function ($scope, $location, user, CommonService, load_selctLocation, userService) {
     $scope.user={};
-    // console.log(user);
+    console.log(user);
+
     if (user.success) {
         $scope.user={
             email : user.user.email,
             register_date: user.user.register_date
         }
-        verificaDatos(user.user)
+        verificaDatos(user.user);
     }else{
-        CommonService.alert("error", user.mensaje, "Fallo de conexion");
-        $location.path("/");
+        CommonService.alertTimer("error", "Por favor vuelva a iniciar sesion e intentelo de nuevo", "Fallo de Autentificacion", 5000);
+        userService.logout();
     }
 
     $scope.SubmitUpdateProfile = function (valido){
@@ -41,6 +42,7 @@ appLibra.controller('profileFormCtrl', function ($scope, $location, user, Common
         /*Carga paises*/
         load_selctLocation.load_pais()
             .then(function (response) {
+                console.log(response);
                 if(response.success){
                     $scope.user.paises = response.datas;
                 }else{

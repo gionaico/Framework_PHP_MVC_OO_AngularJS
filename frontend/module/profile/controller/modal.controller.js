@@ -23,12 +23,13 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
 		SocialLogService.fbLogin().then(function (datos) {
 			if (datos.success) {
 				datos.info.tipo_registro="f";
-				console.log(datos.info);
+				/*console.log(datos.info);*/
 				services.post('profile', 'logSocial', datos.info)
 		        	.then(function (response) {
-		        		cookiesService.SetCredentials(response.datos);
+		        		/*console.log(response);*/
+		        		cookiesService.SetToken(response.token);
+		        		userService.cambiaPerfil(response.datos);
 		        		$scope.close();
-		        		userService.login();
 		        	});
 		    }else{
 		    	console.log("pintar el error fb con toster");
@@ -42,8 +43,9 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
 				datos.info.tipo_registro="g";
 				services.post('profile', 'logSocial', datos.info)
 		        	.then(function (response) {
-		        		cookiesService.SetCredentials(response.datos);
-		        		userService.login();
+		        		/*console.log(response);*/
+		        		cookiesService.SetToken(response.token);
+		        		userService.cambiaPerfil(response.datos);
 		        		$scope.close();
 		        	});
 		    }else{
@@ -60,9 +62,10 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
 				console.log(datos.info);
 				services.post('profile', 'logSocial', datos.info)
 		        	.then(function (response) {
-		        		cookiesService.SetCredentials(response.datos);
+		        		/*console.log(response);*/
+		        		cookiesService.SetToken(response.token);
+		        		userService.cambiaPerfil(response.datos);
 		        		$scope.close();
-		        		userService.login();
 		        		/*if (response.datos.province==="") {
 		        			console.log("yes");
 		        		}*/
@@ -81,12 +84,11 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
 
         services.post('profile', 'loginManual', data)
         	.then(function (response) {
-        		console.log(response);
+        		// console.log(response);
 	            if (response.success) {
-	            	console.log(response);
-	            	cookiesService.SetCredentials(response.datos);
+	            	cookiesService.SetToken(response.token);
+	        		userService.cambiaPerfil(response.datos);
 	        		$scope.close();
-	        		userService.login();
 		            var toasts = new Toast('Sending email', 'success', 'toast-top-center', response.mensaje, 15000);
 		    		delayToasts(toasts,0);
 	            } else {

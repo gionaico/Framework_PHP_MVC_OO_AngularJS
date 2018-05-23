@@ -282,7 +282,7 @@ class profile_dao {
     public function userByToken_DAO($db, $arrArgument) {
         $token = $arrArgument["token"];
         $sql = "SELECT * FROM users WHERE token='$token'";
-
+        
         return $db->listar($db->ejecutar($sql));
     }
 

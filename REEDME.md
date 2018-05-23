@@ -37,10 +37,20 @@
 		
 		- En view/css tiene varios themes (cambia el color de la web por algun evento concreto), se pueden cambiar en el header de la aplicacion.
 		
-		- (Jwr) esta encriptado y se almacena en localstorage y en cookies. Cuando se inicia sesion la app combrueba si hay almacenados datos en cookies, si los hay la session se activa automaticamente (desencriptando los datos y pintandolos en la vista), si no los hay el motivo pueden ser 2 o por que se cerro sesion anteriormente o porque las cookies caducaron.
+		- (Jwr) 
+			1.Cuando usuario se loguea inserta en base de datos un token nuevo.
+			2.Este token se almacena en cookies para poderlo coger en el momento de traer datos del usuario.
+			3.El token esta disenyado con dos partes, con ello logro que la aplicacion detecte si ha sido manipulado (editado e eliminado). El procedimiento es el siguiente:
+					-Coge el token de cookies y en fronend detecta que sea el formato con el que se disenyo.
+					-Si no hay problema en el formato lo envia al controlador de backend y este comprueba que si aun cumpliendo el formato sea correcto (es decir, comprueba que sea un token que se pueda validar a si mismo).
+					-Si el paso anterior es superado, por ultimo lo compara contra Db y si existe, me devuelve los datos del usuario al cual pertenece el token.
+
+					- **** Si no cumple alguna de las restricciones anteriores, me expulsa de la sesion y elimina la cookie, asi que tendremos que loguearnos nuevamente.
+					-Este proceso ocurre por ejemplo cuando intentamos editar nuestro perfil.
+
 
 		A la hora de loguearse con redes sociales la sequencia sigue varios pasos:
-			1. Coge los datos que vienen de firebase y se los pasa al servidor, este comprara los datos que recibe con los que hay en DB, si ya existe devuelve los datos basicos para imprimirlos en pantalla y si no existen los introduce en DB y devuelve tambien los datos basicos.
+			1. Coge los datos que vienen de firebase y se los pasa al servidor, este comprara los datos que recibe con los que hay en DB, si ya existe devuelve los datos basicos para imprimirlos en pantalla y si no existen los introduce en DB y devuelve tambien los datos basicos para verlos en pantalla junto con el token.
 
 		- Alerts:
 			Utilizo una libreria llamada sweetalert2 y he creado un servicio para toda la app (dado que se usa en varios modulos) donde envio parametros y estos los muestra en pantalla en forma de alert con estilos css.

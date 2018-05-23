@@ -2,6 +2,9 @@ appLibra.factory("cookiesService", ['$cookies', 'localstorageService',
     function ($cookies, localstorageService) {
         
         var service = {};
+            service.SetToken   = SetToken;
+            service.GetToken   = GetToken;
+            service.ClearToken   = ClearToken;
             service.SetCredentials   = SetCredentials;
             service.ClearCredentials = ClearCredentials;
             service.GetCredentials   = GetCredentials;
@@ -32,6 +35,42 @@ appLibra.factory("cookiesService", ['$cookies', 'localstorageService',
                 console.log(response.message);
                 
             });
+        }
+
+        function SetToken(token) {
+            
+            //almacenarlos en la cookie session
+            $cookies.putObject("userSession", 
+            {user: token}, 
+            {expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000)});
+            
+        }
+
+        function GetToken() {
+            var datos={};
+            datos.success=false;
+            try{
+                //al cargarse la pagina por primera vez, user es undefined
+                var user = $cookies.getObject("userSession");
+                if (user) { //si no es undefined
+                    //console.log(user); //datos encriptados
+                    user=$cookies.getObject("userSession").user;
+                    // console.log(user); //datos no encriptados
+                    datos.token=user;
+                }else{
+                    datos.token=undefined;
+                }
+                datos.success=true;
+                return datos;
+            }catch(e){
+                // ClearToken();
+                // return $cookies.getObject("userSession");
+                return datos;
+            }
+        }
+
+        function ClearToken() {
+            $cookies.remove("userSession");
         }
 
         

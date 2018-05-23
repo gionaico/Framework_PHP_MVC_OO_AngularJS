@@ -62,5 +62,9 @@
         <name>infoUser</name>
         <uri>infoUser</uri>
     </function>
+    <function>
+        <name>compruebaToken</name>
+        <uri>compruebaToken</uri>
+    </function>
     
 </functions>

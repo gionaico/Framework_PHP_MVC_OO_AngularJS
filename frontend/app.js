@@ -78,12 +78,14 @@
                     controller: "profileFormCtrl",
                     resolve: {
                         user: function (services, cookiesService) {
-                            var user = cookiesService.GetCredentials();
-                            console.log(user);
-                            if (user) {
-                                return services.get('profile', 'infoUser', user.usuario);
+                            var datos = cookiesService.GetToken();
+                            console.log(datos);
+                            if ((datos.success) && (datos.token!=undefined)){
+                                return services.get('profile', 'infoUser', datos.token);
                             }
-                            return false;
+                            var user={};
+                            user.success=false;
+                            return user;
                         }
                     }
                 })

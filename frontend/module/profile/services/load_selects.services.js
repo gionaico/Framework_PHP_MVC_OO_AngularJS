@@ -10,7 +10,7 @@ function (services, $q) {
     function load_pais() {
         var deferred = $q.defer();
         services.get("profile", "load_country", true).then(function (data) {
-            //console.log(data);
+            console.log(data);
             if (data === 'error') {
                 deferred.resolve({ success: false, datas: "error_load_pais" });
             } else {

@@ -20,25 +20,24 @@ class controller_profile {
     }*/
     function infoUser(){
 
-        $userId["user"]= $_GET['param'];
+        $user["token"]= $_GET['param'];
         try {            
-            $usuario = loadModel(MODEL_PROFILE, "profile_model", "checkUser", $userId);
+            $usuario = loadModel(MODEL_PROFILE, "profile_model", "userByToken", $user);
             $datos["user"]= $usuario[0];
             $datos["success"]=true;
         } catch (Exception $e) {
             $datos["success"]=false;
-            $datos["mensaje"]="Problemas de conexion. Intentalo de nuevo mas tarde.";
         }
         echo json_encode($datos);
         exit;
     }
 
     function upDatePass(){         
-         $datos_user["pass"]=  $_POST['password'];
-         $datos_user["token"]=  $_POST['token'];
+        $datos_user["pass"]=  $_POST['password'];
+        $datos_user["token"]=  $_POST['token'];
 
-         $updatePass = loadModel(MODEL_PROFILE, "profile_model", "updatePass", $datos_user);
-         if ($updatePass) {          
+        $updatePass = loadModel(MODEL_PROFILE, "profile_model", "updatePass", $datos_user);
+        if ($updatePass) {          
             $json_data["success"]= true;
             $json_data["mensaje"] = "Passwor cambiado exitosamente. Inicia sesion con tu nuevo password";
         }else{
@@ -131,7 +130,7 @@ class controller_profile {
 
     /*-------------------------------------------*/
     function activar(){
-         $datos_user = array(
+        $datos_user = array(
                 'token' => $_GET['param'],
                 'activado' => "y"
             );
@@ -171,7 +170,8 @@ class controller_profile {
                 "user"=>$resultado["datosUser"]['user_name'],
                 "type"=>$resultado["datosUser"]['type'],
                 "name"=>$resultado["datosUser"]['name'],
-                "avatar"=>$resultado["datosUser"]['avatar']
+                "avatar"=>$resultado["datosUser"]['avatar'],
+                "tipo_registro"=>$resultado["datosUser"]['tipo_registro']
             );
 
             $json_data["token"] = $this->ActualizarToken($datos_user);
@@ -185,28 +185,52 @@ class controller_profile {
             // header('HTTP/1.0 400 Bad error');
         }
     }
+    /*-------------------------------------------*/
+    function compruebaToken(){
+        $token=$_POST["token"];
+        $validaToken=$this->getArrayDatos($token);
+        $jsondata["success"]=false;
 
+        if ($validaToken["success"]) {
+            $jsondata["token"]=$token;
+            try{
+                $user = loadModel(MODEL_PROFILE, "profile_model", "userByToken", $jsondata);  
+                if (count($user)==1) {
+                    $jsondata["user"]=array(
+                        "name"=> $user[0]["name"],
+                        "user"=> $user[0]["user_name"],
+                        "avatar"=> $user[0]["avatar"],
+                        "name"=> $user[0]["name"],
+                        "type"=> $user[0]["type"],
+                        "tipo_registro"=> $user[0]["tipo_registro"]
+                    );
+                    $jsondata["success"]=true;                    
+                }
+            } catch (Exception $e) {
+                $jsondata["mensaje"]="Problemas comprobacion de datos. Intentelo mas tarde.";
+            }
+        }else{
+            $jsondata["mensaje"]="Problemas de seguridad. Inicie sesion nuevamente.";            
+        }
+        echo json_encode($jsondata );exit;
+        // echo json_encode(json_decode($validaToken["datos"]));exit;
+    }
     /*-------------------------------------------*/
 
     public function ActualizarToken($datos_user){
-        $DatosBasicosUser=loadModel(MODEL_PROFILE, "profile_model", "DatosBasicosUser", $datos_user);
-            
+        // $DatosBasicosUser=loadModel(MODEL_PROFILE, "profile_model", "DatosBasicosUser", $datos_user);
         $datosEditar["user"]=$datos_user["user"];
-        $datosEditar["token"]=$this->creaToken($DatosBasicosUser);
+        $datosEditar["token"]=$this->creaToken();
         $updateToken = loadModel(MODEL_PROFILE, "profile_model", "updateToken", $datosEditar);
-            
         return $datosEditar["token"];
     }
 
     /*-------------------------------------------*/
 
-    public function creaToken($datos_user){
+    public function creaToken(){
         $token = md5(uniqid(rand(), true));
-        $datos =base64_encode (json_encode($datos_user));
         $clave =base64_encode ($token);
-        
-        $token_datos=$token.".".$datos.".".$clave;
-        
+        $token_datos=$token.".".$clave;
         return $token_datos;
     }
 
@@ -237,10 +261,9 @@ class controller_profile {
         $datos["success"]=false;
 
         $tokenComparar=$array[0];
-        $tokenComparar2=$array[2];
+        $tokenComparar2=$array[1];
         if ($tokenComparar==base64_decode($tokenComparar2)) {
             $datos["success"]=true;
-            $datos["datos"] =base64_decode($array[1]);
         }elseif(count($array)!=3){
             $datos["mensaje"]="Problema de seguridad. Logueate nuevamente";
 
@@ -269,7 +292,13 @@ class controller_profile {
                 $json_data["mensaje"] = "Bienvenido ".$_POST['name']." , has iniciado sesion exitosamente";
 
                 $datos_user["type"]=0;
-                $json_data["datos"] = $datos_user;
+                $json_data["datos"] = array(
+                    "user"=>$usuario[0]['user_name'],
+                    "type"=>$usuario[0]['type'],
+                    "name"=>$usuario[0]['name'],
+                    "avatar"=>$usuario[0]['avatar']
+                ); 
+                $json_data["token"] = $this->ActualizarToken($datos_user);
                 
                 echo json_encode($json_data);
             }else{      
@@ -286,7 +315,7 @@ class controller_profile {
                 "name"=>$usuario[0]['name'],
                 "avatar"=>$usuario[0]['avatar']
             ); 
-            
+            $json_data["token"] = $this->ActualizarToken($json_data["datos"]);
             $json_data["success"]= true;
             $json_data["mensaje"] = "Bienvenido ".$_POST['name']." , has iniciado sesion exitosamente";
             
@@ -297,20 +326,21 @@ class controller_profile {
 
     /*-------------------------------------------*/
     function load_country(){
-            $json = array();
+            $url = 'http://www.oorsprong.org98989/websamples.countryinfo/CountryInfoService.wso/ListOfCountryNamesByName/JSON';
 
-            $url = 'http://www.oorsprong.org/websamples.countryinfo/CountryInfoService.wso/ListOfCountryNamesByName/JSON';
-
-            $json =  loadModel(MODEL_PROFILE, "profile_model", "obtain_countries", $url);
-
-            if ($json==false) {
-                $data = file_get_contents(RESOURCES."ListOfCountryNamesByName.json");
-                $paises = json_decode($data, true);
-                echo json_encode($paises);
-                exit;
-            }else{
-                $json = "error";
-                echo $json;
+            try{
+                $json =  loadModel(MODEL_PROFILE, "profile_model", "obtain_countries", $url);
+                if ($json==false) {
+                    $data = file_get_contents(RESOURCES."ListOfCountryNamesByName.json");
+                    $paises = json_decode($data, true);
+                    echo json_encode($paises);
+                    exit;
+                }else{
+                    echo $json;
+                    exit;
+                }
+            }catch (Exception $e) {
+                echo "error";
                 exit;
             }
     }
