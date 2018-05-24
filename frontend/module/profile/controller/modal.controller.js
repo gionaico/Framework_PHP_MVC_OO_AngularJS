@@ -26,7 +26,7 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
 				/*console.log(datos.info);*/
 				services.post('profile', 'logSocial', datos.info)
 		        	.then(function (response) {
-		        		/*console.log(response);*/
+		        		console.log(response);
 		        		cookiesService.SetToken(response.token);
 		        		userService.cambiaPerfil(response.datos);
 		        		$scope.close();

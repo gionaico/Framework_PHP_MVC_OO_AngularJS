@@ -17,10 +17,10 @@ appLibra.factory("userService", ['$location', '$rootScope', '$q', 'services', 'c
                     /*console.log("existe");*/
                     var tokenGuardado=datos.token;
 
-                    console.log(tokenGuardado);
+                    /*console.log(tokenGuardado);*/
                     services.post('profile', 'compruebaToken',  {token: tokenGuardado})
                         .then(function (response) {
-                            console.log(response);
+                            /*console.log(response);*/
                             if (response.success) {
                                 $rootScope.btnLogin = false;
                                 $rootScope.btnLogout = true;

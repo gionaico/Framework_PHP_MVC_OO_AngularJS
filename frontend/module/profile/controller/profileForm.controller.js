@@ -1,6 +1,6 @@
 appLibra.controller('profileFormCtrl', function ($scope, $location, user, CommonService, load_selctLocation, userService) {
     $scope.user={};
-    console.log(user);
+    /*console.log(user);*/
 
     if (user.success) {
         $scope.user={
@@ -15,6 +15,18 @@ appLibra.controller('profileFormCtrl', function ($scope, $location, user, Common
 
     $scope.SubmitUpdateProfile = function (valido){
 
+    }
+
+    $scope.divDrop=false;
+    $scope.divAvatar=true;
+    $scope.cambioVista=function(){
+        if ($scope.divAvatar) {
+            $scope.divDrop=true;
+            $scope.divAvatar=false;
+        } else {
+            $scope.divDrop=false;
+            $scope.divAvatar=true;
+        }
     }
 
     function verificaDatos(datos){
@@ -38,11 +50,40 @@ appLibra.controller('profileFormCtrl', function ($scope, $location, user, Common
         }else{
             $scope.user.avatar="backend/"+datos.avatar;
         }
+        
+        //dropzone
+        $scope.dropzoneConfig = {
+            'options': {
+                'url': 'backend/index.php?module=profile&function=upload_avatar&user='+datos.user_name,
+                addRemoveLinks: true,
+                maxFileSize: 1000,
+                dictResponseError: "Ha ocurrido un error en el server",
+                acceptedFiles: 'image/*,.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF,.rar,application/pdf,.psd'
+            },
+            'eventHandlers': {
+                'sending': function (file, formData, xhr) {},
+                'success': function (file, response) {
+                    console.log(response);
+                    console.log(file.xhr.response);
+                    /*montar una funcion que imprima los errores que vienen del backend*/
+                },
+                'removedfile': function (file, serverFileName) {
+                    console.log(file);
+                    console.log(file.xhr.response);
+                    console.log(angular.fromJson(file.xhr.response));
+                    var respuesta=angular.fromJson(file.xhr.response);
+                    if (respuesta.error=="") {
+                        console.log("funcion de borrado enviando la carpeta donde buscar el archivo y la ruta");
+                    } else {}
+                }
+        }};
+        
+        
 
         /*Carga paises*/
         load_selctLocation.load_pais()
             .then(function (response) {
-                console.log(response);
+                /*console.log(response);*/
                 if(response.success){
                     $scope.user.paises = response.datas;
                 }else{

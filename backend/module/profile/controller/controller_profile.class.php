@@ -383,6 +383,13 @@ class controller_profile {
         }
     }
 
+    function upload_avatar(){        
+        $carpetaAguardar="users";
+        $user=$_GET["user"];
+        $result_avatar = upload_files($carpetaAguardar, $user);
+        $_SESSION['result_avatar'] = $result_avatar; 
+        echo json_encode($result_avatar);           
+    }
 
     function updateUser(){
         $usersJSON = json_decode($_POST["user"], true);

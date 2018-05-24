@@ -66,5 +66,9 @@
         <name>compruebaToken</name>
         <uri>compruebaToken</uri>
     </function>
+    <function>
+        <name>upload_avatar</name>
+        <uri>upload_avatar</uri>
+    </function>
     
 </functions>

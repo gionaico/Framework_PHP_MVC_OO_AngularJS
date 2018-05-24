@@ -1,7 +1,7 @@
 <?php
 //utilizar $_FILES['file'] no $_FILES['avatar'] por dropzone.js
 
-function upload_files() {
+function upload_files($carpetaAguardar, $user) {
 
     $error = "";
     $copiarFichero = false;
@@ -18,7 +18,7 @@ function upload_files() {
     $mida_fitxer=$_FILES['file']['size'];
     $tipus_fitxer=$_FILES['file']['type'];
     $error_fitxer=$_FILES['file']['error'];
-echo ($_FILES['file']['size']."  ".$nom_fitxer."  ".$tipus_fitxer."  ".$error_fitxer);
+    // echo ($_FILES['file']['size']."  ".$nom_fitxer."  ".$tipus_fitxer."  ".$error_fitxer);
 
     if ($error_fitxer>0) { // El error 0 quiere decir que se subió el archivo correctamente
         switch ($error_fitxer){
@@ -72,22 +72,30 @@ echo ($_FILES['file']['size']."  ".$nom_fitxer."  ".$tipus_fitxer."  ".$error_fi
             }
         */
     ////////////////////////////////////////////////////////////////////////////
-    $upfile = $_SERVER['DOCUMENT_ROOT'].'/Proyectos/GiovannyProy4/media/courses/'.$_FILES['file']['name'];
+    $upfile = SITE_ROOT.'media/'.$carpetaAguardar.'/'.$_FILES['file']['name'];
     if (is_uploaded_file($_FILES['file']['tmp_name'])){//is_uploaded_file — Indica si el archivo fue subido mediante HTTP POST
         if (is_file($_FILES['file']['tmp_name'])) {
-// echo "fsxgd8454949494949";
-            $idUnico = rand();
-            $nombreFichero = $idUnico."-".$_FILES['file']['name'];
+    // echo "fsxgd8454949494949";
+          if ($user) {
+            $nombreArchivo = new SplFileInfo($_FILES['file']['name']); 
+            $nombreFichero = $user.".".$nombreArchivo->getExtension();/*contruye el nombre con la extension que ya tenia*/
             $_SESSION['m_newfile']=$nombreFichero;
-            
+            // echo ($nombreFichero);exit;
+            if(file_exists(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$nombreFichero)){
+                unlink(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$nombreFichero);
+            }
+          }else{
+            $idUnico = rand();
+          }
+
             $copiarFichero = true;
             // I use absolute route to move_uploaded_file because this happens when i run ajax
-            $upfile = $_SERVER['DOCUMENT_ROOT'].'/Proyectos/GiovannyProy4/media/courses/'.$nombreFichero;
+            $upfile = SITE_ROOT.'media/'.$carpetaAguardar.'/'.$nombreFichero;
         }else{
                 $error .=   "Invalid File...";
         }
     } 
-// echo ("error=".$error);
+    // echo ("error=".$error);
 
     
     if ($error == "") {
@@ -97,11 +105,12 @@ echo ($_FILES['file']['size']."  ".$nom_fitxer."  ".$tipus_fitxer."  ".$error_fi
                 return $return=array('resultado'=>false,'error'=>$error,'datos'=>"");
             }
             //We need edit $upfile because now i don't need absolute route.
-            $upfile ='media/courses/'.$_SESSION['m_newfile'];
+            $upfile ='media/'.$carpetaAguardar.'/'.$_SESSION['m_newfile'];
+    // echo ($upfile);exit;
             return $return=array('resultado'=>true , 'error'=>$error,'datos'=>$upfile);
         }
         if($_FILES['file']['error'] !== 0) { //Assignarem a l'us default-avatar
-            $upfile = '/Proyectos/GiovannyProy4/media/courses/default-potho.jpg';
+            $upfile = '/Proyectos/Framework_PHP_MVC_OO_AngularJS/media/'.$carpetaAguardar.'/default-potho.jpg';
             return $return=array('resultado'=>true,'error'=>$error,'datos'=>$upfile);
         }
     }else{
@@ -115,10 +124,10 @@ echo ($_FILES['file']['size']."  ".$nom_fitxer."  ".$tipus_fitxer."  ".$error_fi
 
 function remove_file(){
 	$name = $_POST["filename"];
-	if(file_exists($_SERVER['DOCUMENT_ROOT'].'/Proyectos/GiovannyProy4/media/courses/'.$_SESSION['m_newfile'])){
-		unlink($_SERVER['DOCUMENT_ROOT'].'/Proyectos/GiovannyProy4/media/courses/'.$_SESSION['m_newfile']);
+    if(file_exists(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$_SESSION['m_newfile'])){
+        unlink(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$_SESSION['m_newfile']);
 		return true;
-	}else{
+    }else{
 		return false;
 	}
 }

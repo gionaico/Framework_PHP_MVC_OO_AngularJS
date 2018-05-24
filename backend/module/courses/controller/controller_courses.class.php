@@ -8,24 +8,7 @@ class controller_courses {
         $_SESSION['module'] = "courses";
     }
         
-    /*function list_courses() {        
-        loadView( "module/courses/view/", "courses.html"); 
-    }
-
-    function courseForm() {
-        loadView( "module/courses/view/", "courseForm.html"); 
-            
-    }
-
-    function details() {
-        loadView( "module/courses/view/", "courseDetails.html"); 
-        
-    }
-
-    function new_course() {
-        loadView( "module/courses/view/", "courseCreado.html"); 
-        
-    }   */ 
+   
 
     function getAllCourses(){
         $res=array(
