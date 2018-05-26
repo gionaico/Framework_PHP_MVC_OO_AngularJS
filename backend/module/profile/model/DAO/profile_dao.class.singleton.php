@@ -262,6 +262,13 @@ class profile_dao {
         return $db->ejecutar($sql);      
     }
 
+    public function cambioAvatar_DAO($db, $arrArgument) {
+        $avatar = $arrArgument["avatar"];
+        $user = $arrArgument["user"];
+        $sql = "UPDATE users SET avatar='$avatar' WHERE user_name='$user'";
+        return $db->ejecutar($sql);      
+    }
+
     public function activarUser_DAO($db, $arrArgument) {
         $token = $arrArgument["token"];
         $activado = $arrArgument["activado"];

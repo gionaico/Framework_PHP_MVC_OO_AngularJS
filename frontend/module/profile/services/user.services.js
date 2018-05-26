@@ -24,10 +24,17 @@ appLibra.factory("userService", ['$location', '$rootScope', '$q', 'services', 'c
                             if (response.success) {
                                 $rootScope.btnLogin = false;
                                 $rootScope.btnLogout = true;
-                                $rootScope.avatar = response.user.avatar;
                                 $rootScope.usuario = response.user.user;
                                 var tipo_registro = response.user.tipo_registro;
+                                var rutaAva=response.user.avatar;
 
+                                if (rutaAva.substring(0, 4)==="http") {
+                                    // $scope.user.avatar=datos.avatar;
+                                    $rootScope.avatar=response.user.avatar;;
+                                }else{
+                                    // scope.user.avatar="backend/"+response.user.avatar;;
+                                    $rootScope.avatar="backend/"+response.user.avatar;
+                                }
                                 if ((response.user.name==="")&&(tipo_registro==="m")) {
                                     $rootScope.nombre = response.user.user;
                                 }else{

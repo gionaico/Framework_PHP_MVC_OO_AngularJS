@@ -1,4 +1,4 @@
-appLibra.controller('profileFormCtrl', function ($scope, $location, user, CommonService, load_selctLocation, userService) {
+appLibra.controller('profileFormCtrl', function ($scope, $rootScope, $location, user, services, CommonService, load_selctLocation, userService) {
     $scope.user={};
     /*console.log(user);*/
 
@@ -29,8 +29,18 @@ appLibra.controller('profileFormCtrl', function ($scope, $location, user, Common
         }
     }
 
+   /* function cambio(){
+        if ($scope.divAvatar) {
+            $scope.divDrop=true;
+            $scope.divAvatar=false;
+        } else {
+            $scope.divDrop=false;
+            $scope.divAvatar=true;
+        }
+    }*/
+
     function verificaDatos(datos){
-        // console.log(datos);
+        console.log(datos);
         var rutaAva=datos.avatar;
 
         if (datos.birth_date !="0000-00-00") {
@@ -46,12 +56,15 @@ appLibra.controller('profileFormCtrl', function ($scope, $location, user, Common
             $scope.user.username=datos.user_name;
         }
         if (rutaAva.substring(0, 4)==="http") {
-            $scope.user.avatar=datos.avatar;
+            // $scope.user.avatar=datos.avatar;
+            $rootScope.avatar=datos.avatar;
         }else{
-            $scope.user.avatar="backend/"+datos.avatar;
+            // scope.user.avatar="backend/"+datos.avatar;
+            $rootScope.avatar="backend/"+datos.avatar;
         }
-        
-        //dropzone
+        console.log($rootScope.avatar);
+        //dropzone.
+        $scope.datosSubidaFoto=[];
         $scope.dropzoneConfig = {
             'options': {
                 'url': 'backend/index.php?module=profile&function=upload_avatar&user='+datos.user_name,
@@ -63,22 +76,42 @@ appLibra.controller('profileFormCtrl', function ($scope, $location, user, Common
             'eventHandlers': {
                 'sending': function (file, formData, xhr) {},
                 'success': function (file, response) {
-                    console.log(response);
+                    /*console.log(response);
                     console.log(file.xhr.response);
-                    /*montar una funcion que imprima los errores que vienen del backend*/
+                    console.log(respuesta);*/
+                    var respuesta=angular.fromJson(response);
+                    $scope.datosSubidaFoto=respuesta;
                 },
                 'removedfile': function (file, serverFileName) {
-                    console.log(file);
+                    /*console.log(file);
                     console.log(file.xhr.response);
-                    console.log(angular.fromJson(file.xhr.response));
-                    var respuesta=angular.fromJson(file.xhr.response);
-                    if (respuesta.error=="") {
-                        console.log("funcion de borrado enviando la carpeta donde buscar el archivo y la ruta");
-                    } else {}
+                    console.log(angular.fromJson(file.xhr.response));*/
                 }
         }};
         
-        
+        $scope.guardarFoto=function(){
+            var datosAvatar=$scope.datosSubidaFoto;
+            datosAvatar.user=user.user.user_name;
+            if (datosAvatar.length==0) {
+                CommonService.alert("error", "No hay nueva foto seleccionada, o la foto elegida ya ha sido subida y cambiada", "Error cambio de Imagen");
+            }else{
+                if (datosAvatar.error.length!=0) {
+                    $scope.erroresDZ=datosAvatar.error;
+                }else{
+                    console.log($scope.datosSubidaFoto);
+                    $scope.erroresDZ=[];
+                    services.post('profile', 'guardar_avatar', datosAvatar)
+                        .then(function (response) {
+                            console.log(response);
+                            $scope.datosSubidaFoto=[];
+                            $rootScope.avatar="backend/"+response.avatar;
+                            $scope.cambioVista();
+                            CommonService.alert("success", response.mensaje, "AVATAR");
+                        });
+                }
+            }
+        }
+  
 
         /*Carga paises*/
         load_selctLocation.load_pais()

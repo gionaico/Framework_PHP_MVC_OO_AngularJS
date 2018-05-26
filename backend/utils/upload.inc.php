@@ -3,14 +3,18 @@
 
 function upload_files($carpetaAguardar, $user) {
 
-    $error = "";
+    $error = array();
+    $indice=0;
     $copiarFichero = false;
     $extensiones = array('jpg', 'jpeg', 'gif', 'png', 'bmp');
+
     if(!isset($_FILES)) {
-        $error .=  'No existe $_FILES <br>';
+        $error[$indice]=  'No existe $_FILES';
+        $indice++;
     }
     if(!isset($_FILES['file'])) {
-        $error .=  'No existe $_FILES[file] <br>';
+        $error[$indice]=  'No existe $_FILES[file] ';
+        $indice++;
     }
 
     $imagen = $_FILES['file']['tmp_name'];
@@ -22,92 +26,103 @@ function upload_files($carpetaAguardar, $user) {
 
     if ($error_fitxer>0) { // El error 0 quiere decir que se subió el archivo correctamente
         switch ($error_fitxer){
-            case 1: $error .=  'Fitxer major que upload_max_filesize <br>'; break;
-            case 2: $error .=  'Fitxer major que max_file_size <br>';break;
-            case 3: $error .=  'Fitxer només parcialment pujat <br>';break;
-            //case 4: $error .=  'No has pujat cap fitxer <br>';break; //assignarem a l'us default-avatar
+            case 1: 
+                $error[$indice]=  'Fitxer major que upload_max_filesize';
+                $indice++;
+                break;
+            case 2: 
+                $error[$indice]=  'Fitxer major que max_file_size ';break;
+                $indice++;
+                break;
+            case 3: 
+                $error[$indice]=  'Fitxer només parcialment pujat ';break;
+                $indice++;
+                break;
+            //case 4: $error[$indice]=  'No has pujat cap fitxer ';break; //assignarem a l'us default-avatar
         }
     }
 
     ////////////////////////////////////////////////////////////////////////////
     if($_FILES['file']['error'] !== 0) { //Assignarem a l'us default-avatar
-        $error .=  'Archivo no subido correctamente ';
+        $error[$indice]=  'Archivo no subido correctamente ';
+        $indice++;
     }
     
     ////////////////////////////////////////////////////////////////////////////
     if ($_FILES['file']['size'] > 3145728 ){//tamano en size 3mb
-        $error .=  "Large File Size ";
+        $error[$indice]=  "Large File Size ";
+        $indice++;
     }
 
     ////////////////////////////////////////////////////////////////////////////
     if ($_FILES['file']['name'] === "") { //Assignarem a l'us default-avatar
-        $error .= "No ha seleccionado ninguna imagen. Te proporcionamos un default-avatar<br>";
+        $error[$indice]= "No ha seleccionado ninguna imagen. Te proporcionamos un default-avatar";
+        $indice++;
     }
 
     if ($_FILES['file']['name'] !== "") {
         ////////////////////////////////////////////////////////////////////////////
         @$extension = strtolower(end(explode('.', $_FILES['file']['name']))); // Obtenemos la extensión, en minúsculas para poder comparar
         if( ! in_array($extension, $extensiones)) {
-            $error .=  'Sólo se permite subir archivos con estas extensiones: ' . implode(', ', $extensiones).' <br>';
+            $error[$indice]=  'Sólo se permite subir archivos con estas extensiones: ' . implode(', ', $extensiones).' ';
+            $indice++;
         }
         ////////////////////////////////////////////////////////////////////////////
         //getimagesize falla si $_FILES['avatar']['name'] === ""
         if (!@getimagesize($_FILES['file']['tmp_name'])){
-            $error .=  "<br>Invalid Image File... </br>";
+            $error[$indice]=  "Invalid Image File... </br>";
         }
         ////////////////////////////////////////////////////////////////////////////
         list($width, $height, $type, $attr) = @getimagesize($_FILES['file']['tmp_name']);
         if ($width > 4000 || $height > 4000){
-            $error .=   "Maximum width and height exceeded. Please upload images below 100x100 px size <br>";
+            $error[$indice]=   "Maximum width and height exceeded. Please upload images below 100x100 px size ";
+            $indice++;
         }
     }   
-        /*
-            $image_size_info    = getimagesize($imagen); //get image size
-            if($image_size_info){
-                $image_width        = $image_size_info[0]; //image width
-                $image_height       = $image_size_info[1]; //image height
-                $image_type         = $image_size_info['mime']; //image type
-            }else{
-                die("Make sure image file is valid!");
-            }
-        */
+     
     ////////////////////////////////////////////////////////////////////////////
-    $upfile = SITE_ROOT.'media/'.$carpetaAguardar.'/'.$_FILES['file']['name'];
     if (is_uploaded_file($_FILES['file']['tmp_name'])){//is_uploaded_file — Indica si el archivo fue subido mediante HTTP POST
         if (is_file($_FILES['file']['tmp_name'])) {
-    // echo "fsxgd8454949494949";
-          if ($user) {
-            $nombreArchivo = new SplFileInfo($_FILES['file']['name']); 
-            $nombreFichero = $user.".".$nombreArchivo->getExtension();/*contruye el nombre con la extension que ya tenia*/
-            $_SESSION['m_newfile']=$nombreFichero;
-            // echo ($nombreFichero);exit;
-            if(file_exists(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$nombreFichero)){
-                unlink(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$nombreFichero);
-            }
-          }else{
-            $idUnico = rand();
-          }
-
             $copiarFichero = true;
-            // I use absolute route to move_uploaded_file because this happens when i run ajax
-            $upfile = SITE_ROOT.'media/'.$carpetaAguardar.'/'.$nombreFichero;
+                // I use absolute route to move_uploaded_file because this happens when i run ajax
         }else{
-                $error .=   "Invalid File...";
+            $error[$indice]=   "Invalid File...";
+            $indice++;
         }
     } 
-    // echo ("error=".$error);
+    
+    if ($user) {
+        $nombreArchivo = new SplFileInfo($_FILES['file']['name']); 
+        $nombreFichero = "b".$user.".".$nombreArchivo->getExtension();/*contruye el nombre con la extension que ya tenia*/
+        $_SESSION['m_newfile']=$nombreFichero;
+        // echo ($nombreFichero);exit;
+        for ($i=0; $i <count($extensiones); $i++) { 
+            $name="b".$user.".".$extensiones[$i];
+            if(file_exists(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$name)){
+                unlink(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$name);
+            }   
+        }
+        $upfile = SITE_ROOT.'media/'.$carpetaAguardar.'/'.$nombreFichero;
+    }else{
+        $idUnico = rand();
+        $upfile = SITE_ROOT.'media/'.$carpetaAguardar.'/'.$idUnico.$_FILES['file']['name'];
+    }
 
     
-    if ($error == "") {
+    // echo json_encode($informacion);exit;
+
+    
+    if (count($error)==0) {
         if ($copiarFichero) {
             if (!move_uploaded_file($_FILES['file']['tmp_name'], $upfile)) {
-                $error .= "<p>Error al subir la imagen.</p>";
+                $error[$indice]= "<p>Error al subir la imagen.</p>";
+                $indice++;
                 return $return=array('resultado'=>false,'error'=>$error,'datos'=>"");
             }
             //We need edit $upfile because now i don't need absolute route.
-            $upfile ='media/'.$carpetaAguardar.'/'.$_SESSION['m_newfile'];
+            $upfile ='media/'.$carpetaAguardar.'/b'.$_SESSION['m_newfile'];
     // echo ($upfile);exit;
-            return $return=array('resultado'=>true , 'error'=>$error,'datos'=>$upfile);
+            return $return=array('resultado'=>true , 'error'=>$error,'datos'=>$upfile, "archivo"=>$nombreFichero);
         }
         if($_FILES['file']['error'] !== 0) { //Assignarem a l'us default-avatar
             $upfile = '/Proyectos/Framework_PHP_MVC_OO_AngularJS/media/'.$carpetaAguardar.'/default-potho.jpg';
@@ -122,12 +137,47 @@ function upload_files($carpetaAguardar, $user) {
 
 
 
+
 function remove_file(){
-	$name = $_POST["filename"];
+    $extensiones = array('jpg', 'jpeg', 'gif', 'png', 'bmp');
+    echo ($_GET);exit;
+    for ($i=0; $i <$extensiones; $i++) { 
+            
+    }
+
+
+	/*$name = $_POST["filename"];
     if(file_exists(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$_SESSION['m_newfile'])){
         unlink(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$_SESSION['m_newfile']);
 		return true;
     }else{
 		return false;
-	}
+	}*/
+}
+
+function save_file($carpetaAguardar){
+    $datos=$_POST;
+    $extensiones = array('jpg', 'jpeg', 'gif', 'png', 'bmp');
+    $res = array();
+
+    for ($i=0; $i <count($extensiones); $i++) { 
+        $name=$datos["user"].".".$extensiones[$i];
+        if(file_exists(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$name)){
+            unlink(SITE_ROOT.'media/'.$carpetaAguardar.'/'.$name);
+        }   
+    }
+    // echo (substr($datos["archivo"], 1));exit;
+    $nombreAntiguo=SITE_ROOT.'media/'.$carpetaAguardar.'/'.$datos["archivo"];
+    $nombreNuevo=SITE_ROOT.'media/'.$carpetaAguardar.'/'.substr($datos["archivo"], 1);
+    $res["success"]=false;
+
+    try{
+        rename($nombreAntiguo, $nombreNuevo);
+        $res["avatar"]='media/'.$carpetaAguardar.'/'.substr($datos["archivo"], 1);
+        $res["success"]=true;
+        $res["user"]=$datos["user"];
+    }catch (Exception $e) {
+        $res["mensaje"]="No se pudo realizar el cambio de nombre";
+    }
+    return $res;
 }

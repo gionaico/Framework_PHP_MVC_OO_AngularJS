@@ -61,6 +61,11 @@
 		-Validacion de formularios:
 			Uso una libreria llamada jcs-auto-validate, con ello lo que consigo es que los html se mantengan mas limpios ya que el formulario esta bien ligado a una funcion de validacion, los requisitos minimos de un form estan cubiertos (que los campos esten rellenos .. etc), si requiero algo mas concreto utilizo patterns junto con ng-show.
 
+		-Dropzone
+			Esta hecho para que cada usuario solo pueda tener una foto de perfil.
+			En backend al subir una foto, la guarda como foto "b", y si finalmente el usuario pulsa el boton de guardar, el backend elimina la foto de perfil anterior y coloca a la foto "b" como nueva foto de perfil.
+			Hecho esto, la guarda en DB, si tiene exito todos estos procesos, devuelve un mensaje de exito y cambia la imagen en el perfil automaticamente y al insatante. Si hay errores los pinta para que el usuario los vea y actue en consecuencia.
+
 
 
 

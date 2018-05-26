@@ -68,6 +68,9 @@ class profile_model {
     public function userByToken($arrArgument) {
         return $this->bll->userByToken_BLL($arrArgument);
     }
+    public function cambioAvatar($arrArgument) {
+        return $this->bll->cambioAvatar_BLL($arrArgument);
+    }
 
 
 }

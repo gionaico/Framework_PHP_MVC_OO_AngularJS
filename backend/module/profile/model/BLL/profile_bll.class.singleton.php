@@ -77,4 +77,7 @@ class profile_bll{
     public function userByToken_BLL($arrArgument){    
         return $this->dao->userByToken_DAO($this->db,$arrArgument);
     }
+    public function cambioAvatar_BLL($arrArgument){    
+        return $this->dao->cambioAvatar_DAO($this->db,$arrArgument);
+    }
 }

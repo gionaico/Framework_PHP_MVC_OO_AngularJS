@@ -70,5 +70,14 @@
         <name>upload_avatar</name>
         <uri>upload_avatar</uri>
     </function>
+    <function>
+        <name>delete_avatar</name>
+        <uri>delete_avatar</uri>
+    </function>
+    <function>
+        <name>guardar_avatar</name>
+        <uri>guardar_avatar</uri>
+    </function>
+    
     
 </functions>

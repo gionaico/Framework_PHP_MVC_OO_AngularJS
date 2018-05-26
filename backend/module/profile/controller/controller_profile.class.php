@@ -388,8 +388,53 @@ class controller_profile {
         $user=$_GET["user"];
         $result_avatar = upload_files($carpetaAguardar, $user);
         $_SESSION['result_avatar'] = $result_avatar; 
-        echo json_encode($result_avatar);           
+        
+        echo json_encode($result_avatar);exit;
+        /*$res["success"]=false;
+        
+
+        if ($result_avatar["error"]==="") {
+            $datosUser=array(
+                            "user"=>$user,
+                            "avatar"=>$result_avatar["datos"]
+                        );
+            $cambioAvatar=loadModel(MODEL_PROFILE, "profile_model", "cambioAvatar", $datosUser);
+            if ($cambioAvatar) {
+                $res["success"]=true;
+                $res["avatar"]=$result_avatar["datos"];
+                echo json_encode($res);exit;
+            }else{
+                $res["error"]="Fallo en conexion con DB";
+                echo json_encode($res);exit;
+            }
+        }
+        $res["error"]=$result_avatar["error"];
+        echo json_encode($result_avatar);exit;*/
     }
+    function delete_avatar() {
+
+        echo json_encode($_GET);
+    }
+
+    function guardar_avatar() {
+        $cambioAvat=save_file("users");
+        $resul["success"]=false;
+        if ($cambioAvat["success"]) {
+            $actualizarAvatar=loadModel(MODEL_PROFILE, "profile_model", "cambioAvatar", $cambioAvat);
+            if ($actualizarAvatar) {
+                $resul["success"]=true;
+                $resul["mensaje"]="Actualizacion de avatar realizada correctamente";
+                $resul["avatar"]=$cambioAvat["avatar"];
+            }else{
+                $resul["mensaje"]="Fallo en conexion con base de datos";
+            }
+            echo json_encode($resul);
+        }else{
+            echo json_encode($cambioAvat);
+        }
+        
+    }
+
 
     function updateUser(){
         $usersJSON = json_decode($_POST["user"], true);
