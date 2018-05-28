@@ -3,6 +3,7 @@ appLibra.factory("CommonService", ['$rootScope','$timeout', function ($rootScope
     var service = {};
         service.alert   = alert;
         service.alertTimer= alertTimer;
+        service.alertFormatPass= alertFormatPass;
 
     return service;
         
@@ -23,6 +24,19 @@ appLibra.factory("CommonService", ['$rootScope','$timeout', function ($rootScope
           animation: true,
           showConfirmButton: false,
           timer: tiempo,
+        });          
+    }
+
+    function alertFormatPass(){    
+      var mensaje="<p>Usar 1 letra mayuscula</p>"+
+          "<p>Usar 1 letra minuscula</p>"+
+          "<p>Usar caracteres como -+_.</p>"+
+          "<p>Usar un numero</p>";    
+        swal({
+          type: 'info',
+          title: 'Formato de password',
+          html: ''+mensaje+'',
+          animation: false,
         });          
     }
 

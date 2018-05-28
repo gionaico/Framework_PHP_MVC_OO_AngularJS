@@ -1,5 +1,103 @@
 <?php
 
+    function valUpdate($old, $new){
+        $oldDatos=$old;
+        $newDatos=$new;
+        $error = array();
+        $valido = true;
+
+        $hoy = new DateTime();
+        $hoyFormateado=$hoy->format('Y-m-d');
+        $datos=array();
+        $i=0;
+
+        $birth_date=$newDatos["birth_date"];
+        $birth_dateDate = new DateTime($birth_date);
+        $birth_dateFormateado=$birth_dateDate->format('Y-m-d');
+
+        if ($newDatos["name"]!="") {
+            if ($newDatos["name"]!=$oldDatos["name"]) {
+                $datos[$i]="name='".$newDatos["name"]."'";
+                $i++;
+            }
+        }
+
+        if ($birth_dateFormateado!=$hoyFormateado) {
+            if (calculaedad($birth_dateFormateado)<18) {
+                $error["birth_date"]="Tienes que ser mayor a 18 anos";
+                $valido = false;
+               // echo json_encode ("menor");exit;
+            }else{
+                $datos[$i]="birth_date='".$birth_dateFormateado."'";
+                $i++;
+            }
+        }
+
+        if ($newDatos["genere"]!="") {
+            if ($newDatos["genere"]!=$oldDatos["genere"]) {
+                $datos[$i]="genere='".$newDatos["genere"]."'";
+                $i++;
+            }
+        }
+
+        if ($newDatos["country"]!="") {
+            if ($newDatos["country"]["sISOCode"]!=$oldDatos["country"]) {
+                $datos[$i]="country='".$newDatos["country"]["sISOCode"]."'";
+                $i++;
+            }
+        }
+
+        if ($newDatos["province"]!="") {
+            if ($newDatos["province"]["id"]!=$oldDatos["province"]) {
+                $datos[$i]="province='".$newDatos["province"]["id"]."'";
+                $i++;
+            }
+        }
+
+        if ($newDatos["city"]!="") {
+            if ($newDatos["city"]["poblacion"]!=$oldDatos["city"]) {
+                $datos[$i]="city='".$newDatos["city"]["poblacion"]."'";
+                $i++;
+            }
+        }
+
+        if ($newDatos["phone"]!="") {
+            if ($newDatos["phone"]!=$oldDatos["phone"]) {
+                $datos[$i]="phone='".$newDatos["phone"]."'";
+                $i++;
+            }
+        }
+
+        if ($newDatos["email"]!="") {
+            if ($newDatos["email"]!=$oldDatos["email"]) {
+                $datos_user=array(
+                           "email"=>$newDatos["email"],
+                           "user_name"=>$oldDatos["user_name"]
+                            );
+                $checkEmail =  loadModel(MODEL_PROFILE, "profile_model", "checkUserEmail2", $datos_user);
+                if (count($checkEmail)>=1) {
+                    $error["email"]="Este email corresponde a otro usuario";
+                    $valido = false;
+                }else{
+                    $datos[$i]="email='".$newDatos["email"]."'";
+                    $i++;
+                }
+            }
+        }
+
+        if ($newDatos["pass1"]!="") {
+            $datos[$i]="password=".password_hash($newDatos["pass1"], PASSWORD_DEFAULT);;
+            $i++;
+        }
+
+        return $return = array('success' => $valido, 
+                                'error' => $error,
+                                'datosDAO'=>$datos,
+                                'user'=>$oldDatos["user_name"]);
+        
+        // echo json_encode("biv");exit;
+    }
+
     function sendtoken($arrArgument, $type) {
         $mail = array(
             'type' => $type,

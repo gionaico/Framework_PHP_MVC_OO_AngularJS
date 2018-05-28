@@ -1,7 +1,7 @@
 
 
 
-    var appLibra = angular.module('appLibra',['ngRoute', 'ngAnimate', 'ngCookies', 'jcs-autoValidate',  'ui.bootstrap']);
+    var appLibra = angular.module('appLibra',['ngRoute', 'ngAnimate', 'ngCookies', 'jcs-autoValidate',  'ui.bootstrap', 'ngMaterial', 'ngMessages']);
 
 
 

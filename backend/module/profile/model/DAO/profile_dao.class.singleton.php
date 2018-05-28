@@ -44,7 +44,7 @@ class profile_dao {
       return $db->ejecutar($sql);
     }
 
-    function update_usuario_DAO($db, $arrArgument){
+    /*function update_usuario_DAO($db, $arrArgument){
         $user_name= $arrArgument['user_name'];   
         $name= $arrArgument['name'];        
         
@@ -91,6 +91,20 @@ class profile_dao {
         return $db->ejecutar($sql);
 
 
+    }*/
+
+    function update_usuario_DAO($db, $arrArgument){
+      $dat=$arrArgument["datosDAO"];
+      $user=$arrArgument["user"];
+      $cad="";
+      for ($i=0; $i <count($dat) ; $i++) { 
+        $cad.=$dat[$i].", ";
+      } 
+      $cad=substr($cad, 0, -2);
+
+      $sql = "UPDATE users SET $cad WHERE user_name='$user'";
+      return $db->ejecutar($sql);
+      // echo json_encode($sql);exit;
     }
 
     /*public function update_user_DAO($db, $arrArgument) {

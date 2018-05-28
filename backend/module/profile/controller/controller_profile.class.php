@@ -437,6 +437,54 @@ class controller_profile {
 
 
     function updateUser(){
+        /*Fecha actual con formato*/
+        /*$hoy = new DateTime();
+        $hoyFormateado=$hoy->format('Y-m-d');
+
+        $birth_date=$_POST["datosNew"]["birth_date"];
+        $birth_dateDate = new DateTime($birth_date);
+        $birth_dateFormateado=$birth_dateDate->format('Y-m-d');
+
+*/      
+        $oldDatos=$_POST["datosOld"];
+        $newDatos=$_POST["datosNew"];
+        $validacion=valUpdate($oldDatos, $newDatos);
+        // echo json_encode($validacion);exit;
+        $jsondata["successErrores"]=true;
+        if ($validacion["success"]) {
+            if (count($validacion["datosDAO"])==0) {
+                $jsondata["success"]=true;
+                $jsondata["mensaje"]="No hay datos que actualizar";
+            }else{
+                $update =  loadModel(MODEL_PROFILE, "profile_model", "update_usuario", $validacion);
+                if ($update) {
+                    $jsondata["success"]=true;
+                    $jsondata["mensaje"]="Tus datos se han cambiado exitosamente";
+                }else{
+                    $jsondata["success"]=false;
+                    $jsondata["mensaje"]="Fallo de conexion. No se actualizo los datos";
+                }
+            }
+        }else{
+            $jsondata["successErrores"]=false;
+            $jsondata["datos"]=$validacion["error"];
+        }
+        echo json_encode($jsondata);exit;
+        /*if ($birth_dateFormateado==$hoyFormateado) {
+            echo json_encode (valUpdate($hoy));exit;
+        }
+
+        echo json_encode ($birth_dateFormateado);exit;
+        // $date = new DateTime();
+        echo json_encode ($birth_dateFormateado);exit;
+        $f=$_POST["birth_date"];
+        $date = new DateTime($f);
+        echo ($date->format('Y-m-d'));exit;
+        $date->add(new DateInterval('P1D'));
+        $f3=$date->format('Y-m-d');
+        echo $f3;exit;*/
+
+        echo json_encode($validacion);exit;
         $usersJSON = json_decode($_POST["user"], true);
         $jsondata["success"]=false;
 

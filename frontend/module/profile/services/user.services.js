@@ -6,7 +6,7 @@ appLibra.factory("userService", ['$location', '$rootScope', '$q', 'services', 'c
             service.cambiaPerfil = cambiaPerfil;
         
         return service;
-
+        
 
         function login() {
             var datos= cookiesService.GetToken();
@@ -34,6 +34,7 @@ appLibra.factory("userService", ['$location', '$rootScope', '$q', 'services', 'c
                                 }else{
                                     // scope.user.avatar="backend/"+response.user.avatar;;
                                     $rootScope.avatar="backend/"+response.user.avatar;
+                                    console.log(response.user.avatar);
                                 }
                                 if ((response.user.name==="")&&(tipo_registro==="m")) {
                                     $rootScope.nombre = response.user.user;
@@ -47,7 +48,9 @@ appLibra.factory("userService", ['$location', '$rootScope', '$q', 'services', 'c
                                     $rootScope.adminV = true;
                                 } 
                             }else{
-                                console.log(reponse.mensaje);
+                                $rootScope.btnLogin = true;
+                                $rootScope.btnLogout = false;
+                                console.log(response.mensaje);
                             }
                         }).catch(function(err) {
                             console.log(err);
@@ -75,9 +78,17 @@ appLibra.factory("userService", ['$location', '$rootScope', '$q', 'services', 'c
             /*console.log(datos);*/
             $rootScope.btnLogin = false;
             $rootScope.btnLogout = true;
-            $rootScope.avatar = datos.avatar;
             $rootScope.usuario = datos.user;
             var tipo_registro = datos.tipo_registro;
+
+            if (datos.avatar.substring(0, 4)==="http") {
+                // $scope.user.avatar=datos.avatar;
+                $rootScope.avatar=datos.avatar;;
+            }else{
+                // scope.user.avatar="backend/"+response.user.avatar;;
+                $rootScope.avatar="backend/"+datos.avatar;
+                console.log(datos.avatar);
+            }
 
             if ((datos.name==="")&&(tipo_registro==="m")) {
                 $rootScope.nombre = datos.user;
