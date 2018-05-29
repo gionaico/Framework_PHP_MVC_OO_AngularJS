@@ -92,12 +92,14 @@
 		                      <input type="radio" name="genere" class="genere" value="NaNa" checked ng-model="user.genere"> NaNa
 		                    </label>
 		                </div>
-		            </div>
+		            </div>{{user.genere}}
 					
 					<div class="form-group ">
 		                <label class="control-label" for="country">Country</label>  
-	                    <select id="country" name="country" class="form-control" ng-model="user.country" ng-options="item.sName for item in paises" ng-change="resetPais()">
+	                    <select id="country" name="country" class="form-control" ng-model="user.country" ng-options="item.sName for item in paises" ng-change="resetPais()">{{user.country}}
 	                        <option selected="" ></option>
+	                    }
+	                    }
 	                    </select>
 	                    <span id="sp_country"></span>
 		            </div>

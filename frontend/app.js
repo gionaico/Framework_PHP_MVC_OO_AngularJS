@@ -91,6 +91,25 @@
                 })
 
 
+                /*Cambiar password usuario*/
+                .when("/admin/adminUsers/", {
+                    templateUrl: "frontend/module/profile/view/adminUsers.html",
+                    controller: "adminUsersCtrl",
+                    resolve: {
+                        usuario: function (services, cookiesService) {
+                            var datos = cookiesService.GetToken();
+                            console.log(datos);
+                            if ((datos.success) && (datos.token!=undefined)){
+                                return services.get('profile', 'infoUsuarios', datos.token);
+                            }
+                            var usuario={};
+                            usuario.success=false;
+                            return usuario;
+                        }
+                    }
+                })
+
+
                 .otherwise({
                   redirectTo: '/'
                 })

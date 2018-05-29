@@ -78,6 +78,10 @@
         <name>guardar_avatar</name>
         <uri>guardar_avatar</uri>
     </function>
+    <function>
+        <name>infoUsuarios</name>
+        <uri>infoUsuarios</uri>
+    </function>
     
     
 </functions>

@@ -71,6 +71,9 @@ class profile_model {
     public function cambioAvatar($arrArgument) {
         return $this->bll->cambioAvatar_BLL($arrArgument);
     }
+    public function traerUsuarios($arrArgument) {
+        return $this->bll->traerUsuarios_BLL($arrArgument);
+    }
 
 
 }

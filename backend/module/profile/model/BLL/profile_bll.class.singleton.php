@@ -80,4 +80,7 @@ class profile_bll{
     public function cambioAvatar_BLL($arrArgument){    
         return $this->dao->cambioAvatar_DAO($this->db,$arrArgument);
     }
+    public function traerUsuarios_BLL($arrArgument){    
+        return $this->dao->traerUsuarios_DAO($this->db,$arrArgument);
+    }
 }
