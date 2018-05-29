@@ -56,3 +56,31 @@ appLibra.filter('beginning_data2', function() {
     return [];
     }
 });
+
+
+
+appLibra.controller('updateUserCtrl', function($scope, $timeout, datosUsuario, CommonService, userService, profileService) {
+    console.log(datosUsuario);
+
+    if (datosUsuario.success) {
+        $scope.divDrop=false;
+        $scope.divAvatar=true;
+        console.log("olalala");
+        $scope.cambioVista=function(){
+            if ($scope.divAvatar) {
+                $scope.divDrop=true;
+                $scope.divAvatar=false;
+            } else {
+                $scope.divDrop=false;
+                $scope.divAvatar=true;
+            }
+        }
+        
+    }else{
+        CommonService.alertTimer("error", "Por favor vuelva a iniciar sesion e intentelo de nuevo", "Fallo de Autentificacion", 5000);
+        userService.logout();
+    }
+    
+
+ 
+});

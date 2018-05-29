@@ -91,7 +91,7 @@
                 })
 
 
-                /*Cambiar password usuario*/
+                /*Administracion de usuarios*/
                 .when("/admin/adminUsers/", {
                     templateUrl: "frontend/module/profile/view/adminUsers.html",
                     controller: "adminUsersCtrl",
@@ -105,6 +105,28 @@
                             var usuario={};
                             usuario.success=false;
                             return usuario;
+                        }
+                    }
+                })
+
+                /*Update de usuarios*/
+                .when("/admin/adminUsers/update/:id", {
+                    templateUrl: "frontend/module/profile/view/profileForm.html",
+                    controller: "updateUserCtrl",
+                    resolve: {
+                        datosUsuario: function (services, $route, cookiesService) {
+                            var datos = cookiesService.GetToken();
+                            console.log(datos);
+                            if ((datos.success) && (datos.token!=undefined)){
+                                console.log(datos.token);
+                                console.log($route.current.params.id);
+                                var json={token:datos.token, id:$route.current.params.id};
+                                return services.post('profile', 'datosUsuario', json);
+                            }
+                            var datosUsuario={};
+                            datosUsuario.success=false;
+                            return datosUsuario;
+                            
                         }
                     }
                 })

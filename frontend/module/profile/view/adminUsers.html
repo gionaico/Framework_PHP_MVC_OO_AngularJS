@@ -2,13 +2,15 @@
 <section id="imgBanner">
       <h2>Administracion</h2>
 </section>
-
 <section >
 	<div class="container">
-        <br/>
-        <h3 align="center">Usuarios en DB</a></h3>
-        <br/>
-
+		<div class="row"><br>
+	        <h2 align="center">Usuarios en DB</h2>
+    	</div>
+		<br>
+		<br>
+		<br>
+		<br>
         <!-- BUSCADOR -->
         <div class="row">
             <div class="col-sm-2 pull-left">
@@ -41,13 +43,13 @@
                                 <i class="glyphicon glyphicon-sort pointer"></i>
                             </a>
                         </th>
-                        <th>Gender&nbsp;
-                            <a ng-click="sort_with('gender');">
+                        <th>Id usuario&nbsp;
+                            <a ng-click="sort_with('user_name');">
                                 <i class="glyphicon glyphicon-sort pointer"></i>
                             </a>
                         </th>
-                        <th>Age&nbsp;
-                            <a ng-click="sort_with('age');">
+                        <th>Tipo usuario&nbsp;
+                            <a ng-click="sort_with('type');">
                                 <i class="glyphicon glyphicon-sort pointer"></i>
                             </a>
                         </th>
@@ -56,15 +58,18 @@
                                 <i class="glyphicon glyphicon-sort pointer"></i>
                             </a>
                         </th>
-                        <th>Phone&nbsp;
-                            <a ng-click="sort_with('phone');">
+                        <th>Registro&nbsp;
+                            <a ng-click="sort_with('register_date');">
                                 <i class="glyphicon glyphicon-sort pointer"></i>
                             </a>
                         </th>
-                        <th>Organization&nbsp;
-                            <a ng-click="sort_with('organization');">
+                        <th>Pais&nbsp;
+                            <a ng-click="sort_with('country');">
                                 <i class="glyphicon glyphicon-sort pointer"></i>
                             </a>
+                        </th>
+                        <th>Operaciones&nbsp;
+                            
                         </th>
                     </thead>
                     <tbody>
@@ -72,11 +77,16 @@
                         <!-- PARTE QUE SE REPITE -->
                         <tr ng-repeat="data in searched = (fileUsuarios | filter:search | orderBy : base :reverse) | beginning_data2:(current_grid-1)*data_limit | limitTo:data_limit">
                             <td>{{data.name}}</td>
-                            <td>{{data.gender}}</td>
-                            <td>{{data.age}}</td>
+                            <td>{{data.user_name}}</td>
+                            <td>{{data.type}}</td>
                             <td>{{data.email}}</td>
-                            <td>{{data.phone}}</td>
-                            <td>{{data.organization}}</td>
+                            <td>{{data.register_date}}</td>
+                            <td>{{data.country}}</td>
+                            <td>
+                            	<a href="" class="btn btn-info">info</a>
+                            	<a href="" class="btn btn-danger">dele</a>
+                            	<a href="#/admin/adminUsers/update/{{data.user_name}}" class="btn btn-warning">edit</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

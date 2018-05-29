@@ -32,6 +32,36 @@ class controller_profile {
         exit;
     }
 
+    function datosUsuario(){
+        $info["user"]=$_POST["id"];
+        $info["token"]=$_POST["token"];
+        $respuesta["success"]=false;
+        $validarToken=$this->getArrayDatos($info["token"]);
+
+        if ($validarToken["success"]) {
+            try {            
+                $usuario = loadModel(MODEL_PROFILE, "profile_model", "userByToken", $info);
+                if ($usuario[0]["type"]==0) {                    
+                    $respuesta["mensaje"]="No tienes permiso de acceso.";
+                    echo json_encode($respuesta);
+                }else{
+                    $datosUser = loadModel(MODEL_PROFILE, "profile_model", "checkUser", $info);
+                    $respuesta["success"]=true;
+                    $respuesta["usuario"]= $datosUser[0];
+                    echo json_encode($respuesta);
+                }
+            } catch (Exception $e) {
+                $respuesta["mensaje"]="No se pudo verificar datos en DB. Intentelo mas tarde.";
+                echo json_encode($respuesta);
+                exit;
+            }    
+        }else{
+            $respuesta["mensaje"]="Fallo de autentificacion.";
+            echo json_encode($respuesta);
+            exit;
+        }
+    }
+
     function infoUsuarios(){
 // echo json_encode("khbjhvjhvjhvjhvjh");exit;
         $user["token"]= $_GET['param'];

@@ -82,6 +82,10 @@
         <name>infoUsuarios</name>
         <uri>infoUsuarios</uri>
     </function>
+    <function>
+        <name>datosUsuario</name>
+        <uri>datosUsuario</uri>
+    </function>
     
     
 </functions>
