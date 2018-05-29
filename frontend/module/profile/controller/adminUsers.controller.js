@@ -1,5 +1,5 @@
 
-appLibra.controller('adminUsersCtrl', function($scope, $timeout, usuario, CommonService, userService) {
+appLibra.controller('adminUsersCtrl', function($scope, $timeout, $uibModal, usuario, CommonService, userService) {
     console.log(usuario);
 
     if (usuario.success) {
@@ -27,6 +27,32 @@ appLibra.controller('adminUsersCtrl', function($scope, $timeout, usuario, Common
             $scope.base = base;
             $scope.reverse = !$scope.reverse;
         };
+
+        $scope.openinfo = function (usuario) {
+            console.log(usuario);
+            console.log("5545454545454");
+            var modalInstance = $uibModal.open({
+                animation: 'true',
+                templateUrl: 'frontend/module/profile/view/modalUserInfo.html',
+                controller: 'modalUserInfoCtrl',
+                size: "md",
+                resolve: {
+                    datPersonUser: function (services, cookiesService) {
+                        var datos = cookiesService.GetToken();
+                        console.log(datos);
+                        if ((datos.success) && (datos.token!=undefined)){
+                            console.log(datos.token);
+                            console.log(usuario);
+                            var json={token:datos.token, id:usuario};
+                            return services.post('profile', 'datosUsuario', json);
+                        }
+                        var datosUsuario={};
+                        datosUsuario.success=false;
+                        return datosUsuario;
+                    }
+                }
+            });
+        };
         
         
     }else{
@@ -41,15 +67,16 @@ appLibra.controller('adminUsersCtrl', function($scope, $timeout, usuario, Common
 
 
 
+
  
 });
 
 appLibra.filter('beginning_data2', function() {
     return function(input, begin) {
-    console.log(input);
-    console.log(begin);
+    /*console.log(input);
+    console.log(begin);*/
     if (input) {
-        console.log("yeeeeee");
+        // console.log("yeeeeee");
         begin = +begin;
         return input.slice(begin);
     }
@@ -62,9 +89,7 @@ appLibra.filter('beginning_data2', function() {
 appLibra.controller('updateUserCtrl', function($scope, $timeout, datosUsuario, CommonService, userService, profileService, services) {
     console.log(datosUsuario);
 
-    if (datosUsuario.success) {
-        
-    }else{
+    if (!datosUsuario.success) {
         CommonService.alertTimer("error", "Por favor vuelva a iniciar sesion e intentelo de nuevo", "Fallo de Autentificacion", 5000);
         userService.logout();
     }
@@ -107,4 +132,24 @@ appLibra.controller('updateUserCtrl', function($scope, $timeout, datosUsuario, C
     }
 
  
+});
+
+
+appLibra.controller('modalUserInfoCtrl', function ($scope, $uibModal, $uibModalInstance, datPersonUser) {
+    console.log(datPersonUser);
+    if (!datPersonUser.success) {
+        CommonService.alertTimer("error", "Por favor vuelva a iniciar sesion e intentelo de nuevo", "Fallo de Autentificacion", 5000);
+        userService.logout();
+    }
+    $scope.userView=datPersonUser.usuario;
+    var rutaAva = $scope.userView.avatar;
+    if (rutaAva.substring(0, 4)!="http") {
+        $scope.userView.avatar="backend/"+datPersonUser.usuario.avatar;
+    }
+
+    console.log($scope.userView.avatar);
+    /*Cierra modal*/
+    $scope.close = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 });

@@ -1,4 +1,4 @@
-appLibra.controller('profileFormCtrl', function ($scope, $rootScope, user, services, CommonService, userService, profileService) {
+appLibra.controller('profileFormCtrl', function ($scope, $rootScope, $uibModal, user, services, CommonService, userService, profileService) {
     
     // console.log($scope.user);
     
@@ -48,5 +48,6 @@ appLibra.controller('profileFormCtrl', function ($scope, $rootScope, user, servi
             }
         }
     }
-});
 
+    
+});

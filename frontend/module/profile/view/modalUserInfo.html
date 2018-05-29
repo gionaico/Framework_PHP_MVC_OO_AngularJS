@@ -1,0 +1,77 @@
+<!--=========== MODAL RECOVER PASSWORD ================--> 
+
+
+
+  <div class="modal-header">                    
+      <button type="button" class="close" data-dismiss="modal" ng-click="close()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+      <div class=" row modal-title">
+          <div class="col-md-12">
+              <div style="height: 200px;" class="col-md-offset-2 col-md-6">
+                  <img src="{{userView.avatar}}" id="fotoperfil" class="img-circle grande"><br><br>
+              </div>
+          </div>
+          <!-- <center>
+              <h4>Usuario</h4>
+          </center> -->
+      </div>                    
+  </div>
+
+  <div class="modal-body">
+      <div class="row">
+          <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-3"><b>Email:</b></div>
+                <div class="col-md-9">{{userView.email}}</div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-3"><b>ID:</b></div>
+                <div class="col-md-9">{{userView.user_name}}</div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-3"><b>Tlf:</b></div>
+                <div class="col-md-9">{{userView.phone}}</div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-3"><b>Pais:</b></div>
+                <div class="col-md-9">{{userView.country}}</div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-3"><b>Ciudad:</b></div>
+                <div class="col-md-9">{{userView.city}}</div>
+            </div>
+          </div>
+
+          <div class="col-md-offset-2 col-md-5">
+            <div class="row">
+                <div class="col-md-8"><b>T. usuario:</b></div>
+                <div class="col-md-4">{{userView.type}}</div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-6"><b>Fec. registro:</b></div>
+                <div class="col-md-6">{{userView.register_date}}</div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-6"><b>Genero:</b></div>
+                <div class="col-md-6">{{userView.genere}}</div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-6"><b>T. registro:</b></div>
+                <div class="col-md-6">{{userView.tipo_registro}}</div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6"><b>Provincia:</b></div>
+                <div class="col-md-6">{{userView.province}}</div>
+            </div>
+          </div>
+
+      </div>
+  </div>
+
+
+  <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Cerrar</button>
+  </div>
+

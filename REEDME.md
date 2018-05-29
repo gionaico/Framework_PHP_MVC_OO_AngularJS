@@ -66,6 +66,20 @@
 			En backend al subir una foto, la guarda como foto "b", y si finalmente el usuario pulsa el boton de guardar, el backend elimina la foto de perfil anterior y coloca a la foto "b" como nueva foto de perfil.
 			Hecho esto, la guarda en DB, si tiene exito todos estos procesos, devuelve un mensaje de exito y cambia la imagen en el perfil automaticamente y al insatante. Si hay errores los pinta para que el usuario los vea y actue en consecuencia.
 
+		-Vistas Admin
+			Los usuarios que tienen de tipo administrador tienen acceso a un crud de todos los uduarios registrados en la aplicacion, de esta forma este tipo de usuario tienen acceso a:
+				*Una tabla dinamica y con filtros para poder afinar la busqueda de cualquier tipo de usuario de una forma rapida y eficaz.
+				*Disponen tambien de una opcion para ordenar por varios parametros.
+				*Paginacion.
+				*Edicion de la vista (pueden paginar de 10 en 10 o de 8 en 8 usuarios segun las necesidades del administrador).
+
+			Tienen acceso a un modal donde se ven los datos del usuario sobre el que se ha hecho click.
+
+			Dispone de un formulario update, para todos los usuarios con validacion de datos en JS y en PHP, asi como la posibilidad de cambiar la foto de un usuario (el avatar).
+
+		-Creacion de una factoria propia para el update que a su vez se reutiliza para el update del administrador.
+		-Validacion de token en cada vista de administrador, si el token no es valido o el usuario no es de tipo admin los controladores cirran sesion y nos obliga a loguearnos nuevamente.
+
 
 
 
