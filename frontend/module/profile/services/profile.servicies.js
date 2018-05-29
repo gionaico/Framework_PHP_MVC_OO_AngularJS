@@ -4,6 +4,9 @@ appLibra.factory("profileService", ['$q', '$rootScope', 'services', 'CommonServi
             service.cargarSelectsLocation = cargarSelectsLocation;
             service.cargarDropzone = cargarDropzone;
             service.cargarDatosUser = cargarDatosUser;
+            service.validacionFormulario = validacionFormulario;
+            service.divsAvatarDropzone = divsAvatarDropzone;
+            service.pintaErroresPhp = pintaErroresPhp;
                     
         return service;
         
@@ -57,7 +60,7 @@ appLibra.factory("profileService", ['$q', '$rootScope', 'services', 'CommonServi
                     }
                 });
             };
-        }
+        }/*end cargarSelectsLocation*/
 
         function cargarDropzone($scope, datos) {
             $scope.datosSubidaFoto=[];
@@ -84,11 +87,11 @@ appLibra.factory("profileService", ['$q', '$rootScope', 'services', 'CommonServi
                         console.log(angular.fromJson(file.xhr.response));*/
                     }
             }};
-        }
+        }/*end cargarDropzone*/
 
 
         function cargarDatosUser($scope, datos){
-            // console.log(datos);
+            console.log(datos);
             $scope.user={
                 genere      : "",
                 country     : "",
@@ -125,9 +128,14 @@ appLibra.factory("profileService", ['$q', '$rootScope', 'services', 'CommonServi
             }
             /*----------------------------------------*/
             if (rutaAva.substring(0, 4)==="http") {
-                $rootScope.avatar=datos.avatar;
+                $scope.user.avatar=datos.avatar;
+                console.log("http");
+                console.log(datos.avatar);
+                // $rootScope.avatar=datos.avatar;
             }else{
-                $rootScope.avatar="backend/"+datos.avatar;
+                console.log("backend");
+                $scope.user.avatar="backend/"+datos.avatar;
+                // $rootScope.avatar="backend/"+datos.avatar;
             }
             /*----------------------------------------*/
             if (datos.genere !="") {
@@ -244,5 +252,76 @@ appLibra.factory("profileService", ['$q', '$rootScope', 'services', 'CommonServi
                 CommonService.alertFormatPass();
             }
         }/*end cargarDatosUser*/
+
+        function validacionFormulario($scope){
+            var p1=$scope.user.pass1;
+            var p2=$scope.user.pass2;
+            var country=$scope.user.country;
+            var city=$scope.user.city;
+            var province=$scope.user.province;
+            $scope.errores={}
+            
+            if ((p1!="") || (p2!="")) {
+                var pass1 =document.getElementById('pass1');
+                if (p1!=p2) {
+                    $scope.errores.pass="has-error";
+                    console.log($scope.errores.pass);
+                    pass1.focus();
+                    return CommonService.alert("error", "Si desea cambiar de password, porfavor rellene los dos campos con el mismo password", "No coinciden password");
+                }
+            }
+
+            if (country!="") {
+                if ((country.sISOCode=="ES") && (province=="")) {
+                    var elProvince =document.getElementById('province');
+                    $scope.errores.province="has-error";
+                    elProvince.focus();
+                    return CommonService.alert("error", "Es nesesario especificar provincia", "Fallo localizacion");
+                }
+
+                if ((city=="") && (province!="")) {
+                    var elCity =document.getElementById('city');
+                    $scope.errores.city="has-error";
+                    elCity.focus();
+                    return CommonService.alert("error", "Es nesesario especificar ciudad", "Fallo localizacion");
+                }
+            }
+        }/*end validacionFormulario*/
+
+        function divsAvatarDropzone($scope){
+            $scope.divDrop=false;
+            $scope.divAvatar=true;
+           
+            $scope.cambioVista=function(){
+                if ($scope.divAvatar) {
+                    $scope.divDrop=true;
+                    $scope.divAvatar=false;
+                } else {
+                    $scope.divDrop=false;
+                    $scope.divAvatar=true;
+                }
+            }
+        }/*end divsAvatarDropzone*/
+
+        function pintaErroresPhp($scope, response){
+            console.log(response);
+            if (response.successErrores) {
+                if (response.success) {
+                    CommonService.alert("success", response.mensaje, "Exito en tus cambios"); 
+                }else{
+                    CommonService.alert("info", response.mensaje, "Edicion de datos"); 
+                }
+            }else{
+                if (response.datos.email) {
+                    $scope.errores.email=response.datos.email;
+                    $scope.errores.erremail="has-error";
+                }
+                if (response.datos.birth_date) {
+                    $scope.errores.birth_date=response.datos.birth_date;
+                    $scope.errores.errbirth_date="has-error";
+                }
+                CommonService.alert("error", "Errores en alguno de los campos editados", "Por favor revisa los errores");
+            }
+        }/*end pintaErroresPhp*/
 
 }]);
