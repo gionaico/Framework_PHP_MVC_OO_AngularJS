@@ -181,7 +181,7 @@ appLibra.controller('modalUserInfoCtrl', function ($scope, $uibModal, $uibModalI
     };
 });
 
-appLibra.controller('modalDeleteUserCtrl', function ($scope, $location, $uibModal, $uibModalInstance, datPersonUser, services, CommonService) {
+appLibra.controller('modalDeleteUserCtrl', function ($scope, $location, $uibModal, $window, $uibModalInstance, datPersonUser, services, CommonService) {
     console.log(datPersonUser);
     if (!datPersonUser.success) {
         CommonService.alertTimer("error", "Por favor vuelva a iniciar sesion e intentelo de nuevo", "Fallo de Autentificacion", 5000);
@@ -199,7 +199,8 @@ appLibra.controller('modalDeleteUserCtrl', function ($scope, $location, $uibModa
                 if (response.success) {
                     $uibModalInstance.dismiss('cancel');
                     CommonService.alert("success", response.mensaje,"Borrado de usuario");
-                    $location.path("/");
+                    $window.location.href =("http://localhost/Proyectos/Framework_PHP_MVC_OO_AngularJS/#/");
+                    $window.location.href =("http://localhost/Proyectos/Framework_PHP_MVC_OO_AngularJS/#/admin/adminUsers/");
                 }else{
                     $uibModalInstance.dismiss('cancel');
                     CommonService.alert("error", response.mensaje,"Borrado de usuario");

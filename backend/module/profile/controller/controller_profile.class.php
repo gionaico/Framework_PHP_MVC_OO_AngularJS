@@ -373,12 +373,13 @@ class controller_profile {
                 $json_data["mensaje"] = "Bienvenido ".$_POST['name']." , has iniciado sesion exitosamente";
 
                 $datos_user["type"]=0;
-                $json_data["datos"] = array(
-                    "user"=>$usuario[0]['user_name'],
-                    "type"=>$usuario[0]['type'],
-                    "name"=>$usuario[0]['name'],
-                    "avatar"=>$usuario[0]['avatar']
-                ); 
+                // $json_data["datos"] = array(
+                //     "user"=>$usuario[0]['user_name'],
+                //     "type"=>$usuario[0]['type'],
+                //     "name"=>$usuario[0]['name'],
+                //     "avatar"=>$usuario[0]['avatar']
+                // ); 
+                $json_data["datos"]=$datos_user;
                 $json_data["token"] = $this->ActualizarToken($datos_user);
                 
                 echo json_encode($json_data);

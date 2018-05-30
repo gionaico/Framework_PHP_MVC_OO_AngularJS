@@ -10,7 +10,7 @@ appLibra.factory("userService", ['$location', '$rootScope', '$q', 'services', 'c
 
         function login() {
             var datos= cookiesService.GetToken();
-            /*console.log(datos);*/
+            console.log(datos);
             if (datos.success) {
                 /*al cargarse la pagina por primera vez, user es undefined*/
                 if (datos.token) {

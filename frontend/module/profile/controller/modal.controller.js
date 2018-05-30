@@ -43,7 +43,7 @@ appLibra.controller('modalCtrl', function ($scope, $rootScope, $uibModalInstance
 				datos.info.tipo_registro="g";
 				services.post('profile', 'logSocial', datos.info)
 		        	.then(function (response) {
-		        		/*console.log(response);*/
+		        		console.log(response);
 		        		cookiesService.SetToken(response.token);
 		        		userService.cambiaPerfil(response.datos);
 		        		$scope.close();
