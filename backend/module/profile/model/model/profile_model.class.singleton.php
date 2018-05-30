@@ -74,6 +74,9 @@ class profile_model {
     public function traerUsuarios($arrArgument) {
         return $this->bll->traerUsuarios_BLL($arrArgument);
     }
+    public function deleteUser($arrArgument) {
+        return $this->bll->deleteUser_BLL($arrArgument);
+    }
 
 
 }

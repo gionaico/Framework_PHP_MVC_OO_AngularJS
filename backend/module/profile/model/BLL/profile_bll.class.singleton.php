@@ -83,4 +83,7 @@ class profile_bll{
     public function traerUsuarios_BLL($arrArgument){    
         return $this->dao->traerUsuarios_DAO($this->db,$arrArgument);
     }
+    public function deleteUser_BLL($arrArgument){    
+        return $this->dao->deleteUser_DAO($this->db,$arrArgument);
+    }
 }

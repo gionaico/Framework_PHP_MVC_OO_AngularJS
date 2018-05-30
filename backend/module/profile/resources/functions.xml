@@ -86,6 +86,10 @@
         <name>datosUsuario</name>
         <uri>datosUsuario</uri>
     </function>
+    <function>
+        <name>deleteUser</name>
+        <uri>deleteUser</uri>
+    </function>
     
     
 </functions>

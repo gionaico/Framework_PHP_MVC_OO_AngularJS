@@ -75,7 +75,7 @@ appLibra.factory("userService", ['$location', '$rootScope', '$q', 'services', 'c
         }/*end func login*/
 
         function cambiaPerfil(datos){
-            /*console.log(datos);*/
+            console.log(datos);
             $rootScope.btnLogin = false;
             $rootScope.btnLogout = true;
             $rootScope.usuario = datos.user;

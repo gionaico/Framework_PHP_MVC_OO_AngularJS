@@ -1,0 +1,30 @@
+<!--=========== MODAL RECOVER PASSWORD ================--> 
+
+
+
+  <div class="modal-header">                    
+      <button type="button" class="close" data-dismiss="modal" ng-click="close()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+      <div class=" row modal-title">
+          <center>
+              <h3 class="text-info">Borrar usuario</h3>
+          </center>
+      </div>                    
+  </div>
+
+  <div class="modal-body">
+      <div class="row">
+          <center>
+              <p >Los datos del usuario con id <span class="text-danger">{{id}}</span> se borraran completamente.</p> <br>
+              <p class="text-danger lead">Estas seguro que quieres borrarlo?</p>
+          </center>
+      </div>
+  </div>
+
+
+  <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Cerrar</button>
+      <button type="button" class="btn btn-danger" ng-click="borrarUsuario()">Borrar</button>
+  </div>
+

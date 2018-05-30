@@ -18,6 +18,25 @@ class controller_profile {
     function changePass(){         
          loadView( "module/profile/view/", "changePass.html");        
     }*/
+
+    function deleteUser() {
+        $respuesta["success"]=false;
+        $respuesta["mensaje"]="Fallo en servidor. Intentelo nuevamente mas tarde.";
+        
+        try {
+            $datosUser=$_POST;
+            $borrar = loadModel(MODEL_PROFILE, "profile_model", "deleteUser", $datosUser);
+            if ($borrar) {
+                $respuesta["mensaje"]="El usuario con id ".$datosUser["user_name"] ."ha sido borrado";
+                $respuesta["success"]=true;
+            }
+            echo json_encode($respuesta);
+        } catch (Exception $e) {
+            echo json_encode($respuesta);
+        }   
+    }
+
+
     function infoUser(){
 
         $user["token"]= $_GET['param'];
@@ -477,6 +496,8 @@ class controller_profile {
 
         echo json_encode($_GET);
     }
+
+    
 
     function guardar_avatar() {
         $cambioAvat=save_file("users");

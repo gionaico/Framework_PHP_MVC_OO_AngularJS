@@ -90,7 +90,7 @@
                             	<a ng-click="openinfo(data.user_name)" class="btn btn-info" title="Ver mas datos">
                             		<i class="glyphicon glyphicon-eye-open"></i>
                             	</a><br><br>
-                            	<a href="" class="btn btn-danger" title="Eliminar usuario">
+                            	<a ng-click="openDelete(data.user_name)" class="btn btn-danger" title="Eliminar usuario">
                             		<i class="glyphicon glyphicon-remove"></i>
                             	</a><br><br>
                             	<a href="#/admin/adminUsers/update/{{data.user_name}}" title="Editar datos" class="btn btn-warning">

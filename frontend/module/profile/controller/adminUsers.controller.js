@@ -53,6 +53,33 @@ appLibra.controller('adminUsersCtrl', function($scope, $timeout, $uibModal, usua
                 }
             });
         };
+
+
+        $scope.openDelete = function (usuario) {
+            console.log(usuario);
+            console.log("5545454545454");
+            var modalInstance = $uibModal.open({
+                animation: 'true',
+                templateUrl: 'frontend/module/profile/view/modalDeleteUser.html',
+                controller: 'modalDeleteUserCtrl',
+                size: "md",
+                resolve: {
+                    datPersonUser: function (services, cookiesService) {
+                        var datos = cookiesService.GetToken();
+                        console.log(datos);
+                        if ((datos.success) && (datos.token!=undefined)){
+                            console.log(datos.token);
+                            console.log(usuario);
+                            var json={token:datos.token, id:usuario};
+                            return services.post('profile', 'datosUsuario', json);
+                        }
+                        var datosUsuario={};
+                        datosUsuario.success=false;
+                        return datosUsuario;
+                    }
+                }
+            });
+        };
         
         
     }else{
@@ -148,6 +175,39 @@ appLibra.controller('modalUserInfoCtrl', function ($scope, $uibModal, $uibModalI
     }
 
     console.log($scope.userView.avatar);
+    /*Cierra modal*/
+    $scope.close = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+});
+
+appLibra.controller('modalDeleteUserCtrl', function ($scope, $location, $uibModal, $uibModalInstance, datPersonUser, services, CommonService) {
+    console.log(datPersonUser);
+    if (!datPersonUser.success) {
+        CommonService.alertTimer("error", "Por favor vuelva a iniciar sesion e intentelo de nuevo", "Fallo de Autentificacion", 5000);
+        userService.logout();
+    }
+    $scope.id=datPersonUser.usuario.user_name;
+    console.log($scope.id);
+    console.log($location.$$absUrl);
+    // $location.path($location.$$absUrl);
+    
+    $scope.borrarUsuario = function () {
+        services.put('profile', 'deleteUser', datPersonUser.usuario)
+            .then(function (response) {
+                console.log(response);
+                if (response.success) {
+                    $uibModalInstance.dismiss('cancel');
+                    CommonService.alert("success", response.mensaje,"Borrado de usuario");
+                    $location.path("/");
+                }else{
+                    $uibModalInstance.dismiss('cancel');
+                    CommonService.alert("error", response.mensaje,"Borrado de usuario");
+                }
+                
+            });
+    };
+
     /*Cierra modal*/
     $scope.close = function () {
         $uibModalInstance.dismiss('cancel');

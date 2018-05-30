@@ -44,7 +44,11 @@ class profile_dao {
       return $db->ejecutar($sql);
     }
 
- 
+    function deleteUser_DAO($db, $arrArgument){
+      $user= $arrArgument["user_name"];
+      $sql="DELETE FROM users WHERE user_name='$user'";
+      return $db->ejecutar($sql);
+    }
 
     function update_usuario_DAO($db, $arrArgument){
       $dat=$arrArgument["datosDAO"];
