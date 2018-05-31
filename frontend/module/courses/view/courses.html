@@ -109,16 +109,31 @@
                                 {{(data.title).substring(0, 25)+" ..."}}
                               </a>
                           </h3>
-                          <p class="singCourse_price">
-                            {{data.price| currency: '€ '}}
-                          </p>
                           <p>
                             {{(data.courseDescr).substring(0, 150)+" ..."}}
                           </p>
+                          <p class="text-right text-primary">
+                            {{data.price| currency: '€ '}}
+                          </p>
                       </div>
                       <div class="singCourse_author">
-                        
+                        <div class="btn-group col-md-6">
+                            <button class="btn btn-primary" title="Me gusta">
+                                <i class="glyphicon glyphicon-thumbs-up"></i>
+                            </button>
+                            <button class="btn btn-success" title="Seguir curso">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                            </button>
+                            <button class="btn btn-warning" title="Comentarios">
+                                <i class="glyphicon glyphicon-info-sign"></i>
+                            </button>
+                        </div>
+                          <button class="col-md-offset-2 col-md-4 btn btn-default btn-lg" title="Agregar a carrito">
+                              <i class="glyphicon glyphicon-shopping-cart"></i>
+                          </button><br><br><br>
+                          
                       </div>
+
                   </div>
 
               </div>

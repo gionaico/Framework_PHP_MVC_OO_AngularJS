@@ -15,36 +15,15 @@ appLibra.factory("cookiesService", ['$cookies', 'localstorageService',
         return service;
 
 
-        function SetCredentials(user) {
-            //encriptar data
-            // console.log(user);
-            var usuario = Base64_encode(user.user);
-            var tipo = Base64_encode(user.type);
-            var nombre = Base64_encode(user.name);
-            var avatar = Base64_encode(user.avatar);
-            
-            //almacenarlos en la cookie session
-            $cookies.putObject("session", 
-            {usuario: usuario, avatar: avatar, tipo: tipo, nombre: nombre}, 
-            {expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000)});
-            
-            //almacenarlos en localstorage
-            user = GetCredentials_encode(user);
-            localstorageService.Create(user).then(function (response) {
-                //console.log(response.success);
-                console.log(response.message);
-                
-            });
-        }
+        
 
         function SetToken(token) {
-            
             //almacenarlos en la cookie session
             $cookies.putObject("userSession", 
             {user: token}, 
             {expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000)});
-            
         }
+
 
         function GetToken() {
             var datos={};
@@ -69,9 +48,36 @@ appLibra.factory("cookiesService", ['$cookies', 'localstorageService',
             }
         }
 
+
         function ClearToken() {
             $cookies.remove("userSession");
         }
+
+
+        function SetCredentials(user) {
+            //encriptar data
+            // console.log(user);
+            var usuario = Base64_encode(user.user);
+            var tipo = Base64_encode(user.type);
+            var nombre = Base64_encode(user.name);
+            var avatar = Base64_encode(user.avatar);
+            
+            //almacenarlos en la cookie session
+            $cookies.putObject("session", 
+            {usuario: usuario, avatar: avatar, tipo: tipo, nombre: nombre}, 
+            {expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000)});
+            
+            //almacenarlos en localstorage
+            user = GetCredentials_encode(user);
+            localstorageService.Create(user).then(function (response) {
+                //console.log(response.success);
+                console.log(response.message);
+                
+            });
+        }
+
+
+        
 
         
         function GetCredentials() {

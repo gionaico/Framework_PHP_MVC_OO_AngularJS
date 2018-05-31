@@ -1,8 +1,6 @@
 
 angular.module('jcs-autoValidate')
-    .run([
-    'defaultErrorMessageResolver',
-    function (defaultErrorMessageResolver) {
+    .run(['defaultErrorMessageResolver',function (defaultErrorMessageResolver) {
         // passing a culture into getErrorMessages('fr-fr') will get the culture specific messages
         // otherwise the current default culture is returned.
         defaultErrorMessageResolver.setI18nFileRootPath('frontend/assets/js/jcs-auto-validate/lang');

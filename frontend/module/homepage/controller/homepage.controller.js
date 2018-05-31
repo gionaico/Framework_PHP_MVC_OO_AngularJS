@@ -1,6 +1,6 @@
 /*console.log("entra en home js");
 */
-appLibra.controller('homepageCtrl', function ($scope, services, cursosMasValorados, categoriaCourses) {/*
+appLibra.controller('homepageCtrl', function ($scope, services, cursosMasValorados, categoriaCourses, CommonService, cursosVisitados) {/*
     console.log(cursosMasValorados);*//*
     console.log(categoriaCourses);*/
     var limite = 0;
@@ -9,6 +9,11 @@ appLibra.controller('homepageCtrl', function ($scope, services, cursosMasValorad
     var limiteCat_b = 2;
     $scope.courses=[];
     $scope.categories=[];
+    // var cursosVisitados=CommonService.getCursosDecod();
+    console.log(cursosVisitados);
+    if (cursosVisitados.success) {
+        $scope.ultimosVisitados=true;
+    }
 
     for (var i =limite; i<=limite_b; i++) {
         $scope.courses.push(cursosMasValorados[i]);
@@ -51,6 +56,13 @@ appLibra.controller('homepageCtrl', function ($scope, services, cursosMasValorad
             }
         }
     }
+
+    $scope.coursesVisitados=function(id){
+        CommonService.updateCourVisitadosLocStor(id);
+        console.log(CommonService.getCursosDecod());
+    }
+
+    
 
 
     

@@ -52,6 +52,24 @@ class controller_homepage {
     	exit;
     }
 
+    function cursosVisitados(){   
+        $res["success"]=false;
+        try{
+            $cursos=$_POST;
+            $cad="";
+            for ($i=0; $i <count($cursos) ; $i++) { 
+                $cad.="id='".$cursos[$i]."' or ";
+            }
+            $cursosVis = loadModel(MODEL_HOMEPAGE, "homepage_model", "cursosVisitados",$cad);
+            $res["success"]=true;
+            $res["cursos"]=$cursosVis;
+            echo json_encode($res);exit;
+        }catch(Exception $e){
+            $res["mensaje"]="Fallo en cargar cursos mas visitados";
+            echo json_encode($res);exit;
+        }
+    }
+    
 }
 
 ?>

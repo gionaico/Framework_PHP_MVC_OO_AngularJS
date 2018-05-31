@@ -33,6 +33,9 @@ class homepage_model {
     public Function obtain_category($arrArgument){
         return $this->bll->obtain_category_BLL($arrArgument);
     }
+    public Function cursosVisitados($arrArgument){
+        return $this->bll->cursosVisitados_BLL($arrArgument);
+    }
     
 
 }

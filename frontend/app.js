@@ -20,6 +20,16 @@
                         },
                         categoriaCourses: function (services) {
                             return services.get('homepage', 'getCategorias');
+                        },
+                        cursosVisitados: function (services, CommonService) {
+                            var cursosVisitados=CommonService.getCursosDecod();
+                            // console.log(cursosVisitados.length);
+                            if (cursosVisitados.length>0) {
+                                return services.post('homepage', 'cursosVisitados', cursosVisitados);
+                            }
+                            var courses={};
+                            courses.success=false;
+                            return courses;
                         }
                     }
                 })
@@ -138,6 +148,24 @@
                 
 
         }]);
-
+/*
+        appLibra.run(['Carousel', (Carousel) => {
+          Carousel.setOptions({
+            arrows: true,
+            autoplay: false,
+            autoplaySpeed: 3000,
+            cssEase: 'ease',
+            dots: false,
+         
+            easing: 'linear',
+            fade: false,
+            infinite: true,
+            initialSlide: 0,
+         
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            speed: 500,
+          });
+        }]);*/
 
 

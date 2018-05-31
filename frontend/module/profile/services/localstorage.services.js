@@ -81,6 +81,10 @@ appLibra.factory("localstorageService", ['$timeout', '$filter', '$q', function (
             deferred.resolve({ success: true, message: 'User updated success' });
             return deferred.promise;
         }
+        // private functions
+        function setUsers(users) {
+            localStorage.users = JSON.stringify(users);
+        }
         
         function Delete(id) {
             var deferred = $q.defer();
@@ -95,9 +99,5 @@ appLibra.factory("localstorageService", ['$timeout', '$filter', '$q', function (
             setUsers(users);
             deferred.resolve({ success: true, message: 'User deleted success' });
             return deferred.promise;
-        }
-        // private functions
-        function setUsers(users) {
-            localStorage.users = JSON.stringify(users);
         }
 }]);

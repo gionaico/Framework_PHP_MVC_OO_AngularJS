@@ -20,5 +20,9 @@
         <name>getCategorias</name>
         <uri>getCategorias</uri>
     </function>
+    <function>
+        <name>cursosVisitados</name>
+        <uri>cursosVisitados</uri>
+    </function>
     
 </functions>

@@ -34,4 +34,7 @@ class homepage_bll{
     public function obtain_category_BLL($arrArgument){
       return $this->dao->obtain_category_DAO($arrArgument);
     }
+    public function cursosVisitados_BLL($arrArgument){
+      return $this->dao->cursosVisitados_DAO($this->db, $arrArgument);
+    }
 }
