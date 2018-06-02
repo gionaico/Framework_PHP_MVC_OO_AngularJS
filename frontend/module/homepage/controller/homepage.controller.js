@@ -1,6 +1,6 @@
 /*console.log("entra en home js");
 */
-appLibra.controller('homepageCtrl', function ($scope, services, cursosMasValorados, categoriaCourses, CommonService, cursosVisitados) {/*
+appLibra.controller('homepageCtrl',  function ($scope, services, cursosMasValorados, categoriaCourses, CommonService,  cursosVisitados) {/*
     console.log(cursosMasValorados);*//*
     console.log(categoriaCourses);*/
     var limite = 0;
@@ -67,3 +67,5 @@ appLibra.controller('homepageCtrl', function ($scope, services, cursosMasValorad
 
     
 });
+
+

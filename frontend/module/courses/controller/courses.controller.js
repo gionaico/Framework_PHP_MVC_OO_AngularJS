@@ -1,5 +1,5 @@
 
-appLibra.controller('coursesCategoryCtrl', function ($scope, $timeout, services, coursesCategory, courses_map) {
+appLibra.controller('coursesCategoryCtrl', function ($rootScope, $scope, $timeout, services, coursesCategory, courses_map) {
     window.scrollTo(0, 0);
     /*Categoria que viene por ulr*/
     var category=coursesCategory.category;
@@ -18,7 +18,7 @@ appLibra.controller('coursesCategoryCtrl', function ($scope, $timeout, services,
     } else {
         array=coursesCategory.datos;
     }
-
+    $rootScope.pp = array;
     $scope.file = array;
     $scope.current_grid = 1;
     $scope.data_limit = 3;
@@ -56,3 +56,16 @@ appLibra.filter('beginning_data', function() {
         return [];
     }
 });
+
+
+appLibra.controller('ScrollController', ['$scope', '$location', '$anchorScroll',
+  function($scope, $location, $anchorScroll) {
+    $scope.gotoBottom = function() {
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      $location.hash('bottom');
+
+      // call $anchorScroll()
+      $anchorScroll();
+    };
+  }]);
