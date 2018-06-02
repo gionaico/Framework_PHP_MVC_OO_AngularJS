@@ -1,0 +1,32 @@
+  
+<section id="imgBanner">
+  <h2>Admin chat</h2>
+</section>
+
+<section id="contact">
+      <div class="container">
+            <h1>Soporte</h1>
+            <!-- <p>Creates new chats for every visitor. Open index.html to see start a new chat.</p> -->
+            
+            <div ng-repeat="chat in chats">
+                
+                <h2>Chat with {{chat.user.name}}</h2>
+                
+                <hr />
+
+                <div ng-repeat="message in chat.messages">
+                    <strong>{{message.user.name}}:</strong>
+                    <span>{{message.data}}</span>
+                </div>
+
+                <form ng-submit="send(chat.user.id, chat.textbox)">
+                    <div class="form-group">
+                        <input ng-model="chat.textbox">
+                    </div>
+                </form>
+
+                <hr />
+
+            </div>
+        </div>
+</section>

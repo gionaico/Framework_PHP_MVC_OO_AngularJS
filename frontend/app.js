@@ -1,9 +1,17 @@
 
 
 
-    var appLibra = angular.module('appLibra',['ngRoute', 'ngAnimate', 'ngCookies', 'jcs-autoValidate',  'ui.bootstrap', 'ngMaterial', 'ngMessages']);
+    var appLibra = angular.module('appLibra',['ngRoute', 'ngAnimate', 'ngCookies', 'jcs-autoValidate',  'ui.bootstrap', 'ngMaterial', 'ngMessages', 'chat']);
 
-
+    angular.module('chat').constant('config', {
+        rltm: {
+            service: "pubnub",
+            config: {
+                publishKey: "pub-c-a18ba866-281a-4d97-a060-7ac4b0ebcdd6",
+                subscribeKey: "sub-c-dc8424e8-6439-11e8-b753-ce5efc28367f"
+            }
+        }
+    });
 
 
     appLibra.config(['$routeProvider',
@@ -43,6 +51,17 @@
                             return services.get('courses', 'coursetDetails', $route.current.params.id);
                         }
                     }
+                })
+
+                /*Chat */
+                .when("/chat", {
+                    templateUrl: "frontend/module/chat/view/chat.html",
+                    controller: "chatCtrl"
+                })
+
+                .when("/adminChat", {
+                    templateUrl: "frontend/module/chat/view/adminChat.html",
+                    controller: "adminChatCtrl"
                 })
 
                 /*Course Form*/
