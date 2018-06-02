@@ -36,10 +36,10 @@ appLibra.factory("cookiesService", ['$cookies', 'localstorageService',
                     user=$cookies.getObject("userSession").user;
                     // console.log(user); //datos no encriptados
                     datos.token=user;
+                    datos.success=true;
                 }else{
                     datos.token=undefined;
                 }
-                datos.success=true;
                 return datos;
             }catch(e){
                 // ClearToken();

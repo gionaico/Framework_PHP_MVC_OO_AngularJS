@@ -46,10 +46,10 @@ appLibra.controller('coursesCategoryCtrl', function ($scope, $timeout, services,
 
 appLibra.filter('beginning_data', function() {
     return function(input, begin) {
-        console.log(input);
-        console.log(begin);
+        /*console.log(input);*/
+        /*console.log(begin);*/
         if (input) {
-        	console.log("yeeeeee");
+        	/*console.log("yeeeeee");*/
             begin = +begin;
             return input.slice(begin);
         }

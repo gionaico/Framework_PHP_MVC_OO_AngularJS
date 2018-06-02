@@ -77,6 +77,12 @@ class profile_model {
     public function deleteUser($arrArgument) {
         return $this->bll->deleteUser_BLL($arrArgument);
     }
+    public function compruebaLike($arrArgument) {
+        return $this->bll->compruebaLike_BLL($arrArgument);
+    }
+    public function insertLike($arrArgument) {
+        return $this->bll->insertLike_BLL($arrArgument);
+    }
 
 
 }

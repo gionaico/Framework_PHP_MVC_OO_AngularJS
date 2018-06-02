@@ -296,6 +296,37 @@ class controller_profile {
         echo json_encode($jsondata );exit;
         // echo json_encode(json_decode($validaToken["datos"]));exit;
     }
+
+    /*-------------------------------------------*/
+    function hacerLike(){
+        $jsondata["success"]=false;
+        try{
+            $datotrab["token"]=$_POST["token"];
+            $validaToken=$this->getArrayDatos($datotrab["token"]);
+            if ($validaToken["success"]) {
+                    $user = loadModel(MODEL_PROFILE, "profile_model", "userByToken", $datotrab);  
+                    $datotrab["idlike"]=$user[0]["user_name"]."_".$_POST["course"];
+                    $compruebaLike= loadModel(MODEL_PROFILE, "profile_model", "compruebaLike", $datotrab); 
+                    if (count($compruebaLike)==0) {
+                        $datotrab["id"]=$_POST["course"];
+                        $datotrab["user"]=$user[0]["user_name"];
+                        $insertLike = loadModel(MODEL_PROFILE, "profile_model", "insertLike", $datotrab);  
+                        $jsondata["success"]=true;                    
+                        $jsondata["mensaje"]="Has hecho like";   
+                    }else{
+                        $jsondata["mensaje"]="Este producto ya lo tienes con LIKE";            
+                    } 
+
+            }else{
+                $jsondata["mensaje"]="Problemas de seguridad. Inicie sesion nuevamente.";            
+            }
+        } catch (Exception $e) {
+            $jsondata["mensaje"]="Problemas comprobacion de datos. Intentelo mas tarde.";
+            $jsondata["menAdmin"]=$e;
+        }
+        echo json_encode($jsondata );exit;
+        // echo json_encode(json_decode($validaToken["datos"]));exit;
+    }
     /*-------------------------------------------*/
 
     public function ActualizarToken($datos_user){

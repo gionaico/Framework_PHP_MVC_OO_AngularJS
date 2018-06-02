@@ -221,6 +221,19 @@ class profile_dao {
         $sql = "SELECT * FROM users";
         return $db->listar($db->ejecutar($sql));
     }
+    public function compruebaLike_DAO($db, $arrArgument) {
+        $id=$arrArgument["idlike"];
+        $sql = "SELECT * FROM likes WHERE id='$id'";
+        return $db->listar($db->ejecutar($sql));
+    }
+    public function insertLike_DAO($db, $arrArgument) {
+        $id=$arrArgument["idlike"];
+        $curso=$arrArgument["id"];
+        $user=$arrArgument["user"];
+        $sql = "INSERT INTO likes (id, user_name, id_curso) VALUES ('$id', '$user', '$curso')";
+        // echo json_encode($sql);exit;
+        return $db->ejecutar($sql);
+    }
 
 
 }//End productDAO

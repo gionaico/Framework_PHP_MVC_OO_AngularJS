@@ -86,4 +86,10 @@ class profile_bll{
     public function deleteUser_BLL($arrArgument){    
         return $this->dao->deleteUser_DAO($this->db,$arrArgument);
     }
+    public function compruebaLike_BLL($arrArgument){    
+        return $this->dao->compruebaLike_DAO($this->db,$arrArgument);
+    }
+    public function insertLike_BLL($arrArgument){    
+        return $this->dao->insertLike_DAO($this->db,$arrArgument);
+    }
 }

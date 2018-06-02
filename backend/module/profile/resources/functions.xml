@@ -90,6 +90,10 @@
         <name>deleteUser</name>
         <uri>deleteUser</uri>
     </function>
+    <function>
+        <name>hacerLike</name>
+        <uri>hacerLike</uri>
+    </function>
     
     
 </functions>

@@ -167,24 +167,30 @@
                 
 
         }]);
-/*
-        appLibra.run(['Carousel', (Carousel) => {
-          Carousel.setOptions({
-            arrows: true,
-            autoplay: false,
-            autoplaySpeed: 3000,
-            cssEase: 'ease',
-            dots: false,
-         
-            easing: 'linear',
-            fade: false,
-            infinite: true,
-            initialSlide: 0,
-         
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            speed: 500,
-          });
-        }]);*/
+        
+        appLibra.run(['$rootScope', 'services', 'cookiesService', 'CommonService', function($rootScope, services, cookiesService, CommonService) {
+
+            $rootScope.hacerLike=function(id){
+                console.log(id);
+                var datos= cookiesService.GetToken();
+                console.log(datos);
+                if (datos.success) {
+                    services.post('profile', 'hacerLike',  {token: datos.token, course:id})
+                        .then(function (response) {
+                            if (response.success) {
+                                CommonService.alertTimer("success", response.mensaje, "LIKE", 2000);
+                            }else{
+                                console.log(response);
+                                CommonService.alert("info", response.mensaje, "LIKE");
+                            }
+                         }).catch(function(err) {
+                            console.log(err);
+                            console.log("error en peticion con servidor");
+                        });
+                }else{
+                    CommonService.alert("info", "Para hacer like a un producto, es necesario estar logueado. Por favor inicia sesion", "LIKE");
+                }
+            }
+        }]);
 
 
