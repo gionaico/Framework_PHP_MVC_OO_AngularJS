@@ -7,8 +7,14 @@ class controller_courses {
         include(UTILS_COURSES . "validaCourses.php");         
         $_SESSION['module'] = "courses";
     }
-        
-   
+     
+
+    function verComentarios(){
+        $id=$_GET['param'];
+        $comentarios=loadModel(MODEL_COURSES, "courses_model", "verComentarios", $id);
+
+        echo json_encode($comentarios);exit;
+    }
 
     function getAllCourses(){
         $res=array(
@@ -311,12 +317,4 @@ class controller_courses {
         }
     }
 
-    public function cargarVistas($html){
-        require_once(VIEW_PATH_INC . "header.html");
-        require_once(VIEW_PATH_INC . "menu.html");     
-        require_once(COURSES_VIEW_PATH . "".$html.".html");
-        require_once(COURSES_VIEW_PATH . "courseDetails.html");
-        require_once(COURSES_VIEW_PATH . "courses.html");
-        require_once(VIEW_PATH_INC . "footer.html");
-    }
 }/*end class courses*/

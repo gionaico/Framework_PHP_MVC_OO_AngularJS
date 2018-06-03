@@ -1,11 +1,13 @@
 
-appLibra.factory("CommonService", ['$rootScope','$timeout', '$cookies', '$q', '$filter',function ($rootScope, $timeout, $cookies, $q, $filter) {
+appLibra.factory("CommonService", ['$rootScope','$timeout', '$uibModal', '$uibModalStack', '$cookies', '$q', '$filter', 'services',function ($rootScope, $timeout, $uibModal, $uibModalStack, $cookies, $q, $filter, services) {
     var service = {};
         service.alert   = alert;
         service.alertTimer= alertTimer;
         service.alertFormatPass= alertFormatPass;
         service.updateCourVisitadosLocStor= updateCourVisitadosLocStor;
         service.getCursosDecod= getCursosDecod;
+        service.comentarios= comentarios;
+        service.cerrarModal= cerrarModal;
 
     return service;
         
@@ -167,6 +169,29 @@ appLibra.factory("CommonService", ['$rootScope','$timeout', '$cookies', '$q', '$
             enc1 = enc2 = enc3 = enc4 = "";
         } while (i < input.length);
         return output;
+    }
+
+    function comentarios($scope){
+        console.log("noonnonononono");
+        $scope.openModalComentarios = function (id) {
+            var modalInstance2 = $uibModal.open({
+                animation: 'true',
+                templateUrl: 'frontend/module/courses/view/modalComentariosCursos.html',
+                controller: 'ComentariosCursosCtrl',
+                size: "md",
+                resolve: {
+                    idCourse: function () {
+                        return services.get('courses', 'verComentarios',  id);
+                    }
+                }
+            });
+        }
+    }
+
+    function cerrarModal($scope){
+        $scope.close2 = function () {
+            $uibModalStack.dismissAll();
+        };
     }
 
 

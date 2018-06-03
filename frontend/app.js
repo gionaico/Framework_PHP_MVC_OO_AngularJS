@@ -168,7 +168,7 @@
 
         }]);
         
-        appLibra.run(['$rootScope', 'services', 'cookiesService', 'CommonService', function($rootScope, services, cookiesService, CommonService) {
+        appLibra.run(['$rootScope', '$uibModal', '$uibModalStack', 'services', 'cookiesService', 'CommonService', function($rootScope, $uibModal, $uibModalStack, services, cookiesService, CommonService) {
 
             $rootScope.hacerLike=function(id){
                 console.log(id);
@@ -191,6 +191,14 @@
                     CommonService.alert("info", "Para hacer like a un producto, es necesario estar logueado. Por favor inicia sesion", "LIKE");
                 }
             }
+
+            
+
+            // $rootScope.close2 = function () {
+            //     $uibModalStack.dismissAll();
+            // };
+
+
         }]);
 
 

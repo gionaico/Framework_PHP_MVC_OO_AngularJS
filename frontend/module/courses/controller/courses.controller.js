@@ -1,5 +1,5 @@
 
-appLibra.controller('coursesCategoryCtrl', function ($rootScope, $scope, $timeout, services, coursesCategory, courses_map) {
+appLibra.controller('coursesCategoryCtrl', ['$rootScope', '$scope', '$timeout', 'services', '$uibModal', 'coursesCategory', 'courses_map', 'CommonService',function ($rootScope, $scope, $timeout, services, $uibModal, coursesCategory, courses_map, CommonService) {
     window.scrollTo(0, 0);
     /*Categoria que viene por ulr*/
     var category=coursesCategory.category;
@@ -41,8 +41,23 @@ appLibra.controller('coursesCategoryCtrl', function ($rootScope, $scope, $timeou
     };
 
     courses_map.cargarmap($scope.file, $scope);
+    
+    // CommonService.comentarios($scope);
+    $scope.openModalComentarios = function (id) {
+            var modalInstance2 = $uibModal.open({
+                animation: 'true',
+                templateUrl: 'frontend/module/courses/view/modalComentariosCursos.html',
+                controller: 'ComentariosCursosCtrl',
+                size: "md",
+                resolve: {
+                    idCourse: function () {
+                        return services.get('courses', 'verComentarios',  id);
+                    }
+                }
+            });
+        }
 
-});
+}]);
 
 appLibra.filter('beginning_data', function() {
     return function(input, begin) {
@@ -68,4 +83,33 @@ appLibra.controller('ScrollController', ['$scope', '$location', '$anchorScroll',
       // call $anchorScroll()
       $anchorScroll();
     };
-  }]);
+}]);
+
+appLibra.controller('scrollComentariosCtrl', ['$scope', '$location', '$anchorScroll',
+  function($scope, $location, $anchorScroll) {
+    $scope.gotoBottom = function() {
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      $location.hash('bottom');
+
+      // call $anchorScroll()
+      $anchorScroll();
+    };
+}]);
+
+
+
+
+appLibra.controller('ComentariosCursosCtrl', ['$scope', '$location', '$anchorScroll', 'idCourse', 'CommonService', function($scope, $location, $anchorScroll, idCourse, CommonService) {
+
+    console.log(idCourse);
+    $scope.comentariosCur=idCourse;
+    if ($scope.comentariosCur.avatar) {}
+
+    CommonService.cerrarModal($scope);
+    $scope.submitEnviarComentario=function(){
+        console.log($scope.comentario);
+    }
+
+    
+}]);

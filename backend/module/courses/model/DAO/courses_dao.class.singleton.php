@@ -129,5 +129,9 @@
             return $db->listar($db->ejecutar($sql));
             
         }
+        public function verComentarios_DAO($db, $arrArgument) {
+            $sql = "SELECT * FROM comentarios as c INNER JOIN users as u WHERE c.user_name=u.user_name and c.id_curso='$arrArgument'  ORDER BY c.fecha_comentario DESC";
+            return $db->listar($db->ejecutar($sql));
+        }
             
     }//End productDAO

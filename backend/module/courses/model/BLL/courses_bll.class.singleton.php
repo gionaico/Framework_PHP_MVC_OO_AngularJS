@@ -49,4 +49,7 @@
         public function getAllCourses_BLL($arrArgument){    
             return $this->dao->getAllCourses_DAO($this->db,$arrArgument);      
         }
+        public function verComentarios_BLL($arrArgument){    
+            return $this->dao->verComentarios_DAO($this->db,$arrArgument);      
+        }
     }

@@ -45,5 +45,8 @@
         public Function getAllCourses($arrArgument){           
             return $this->bll->getAllCourses_BLL($arrArgument);
         }
+        public Function verComentarios($arrArgument){           
+            return $this->bll->verComentarios_BLL($arrArgument);
+        }
 
     }

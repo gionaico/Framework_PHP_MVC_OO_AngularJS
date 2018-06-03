@@ -80,6 +80,10 @@
         <name>getAllCourses</name>
         <uri>getAllCourses</uri>
     </function>
+    <function>
+        <name>verComentarios</name>
+        <uri>verComentarios</uri>
+    </function>
     
     
 </functions>
