@@ -80,7 +80,7 @@
 		-Creacion de una factoria propia para el update que a su vez se reutiliza para el update del administrador.
 		-Validacion de token en cada vista de administrador, si el token no es valido o el usuario no es de tipo admin los controladores cirran sesion y nos obliga a loguearnos nuevamente.
 
-	-Mejoras ULtima Semana
+	-Mejoras Ultima Semana
 
 		-Al visitar un curso (su vista de detalles) guarda en cookies el id codificado del cusro que estamos viendo, con ellos consigo que cuando habre la pagina en otras ocasiones en el home tenga un listado de los cursos visitados por el usuario, como sugerencias para el.
 
@@ -90,8 +90,8 @@
 		-Like:
 			* Este sistema permite hacer like a los cursos siempre y cuando estemos logueados, solo permite hacer un like a cada curso, si un curso ya tiene like nos devuelve una alerta de que el curso ya lo tiene.
 
-		-Commentarios 
-			*Permite a los usuarios logueados hacer comentarios de un curso y a los que no estan logueados solo permite ver los comentarios de otros usuarios.
+		-Commentarios y scroll
+			*Permite a los usuarios logueados hacer comentarios de un curso y a los que no estan logueados solo permite ver los comentarios de otros usuarios. Todo esto se ve en un modal el cual tiene encapsulado a todos los comentarios en un div al cual se le puede hacer scroll para leer todos los comentarios.
 
 
 

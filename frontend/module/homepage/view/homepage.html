@@ -78,7 +78,57 @@
             <br>
             <br>
             <br>
-            <br>            
+            <br>  
+                <section id="ourCourses">
+      <div class="container">
+       <!-- Our courses titile -->
+        <div class="row">
+          <div class="col-lg-12 col-md-12"> 
+            <div class="title_area">
+              <h2 class="title_two">Category</h2>
+              <span></span> 
+            </div>
+          </div>
+        </div>
+        <!-- End Our courses titile -->
+        <!-- Start Our courses content -->
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="ourCourse_content" id="">             
+              <div class="course_nav" id="categories">
+
+
+                  <div class="col-md-4 margin_img_home" ng-repeat="category in categories">
+                    <div class="single_course">
+                      <div class="singCourse_imgarea">
+                        <img class="mediana" src="{{category.photoCategory}}" alt="">
+                        <div class="mask">
+                          <a href="#/courses/{{category.inicia}}" class="course_more classCategory">Courses of this category{{category.inicia}}</a>
+                        </div>
+                      </div>
+                      <div class="singCourse_content">
+                        <h3>
+                          <a href="#/courses/{{category.inicia}}" class="classCategory">{{category.course}}</a>
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+
+
+              </div>
+            </div><!-- end div ourCourse_content -->
+          </div>
+        </div><!-- end div row -->
+        <!-- End Our courses content -->
+      <br><br><br>
+      <div class="btn btn-primary col-md-offset-4 col-md-4" id="viewMoreCategories" ng-click="moreCategories()">View More</div>
+      </div>
+    </section>
+
+
+
+
+
             <div class="title_area">
               <h2 class="title_two">Cursos mejor valorados</h2>
               <span></span> 
@@ -89,7 +139,7 @@
 
 
 
-
+        
         <!-- Start Our courses content -->
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12">
@@ -166,18 +216,28 @@
               <div class="course_nav" id="categories">
 
 
-                  <div class="col-md-4 margin_img_home" ng-repeat="category in categories">
+                  <div class="col-md-4 margin_img_home" ng-repeat="cur in coursesVisit">
                     <div class="single_course">
                       <div class="singCourse_imgarea">
-                        <img class="mediana" src="{{category.photoCategory}}" alt="">
+                        <img class="mediana" src="backend/{{cur.avatar}}" alt="">
+
                         <div class="mask">
-                          <a href="#/courses/{{category.inicia}}" class="course_more classCategory">Courses of this category{{category.inicia}}</a>
+                          <a href="#/course/{{cur.id}}" class="course_more courseDetalles">Ver curso</a>
                         </div>
                       </div>
-                      <div class="singCourse_content">
-                        <h3>
-                          <a href="#/courses/{{category.inicia}}" class="classCategory">{{category.course}}</a>
-                        </h3>
+                         <div class="singCourse_content">
+                            <h3 class="singCourse_title">
+                                <a href="#/course/{{cur.id}}" class="courseDetalles">{{(cur.title).substring(0, 20)}}...</a>
+                            </h3>
+                            <p class="singCourse_price">
+                              {{cur.price | currency: '€ '}}
+                            </p>
+                            <p>
+                                {{(cur.courseDescr).substring(0, 150)+" ..."}}
+                            </p>
+                      </div>
+                      <div class="singCourse_author">
+                        
                       </div>
                     </div>
                   </div>
@@ -189,7 +249,7 @@
         </div><!-- end div row -->
         <!-- End Our courses content -->
       <br><br><br>
-      <div class="btn btn-primary col-md-offset-4 col-md-4" id="viewMoreCategories" ng-click="moreCategories()">View More</div>
+      <div class="btn btn-primary col-md-offset-4 col-md-4"  ng-click="moreCoursesVisitados()">View More</div>
       </div>
     </section>
 
@@ -203,51 +263,7 @@
 
 
 
-    <section id="ourCourses">
-      <div class="container">
-       <!-- Our courses titile -->
-        <div class="row">
-          <div class="col-lg-12 col-md-12"> 
-            <div class="title_area">
-              <h2 class="title_two">Category</h2>
-              <span></span> 
-            </div>
-          </div>
-        </div>
-        <!-- End Our courses titile -->
-        <!-- Start Our courses content -->
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="ourCourse_content" id="">             
-              <div class="course_nav" id="categories">
 
-
-                  <div class="col-md-4 margin_img_home" ng-repeat="category in categories">
-                    <div class="single_course">
-                      <div class="singCourse_imgarea">
-                        <img class="mediana" src="{{category.photoCategory}}" alt="">
-                        <div class="mask">
-                          <a href="#/courses/{{category.inicia}}" class="course_more classCategory">Courses of this category{{category.inicia}}</a>
-                        </div>
-                      </div>
-                      <div class="singCourse_content">
-                        <h3>
-                          <a href="#/courses/{{category.inicia}}" class="classCategory">{{category.course}}</a>
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-
-
-              </div>
-            </div><!-- end div ourCourse_content -->
-          </div>
-        </div><!-- end div row -->
-        <!-- End Our courses content -->
-      <br><br><br>
-      <div class="btn btn-primary col-md-offset-4 col-md-4" id="viewMoreCategories" ng-click="moreCategories()">View More</div>
-      </div>
-    </section>
 
 
 

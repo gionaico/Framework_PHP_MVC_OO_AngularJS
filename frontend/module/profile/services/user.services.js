@@ -79,6 +79,7 @@ appLibra.factory("userService", ['$location', '$rootScope', '$q', 'services', 'c
             $rootScope.btnLogin = false;
             $rootScope.btnLogout = true;
             $rootScope.usuario = datos.user;
+            console.log($rootScope.usuario);
             var tipo_registro = datos.tipo_registro;
 
             if (datos.avatar.substring(0, 4)==="http") {

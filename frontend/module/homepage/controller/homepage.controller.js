@@ -1,6 +1,6 @@
 /*console.log("entra en home js");
 */
-appLibra.controller('homepageCtrl',  function ($scope, services, cursosMasValorados, categoriaCourses, CommonService,  cursosVisitados) {/*
+appLibra.controller('homepageCtrl',  function ($scope, $rootScope, services, cursosMasValorados, categoriaCourses, CommonService,  cursosVisitados) {/*
     console.log(cursosMasValorados);*//*
     console.log(categoriaCourses);*/
     var limite = 0;
@@ -9,11 +9,18 @@ appLibra.controller('homepageCtrl',  function ($scope, services, cursosMasValora
     var limiteCat_b = 2;
     $scope.courses=[];
     $scope.categories=[];
+    $scope.coursesVisit=[];
     // var cursosVisitados=CommonService.getCursosDecod();
-    console.log(cursosVisitados);
-    if (cursosVisitados.success) {
+    console.log(cursosVisitados.cursos);
+    if ((cursosVisitados.success)&&(cursosVisitados.cursos.length>=3)) {
+        var limiteCurVisit = 0;
+        var limiteCurVisit_b = 2;
         $scope.ultimosVisitados=true;
+        for (var i =limiteCurVisit; i<=limiteCurVisit_b; i++) {
+            $scope.coursesVisit.push(cursosVisitados.cursos[i]);
+        }
     }
+
 
     for (var i =limite; i<=limite_b; i++) {
         $scope.courses.push(cursosMasValorados[i]);
@@ -27,7 +34,7 @@ appLibra.controller('homepageCtrl',  function ($scope, services, cursosMasValora
         limite=limite+3;
         limite_b=limite_b+3;
         /*console.log(limite+" "+limite_b);*/
-        if (limite_b>cursosMasValorados.length) {
+        if (limite_b>=cursosMasValorados.length) {
             for (var i =limite; i<cursosMasValorados.length; i++) {
                 /*console.log(cursosMasValorados[i]);*/
                 $scope.courses.push(cursosMasValorados[i]);
@@ -44,7 +51,7 @@ appLibra.controller('homepageCtrl',  function ($scope, services, cursosMasValora
         limiteCat=limiteCat+3;
         limiteCat_b=limiteCat_b+3;
         /*console.log(limiteCat+" "+limiteCat_b);*/
-        if (limiteCat_b>categoriaCourses.length) {
+        if (limiteCat_b>=categoriaCourses.length) {
             for (var i =limiteCat; i<categoriaCourses.length; i++) {
                 /*console.log(categoriaCourses[i]);*/
                 $scope.categories.push(categoriaCourses[i]);
@@ -57,12 +64,27 @@ appLibra.controller('homepageCtrl',  function ($scope, services, cursosMasValora
         }
     }
 
-    $scope.coursesVisitados=function(id){
+    $rootScope.coursesVisitados=function(id){
         CommonService.updateCourVisitadosLocStor(id);
         console.log(CommonService.getCursosDecod());
     }
 
-    
+    $scope.moreCoursesVisitados=function(){
+        limiteCurVisit=limiteCurVisit+3;
+        limiteCurVisit_b=limiteCurVisit_b+3;
+        /*console.log(limite+" "+limite_b);*/
+        if (limiteCurVisit_b>=cursosVisitados.cursos.length) {
+            for (var i =limiteCurVisit; i<cursosVisitados.cursos.length; i++) {
+                /*console.log(cursosMasValorados[i]);*/
+                $scope.coursesVisit.push(cursosVisitados.cursos[i]);
+            }
+        } else {
+            for (var i =limiteCurVisit; i<=limiteCurVisit_b; i++) {
+                /*console.log(cursosMasValorados[i]);*/
+                $scope.coursesVisit.push(cursosVisitados.cursos[i]);
+            }
+        }
+    }    
 
 
     

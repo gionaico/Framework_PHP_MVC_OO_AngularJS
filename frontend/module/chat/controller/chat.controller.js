@@ -1,8 +1,9 @@
-appLibra.controller('chatCtrl', ['Messages', '$scope', function(Messages, $scope) {
+appLibra.controller('chatCtrl', ['Messages', '$rootScope', '$scope', function(Messages, $rootScope, $scope) {
 
 	// Message Inbox
     $scope.messages = [];
-    Messages.user({id: "gio", name: "giogio"});
+    console.log($rootScope.usuario);
+    Messages.user({id: $rootScope.usuario, name: $rootScope.usuario});
 
     // Receive Messages
     Messages.receive(function(message, isPrivate) {
