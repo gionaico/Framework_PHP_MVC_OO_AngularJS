@@ -100,15 +100,27 @@ appLibra.controller('scrollComentariosCtrl', ['$scope', '$location', '$anchorScr
 
 
 
-appLibra.controller('ComentariosCursosCtrl', ['$scope', '$location', '$anchorScroll', 'idCourse', 'CommonService', function($scope, $location, $anchorScroll, idCourse, CommonService) {
+appLibra.controller('ComentariosCursosCtrl', ['$scope', '$location', '$anchorScroll', 'idCourse', 'CommonService', 'cookiesService', 'services',function($scope, $location, $anchorScroll, idCourse, CommonService, cookiesService, services) {
 
     console.log(idCourse);
-    $scope.comentariosCur=idCourse;
-    if ($scope.comentariosCur.avatar) {}
+    $scope.comentariosCur=idCourse.comentarios;
 
     CommonService.cerrarModal($scope);
     $scope.submitEnviarComentario=function(){
         console.log($scope.comentario);
+        var datos = cookiesService.GetToken();
+        console.log(datos);
+        if ((datos.success) && (datos.token!=undefined)){
+            services.post('courses', 'comentarCurso', {curso:idCourse.curso, comentario:$scope.comentario, token:datos.token})
+                .then(function (response) {
+                    // $scope.comentario="";
+                    $scope.comentariosCur=response.comentarios;
+                    CommonService.alertTimer("success", response.mensaje, "COMENTAR", 2000);
+                    console.log(response);
+                });
+        }else{
+            CommonService.alert("info", "Para poder hacer un comentario tienes que estar logueado previamente", "COMENTAR");
+        }
     }
 
     

@@ -133,5 +133,16 @@
             $sql = "SELECT * FROM comentarios as c INNER JOIN users as u WHERE c.user_name=u.user_name and c.id_curso='$arrArgument'  ORDER BY c.fecha_comentario DESC";
             return $db->listar($db->ejecutar($sql));
         }
+
+        public function insertarComentario_DAO($db, $arrArgument) {
+            $curso=$arrArgument["curso"];
+            $user=$arrArgument["user_name"];
+            $coment=$arrArgument["comentario"];
+
+
+            $sql = "INSERT INTO comentarios (id_curso, user_name, comentario) VALUES ('$curso', '$user', '$coment' )";
+            // echo json_encode($sql);exit;
+            return $db->ejecutar($sql);
+        }
             
     }//End productDAO

@@ -12,8 +12,39 @@ class controller_courses {
     function verComentarios(){
         $id=$_GET['param'];
         $comentarios=loadModel(MODEL_COURSES, "courses_model", "verComentarios", $id);
+        $json["comentarios"]=$comentarios;
+        $json["curso"]=$id;
 
-        echo json_encode($comentarios);exit;
+        echo json_encode($json);exit;
+    }
+
+    function comentarCurso(){
+        $verificaToken=verificaToken($_POST["token"]);
+        $res["success"]=false;
+        if ($verificaToken["success"]) {
+            try{
+                $usuario = loadModel(MODEL_PROFILE, "profile_model", "userByToken", $_POST);
+                if (count($usuario)==1) {
+                        $datos=$_POST;
+                        $datos["user_name"]=$usuario[0]["user_name"];
+                        // echo json_encode($datos);exit;
+                        $insertarComentario = loadModel(MODEL_COURSES, "courses_model", "insertarComentario", $datos);
+                        $comentarios=loadModel(MODEL_COURSES, "courses_model", "verComentarios", $datos["curso"]);
+                        $res["success"]=true;
+                        $res["mensaje"]="Tu comentario ha sido introducido exitosamente";
+                        $res["comentarios"]=$comentarios;
+
+                }else{
+                    $res["mensaje"]="Error comprobacion de token";    
+                }
+            } catch (Exception $e) {
+                $res["mensaje"]="Error comprobacion de credenciales.";
+            }
+
+        }else{
+            $res["mensaje"]=$verificaToken["mensaje"];
+        }
+        echo json_encode($res);exit;
     }
 
     function getAllCourses(){

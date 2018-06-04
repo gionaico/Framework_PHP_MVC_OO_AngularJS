@@ -48,5 +48,8 @@
         public Function verComentarios($arrArgument){           
             return $this->bll->verComentarios_BLL($arrArgument);
         }
+        public Function insertarComentario($arrArgument){           
+            return $this->bll->insertarComentario_BLL($arrArgument);
+        }
 
     }

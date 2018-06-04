@@ -20,6 +20,25 @@
         }
     }    
 
+    function verificaToken($informacionToken){
+        
+        $array = explode(".", $informacionToken);
+        $datos["success"]=false;
+
+        $tokenComparar=$array[0];
+        $tokenComparar2=$array[1];
+        if ($tokenComparar==base64_decode($tokenComparar2)) {
+            $datos["success"]=true;
+        }elseif(count($array)!=2){
+            $datos["mensaje"]="Problema de seguridad. Logueate nuevamente";
+
+        }else{            
+            $datos["mensaje"]="ERROR. Autentificacion de datos";
+        }
+
+        return $datos;
+    }
+
     function validateDate($date, $format = 'Y-m-d H:i:s'){
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;

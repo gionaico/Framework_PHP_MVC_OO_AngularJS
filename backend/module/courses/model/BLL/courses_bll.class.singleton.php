@@ -52,4 +52,7 @@
         public function verComentarios_BLL($arrArgument){    
             return $this->dao->verComentarios_DAO($this->db,$arrArgument);      
         }
+        public function insertarComentario_BLL($arrArgument){    
+            return $this->dao->insertarComentario_DAO($this->db,$arrArgument);      
+        }
     }

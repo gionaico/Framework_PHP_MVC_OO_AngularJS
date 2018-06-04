@@ -16,11 +16,14 @@
   <div class="modal-body">
 
 
-      <!-- <div class="row">
-          <a class="col-md-offset-4 col-md-4 pointer btn btn-info">Comentar</a>
-      </div> -->
-
       <div class="row">
+          <!-- <a class="col-md-offset-4 col-md-4 pointer btn btn-info">Comentar</a> -->
+          <center ng-show="btnLogin">
+            <p class="text-danger">Para poder comentar tienes que estar logueado. </p>
+          </center>
+      </div>
+
+      <div class="row" ng-show="btnLogout">
           <!-- <a class=" pointer btn btn-default">No comentar</a> -->
           <form name="enviarComentario" novalidate="novalidate" ng-submit="submitEnviarComentario(enviarComentario.$valid)">
               <div class="form-group " style="padding: 20px">
