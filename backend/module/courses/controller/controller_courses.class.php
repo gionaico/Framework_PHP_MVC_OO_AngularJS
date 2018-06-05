@@ -30,6 +30,7 @@ class controller_courses {
                         // echo json_encode($datos);exit;
                         $insertarComentario = loadModel(MODEL_COURSES, "courses_model", "insertarComentario", $datos);
                         $comentarios=loadModel(MODEL_COURSES, "courses_model", "verComentarios", $datos["curso"]);
+                        
                         $res["success"]=true;
                         $res["mensaje"]="Tu comentario ha sido introducido exitosamente";
                         $res["comentarios"]=$comentarios;

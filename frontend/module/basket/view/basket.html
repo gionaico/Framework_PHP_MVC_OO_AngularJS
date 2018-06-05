@@ -1,0 +1,56 @@
+
+<!-- CARRITO DE COMPRA -->
+<section id="imgBanner">
+  <h2>Carrito</h2>
+</section>
+
+<section>
+	<div class="container">
+		<div ng-show="sinProductos" class="row" style="height: 1100px;">
+			<center>
+				<p style="padding-top: 500px;" class="text text-info">
+					<h2>
+						<em>El carrito esta vacio.</em>
+					</h2>
+				</p>
+				<p>
+					<img src="frontend/module/basket/view/img/carritoVacio.jpg" alt="">
+				</p>
+			</center>
+		</div>
+		<div class="row" ng-show="tablaCarrito">
+	        <div class="span5">
+	            <h3>Carrito de compra</h3>
+	    
+	            <table class="table table-striped" >
+	                <caption>Productos agregados a cesta de compra</caption>
+	                <thead>
+	                    <tr>
+	                        <th class="span1"></th>
+	                        <th class="span5">Producto</th>
+	                        <!-- <th class="span2">Cantidad</th> -->
+	                        <th class="span2">Precio</th>
+	                        <th class="span2">Borrar</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr class="well" ng-repeat="ca in carrito">
+	                        <td>
+	                        	<a href="#/course/{{ca.Producto.id}}">
+	                        		<img class="mediana3" src="backend/{{ca.Producto.avatar}}" alt="">
+	                        	</a>
+	                        </td>
+
+	                        <td>{{ca.Producto.title}}</td>
+
+
+	                        <td>{{formatoMoneda(ca.Producto.price)}} </td>
+
+	                        <td><a ng-click="borrarDeCarrito(ca.Producto.id)" type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a></td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </div>
+	    </div>
+	</div>
+</section>

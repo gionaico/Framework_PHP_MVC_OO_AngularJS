@@ -59,6 +59,12 @@
                     controller: "chatCtrl"
                 })
 
+                /*Chat */
+                .when("/basket", {
+                    templateUrl: "frontend/module/basket/view/basket.html",
+                    controller: "BasketCtrl"
+                })
+
                 .when("/adminChat", {
                     templateUrl: "frontend/module/chat/view/adminChat.html",
                     controller: "adminChatCtrl"
@@ -193,11 +199,34 @@
             }
 
             
+            $rootScope.carrito = [];
+            console.log($rootScope.carrito.length);
+            $rootScope.agregar = function (p) {
+                console.log(p.id);
+                var itemActual=true;
 
-            // $rootScope.close2 = function () {
-            //     $uibModalStack.dismissAll();
-            // };
+                for (var i = 0; i < $rootScope.carrito.length; i++) {
+                    /*Entra cada vez que agrega un producto*/
+                        console.log($rootScope.carrito[i].Producto.id);
+                    if ($rootScope.carrito[i].Producto.id == p.id) {
+                        console.log(p.id);
+                        /*Entra la cantidad de un mismo producto cambia*/
+                        CommonService.alert("info", "Este producto ya esta en el carrito", "Carrito de Compra");
+                        itemActual = false;
+                    }
+                }
 
+                if (itemActual) {
+                    // Entra cada vez que agrega un producto
+                    $rootScope.carrito.push({
+                        Producto: p,
+                        Cantidad: 1
+                    });
+                    CommonService.toast("Curso agregado", "success", "toast-top-right", "El curso se agrego correctamente, puedes ver los productos agregados en la seccion de carrito", 3000);
+                    console.log(1);
+                }
+                console.log($rootScope.carrito);
+            }
 
         }]);
 

@@ -8,9 +8,34 @@ appLibra.factory("CommonService", ['$rootScope','$timeout', '$uibModal', '$uibMo
         service.getCursosDecod= getCursosDecod;
         service.comentarios= comentarios;
         service.cerrarModal= cerrarModal;
+        service.toast= toast;
 
     return service;
+
+    function toast(title, tipo, ubicacioToast, mensaje, tiempo){
+        /*  POSITIONS
+                toast-top-full-width
+                toast-top-left
+                toast-top-center
+                toast-top-right
+                toast-bottom-full-width
+                toast-bottom-right
+                toast-bottom-center
+                toastst-bottom-left
+
+            TYPES
+                error
+                info
+                warning
+                success
+
+         */
+
+        var toasts = new Toast(title, tipo, ubicacioToast, mensaje, tiempo);
+        delayToasts(toasts,0);
+    }
         
+
     function alert(type, mensaje, title){        
         swal({
           type: ''+type+'',
