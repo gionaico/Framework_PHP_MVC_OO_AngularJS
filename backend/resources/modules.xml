@@ -16,5 +16,9 @@
         <name>profile</name>
         <uri>profile</uri>
     </module>
+    <module>
+        <name>basket</name>
+        <uri>basket</uri>
+    </module>
 
 </modules>

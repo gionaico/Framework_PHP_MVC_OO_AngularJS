@@ -1,16 +1,26 @@
 
-appLibra.controller('BasketCtrl', ['$scope', '$rootScope', 'basketService', function ($scope, $rootScope, basketService) {
+appLibra.controller('BasketCtrl', ['$scope', '$rootScope', 'basketService', 'services', function ($scope, $rootScope, basketService, services) {
     $scope.sinProductos=true;
     $scope.tablaCarrito=false;
     console.log($rootScope.carrito.length);
     basketService.pintarTblCarrito($rootScope.carrito.length, $scope);
-    // if ($rootScope.carrito.lenght!=0) {
-    //     $scope.sinProductos=false;
-    //     $scope.tablaCarrito=true;
-    // } 
+  
 
     console.log($rootScope.carrito);
-    
+    // services.post('basket', 'traerCursosCarrito', "datosinfo")
+    //                 .then(function (response) {
+    //                     console.log(response);
+                        
+    //                 });
+    $scope.pagar=function(){
+        console.log("ddd");
+        // services.post('basket', 'traerCursosCarrito', "datosinfo")
+        //             .then(function (response) {
+        //                 console.log(response);
+                        
+        //             });
+
+    }
     
     $scope.formatoMoneda = function(valor){
         var valor = parseFloat(valor);
@@ -33,3 +43,4 @@ appLibra.controller('BasketCtrl', ['$scope', '$rootScope', 'basketService', func
 
 
 }]);
+

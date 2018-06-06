@@ -14,3 +14,17 @@ error loadView general | 23.05.2018 13:24:27  |  User:   | Controller:profile | 
 error loadView general | 23.05.2018 13:26:17  |  User:   | Controller:profile | function:response 400
 error loadView general | 23.05.2018 13:31:33  |  User:   | Controller:profile | function:response 400
 error loadView general | 23.05.2018 13:32:34  |  User:   | Controller:profile | function:response 400
+error loadView general | 06.06.2018 21:38:03  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 21:38:36  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 21:41:30  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 21:48:17  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 21:48:21  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 21:54:06  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 21:55:17  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 22:46:11  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 22:46:24  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 22:53:43  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 22:55:12  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 22:55:16  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 22:55:26  |  User:   | Controller:basket | function:response 400
+error loadView general | 06.06.2018 22:56:22  |  User:   | Controller:basket | function:response 400

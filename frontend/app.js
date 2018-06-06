@@ -59,10 +59,17 @@
                     controller: "chatCtrl"
                 })
 
-                /*Chat */
+                /*Carrito */
                 .when("/basket", {
                     templateUrl: "frontend/module/basket/view/basket.html",
-                    controller: "BasketCtrl"
+                    controller: "BasketCtrl"/*,
+                    resolve: {
+                        cursosCarrito: function (services, CommonService) {
+                            var datos = CommonService.getCarritoDecod();
+                            console.log(datos);
+                            
+                        }
+                    }*/
                 })
 
                 .when("/adminChat", {
@@ -198,6 +205,16 @@
                 }
             }
 
+
+            /*services.post('basket', 'traerCursosCarrito', "datosinfo")
+                    .then(function (response) {
+                        console.log(response);
+                        $rootScope.carrito.push({
+                        Producto: p,
+                        Cantidad: 1
+                    });
+                        
+                    });*/
             
             $rootScope.carrito = [];
             console.log($rootScope.carrito.length);
@@ -222,6 +239,8 @@
                         Producto: p,
                         Cantidad: 1
                     });
+                    CommonService.saveCarritoLocStor(p.id);
+
                     CommonService.toast("Curso agregado", "success", "toast-top-right", "El curso se agrego correctamente, puedes ver los productos agregados en la seccion de carrito", 3000);
                     console.log(1);
                 }

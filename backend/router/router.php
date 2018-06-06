@@ -42,7 +42,7 @@
         } else {
             $URI_function = 'homepage';
         }
-         
+         // echo json_decode($module_name);exit;
         handlerModule($URI_module, $URI_function);
     }
 

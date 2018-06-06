@@ -7,9 +7,6 @@ class controller_homepage {
         $_SESSION['module'] = "homepage";
     }
 
-    /*function homepage() {
-        loadView( "module/homepage/view/", "homepage.html"); 
-    }*/
 
     function getCourses() {
 

@@ -19,6 +19,7 @@ function loadClasses($className) {
         $model_name = strtoupper($model_name);
         
     }
+        // echo json_decode($module_name);exit;
     
         //users && products
         if (file_exists('module/' . $module_name . '/model/'.$model_name.'/' . $className . '.class.singleton.php')) {//require(BLL_USERS . "user_bll.class.singleton.php");
