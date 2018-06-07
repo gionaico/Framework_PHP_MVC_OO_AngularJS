@@ -206,17 +206,22 @@
             }
 
 
-            /*services.post('basket', 'traerCursosCarrito', "datosinfo")
-                    .then(function (response) {
-                        console.log(response);
-                        $rootScope.carrito.push({
-                        Producto: p,
-                        Cantidad: 1
-                    });
-                        
-                    });*/
-            
             $rootScope.carrito = [];
+            var cursos=CommonService.getCarritoDecod();
+            if (cursos.length!=0) {
+                services.post('basket', 'traerCursosCarrito', {cursos:CommonService.getCarritoDecod()})
+                        .then(function (cursosCarrito) {
+                            console.log(cursosCarrito);
+                            for (var i = 0; i < cursosCarrito.length; i++) {
+                                $rootScope.carrito.push({
+                                    Producto: cursosCarrito[i],
+                                    Cantidad: 1
+                                });
+                            }                        
+                            
+                        });
+            }
+
             console.log($rootScope.carrito.length);
             $rootScope.agregar = function (p) {
                 console.log(p.id);

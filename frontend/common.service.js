@@ -11,10 +11,22 @@ appLibra.factory("CommonService", ['$rootScope','$timeout', '$uibModal', '$uibMo
         service.toast= toast;
         service.saveCarritoLocStor= saveCarritoLocStor;
         service.getCarritoDecod= getCarritoDecod;
+        service.updateCarritoLocStor= updateCarritoLocStor;
 
     return service;
 
     /*--CARRITO EN LOCALSTORAGE*/
+    function updateCarritoLocStor(nuevoCarrito) {
+        console.log(nuevoCarrito);
+        console.log(nuevoCarrito.length);
+        var carro={enCarrito:[]};
+
+        for (var i = nuevoCarrito.length - 1; i >= 0; i--) {
+          carro.enCarrito.push(Base64_encode(nuevoCarrito[i].Producto.id));
+        }
+        setCarrito(carro);
+    }
+
     function saveCarritoLocStor(nuevoCurso) {
         console.log("curso nuevo en carrito"+nuevoCurso);
         var cursos = getCarrito();

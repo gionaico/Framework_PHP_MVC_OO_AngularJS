@@ -1,5 +1,5 @@
 
-appLibra.controller('BasketCtrl', ['$scope', '$rootScope', 'basketService', 'services', function ($scope, $rootScope, basketService, services) {
+appLibra.controller('BasketCtrl', ['$scope', '$rootScope', 'basketService', 'services', 'CommonService', 'cookiesService','userService', function ($scope, $rootScope, basketService, services, CommonService, cookiesService, userService) {
     $scope.sinProductos=true;
     $scope.tablaCarrito=false;
     console.log($rootScope.carrito.length);
@@ -13,12 +13,26 @@ appLibra.controller('BasketCtrl', ['$scope', '$rootScope', 'basketService', 'ser
                         
     //                 });
     $scope.pagar=function(){
-        console.log("ddd");
-        // services.post('basket', 'traerCursosCarrito', "datosinfo")
-        //             .then(function (response) {
-        //                 console.log(response);
-                        
-        //             });
+        console.log($rootScope.carrito);
+        var datosToken = cookiesService.GetToken();
+        if ((datosToken.success) && (datosToken.token!=undefined)){
+            var datos={ 
+                    cursosCarro:$rootScope.carrito,
+                    token: datosToken.token    
+                    };
+
+            services.post('basket', 'comprar', datos )
+                .then(function (response) {
+                    console.log(response);
+                    
+                });
+            
+        }else{
+            CommonService.alertTimer("error", "Por favor vuelva a iniciar sesion e intentelo de nuevo", "Fallo de Autentificacion", 5000);
+            userService.logout();
+        }
+
+
 
     }
     
@@ -35,9 +49,11 @@ appLibra.controller('BasketCtrl', ['$scope', '$rootScope', 'basketService', 'ser
                 var indice = i;
             }
         }
-        console.log(indice);
         $rootScope.carrito.splice(indice, 1);
         console.log($rootScope.carrito.length);
+
+        CommonService.updateCarritoLocStor($rootScope.carrito);
+
         basketService.pintarTblCarrito($rootScope.carrito.length, $scope);
     }
 

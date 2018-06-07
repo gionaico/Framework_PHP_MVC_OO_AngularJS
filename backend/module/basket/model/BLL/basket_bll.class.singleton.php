@@ -18,5 +18,16 @@
             return self::$_instance;
         }
 
+        public function cursosEnCarrito_BLL($arrArgument){
+
+          return $this->dao->cursosEnCarrito_DAO($this->db, $arrArgument);
+        }
+
+        public function userByToken_BLL($arrArgument){    
+            return $this->dao->userByToken_DAO($this->db,$arrArgument);
+        }
+        public function insertarEnPedido_BLL($arrArgument){    
+            return $this->dao->insertarEnPedido_DAO($this->db,$arrArgument);
+        }
         
     }

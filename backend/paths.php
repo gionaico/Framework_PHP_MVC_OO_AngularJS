@@ -43,7 +43,7 @@
 
 
 
-/*model courses*/
+/*module courses*/
 	define('UTILS_COURSES', SITE_ROOT . 'module/courses/utils/');
 	define('COURSES_JS_PATH', SITE_PATH . 'module/courses/view/js/');
 	define('COURSES_VIEW_PATH', SITE_ROOT . 'module/courses/view/');
@@ -53,9 +53,11 @@
 	define('MODEL_COURSES', SITE_ROOT . 'module/courses/model/model/');
 	define('IMG_COURSES', SITE_PATH . 'module/courses/view/img/');
 
+/*module carrito*/
+	define('MODEL_BASKET', SITE_ROOT . 'module/basket/model/model/');
 
 
-/*model homepage*/
+/*module homepage*/
 	define('UTILS_HOMEPAGE', SITE_ROOT . 'module/homepage/utils/');
 	define('HOMEPAGE_JS_PATH', SITE_PATH . 'module/homepage/view/js/');
 	define('HOMEPAGE_VIEW_PATH', SITE_ROOT . 'module/homepage/view/');

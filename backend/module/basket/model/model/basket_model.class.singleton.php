@@ -16,6 +16,15 @@
             return self::$_instance;
         }
 
-        
+        public function cursosEnCarrito($arrArgument) {
+            // echo json_encode("hbjhvjhvj");exit;
+            return $this->bll->cursosEnCarrito_BLL($arrArgument);
+        }
+        public function userByToken($arrArgument) {
+            return $this->bll->userByToken_BLL($arrArgument);
+        }
+        public function insertarEnPedido($arrArgument) {
+            return $this->bll->insertarEnPedido_BLL($arrArgument);
+        }
 
     }/*final de la clase*/
