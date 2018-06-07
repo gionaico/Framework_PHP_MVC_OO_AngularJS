@@ -23,6 +23,14 @@ appLibra.controller('BasketCtrl', ['$scope', '$rootScope', 'basketService', 'ser
 
             services.post('basket', 'comprar', datos )
                 .then(function (response) {
+                    if (response.success) {
+                        CommonService.alert("success", "Su compra se Realizo con exito. Le agradecemos su confianza en nosotros", "Exito Comprando");
+                        $rootScope.carrito = [];
+                        basketService.pintarTblCarrito($rootScope.carrito.length, $scope);
+                        CommonService.borrarCarritoLocStor();
+                    }else{
+                        CommonService.alert("error", response.mensaje, "Fallo de Autentificacion");            
+                    }
                     console.log(response);
                     
                 });

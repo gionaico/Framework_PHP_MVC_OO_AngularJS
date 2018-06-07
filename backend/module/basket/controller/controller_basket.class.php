@@ -4,7 +4,6 @@
 class controller_basket {
 
     function __construct() {        
-        // echo json_decode("pppppppppppp");exit;
         $_SESSION['module'] = "basket";
     }
      
@@ -36,18 +35,29 @@ class controller_basket {
 		    	$cursosEnCarrito = loadModel(MODEL_BASKET, "basket_model", "cursosEnCarrito", $cad);
 				$usuario = loadModel(MODEL_BASKET, "basket_model", "userByToken", $token);
 				
+		    	// echo json_encode(count($cursosEnCarrito));exit;
 				/*Hacer mejora en que si el usuario ya ha comprado un curso no te deje volver a comprarlo*/
 				$precioTotal=0;
 				for ($i=0; $i < count($cursosEnCarrito) ; $i++) { 
 					$precioTotal=$precioTotal+floatval($cursosEnCarrito[$i]["price"]);
 				}
+				$date=new DateTime();
 				$dat=array(
                             "user"=>$usuario[0]["user_name"],
                             "precioTotal"=>$precioTotal,
+                            "hoy"=>$date->format('Y_m_d_H_i_s'),
+                            "id_pedido"=>$usuario[0]["user_name"].$date->format('Y_m_d_H_i_s')
                         );
 				$insertarEnPedido=loadModel(MODEL_BASKET, "basket_model", "insertarEnPedido", $dat);
 
-				echo json_encode($precioTotal);exit;
+				for ($i=0; $i < count($cursosEnCarrito); $i++) { 
+		    		$dat["id_curso"]=$cursosEnCarrito[$i]["id"];
+		    		$insertarEnCursoComprado=loadModel(MODEL_BASKET, "basket_model", "insertarEnCursoComprado", $dat);
+
+		    	}
+		    	$res["success"]=true;
+				echo json_encode ($res);exit;
+
 
 			} catch (Exception $e) {
 				$res["mensaje"]="Fallo en verificacion de datos con DB";

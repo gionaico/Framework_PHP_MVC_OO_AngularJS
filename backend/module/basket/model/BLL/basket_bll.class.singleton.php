@@ -29,5 +29,8 @@
         public function insertarEnPedido_BLL($arrArgument){    
             return $this->dao->insertarEnPedido_DAO($this->db,$arrArgument);
         }
+        public function insertarEnCursoComprado_BLL($arrArgument){    
+            return $this->dao->insertarEnCursoComprado_DAO($this->db,$arrArgument);
+        }
         
     }

@@ -26,5 +26,8 @@
         public function insertarEnPedido($arrArgument) {
             return $this->bll->insertarEnPedido_BLL($arrArgument);
         }
+        public function insertarEnCursoComprado($arrArgument) {
+            return $this->bll->insertarEnCursoComprado_BLL($arrArgument);
+        }
 
     }/*final de la clase*/

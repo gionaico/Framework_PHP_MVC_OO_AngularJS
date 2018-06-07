@@ -12,6 +12,7 @@ appLibra.factory("CommonService", ['$rootScope','$timeout', '$uibModal', '$uibMo
         service.saveCarritoLocStor= saveCarritoLocStor;
         service.getCarritoDecod= getCarritoDecod;
         service.updateCarritoLocStor= updateCarritoLocStor;
+        service.borrarCarritoLocStor= borrarCarritoLocStor;
 
     return service;
 
@@ -53,6 +54,11 @@ appLibra.factory("CommonService", ['$rootScope','$timeout', '$uibModal', '$uibMo
 
     function setCarrito(cursos) {
         localStorage.carrito = JSON.stringify(cursos);
+    }
+
+    function borrarCarritoLocStor() {
+        var contenido={enCarrito:[]};
+            localStorage.carrito = JSON.stringify(contenido);
     }
 
     function getCarritoDecod() {

@@ -27,9 +27,14 @@
             return $db->listar($db->ejecutar($sql));
         }
         public function insertarEnPedido_DAO($db, $arrArgument) {
-            $sql = "INSERT INTO pedidos (user, ImporteTotal) VALUES ('".$arrArgument["user"]."', '".$arrArgument["precioTotal"]."')";
-            echo ($sql);exit;
-            return $db->listar($db->ejecutar($sql));
+            $sql = "INSERT INTO pedidos (id_pedido, user, ImporteTotal) VALUES ( '".$arrArgument["id_pedido"]."', '".$arrArgument["user"]."', '".$arrArgument["precioTotal"]."')";
+            // echo ($sql);exit;
+            return $db->ejecutar($sql);
+        }
+        public function insertarEnCursoComprado_DAO($db, $arrArgument) {
+            $sql = "INSERT INTO cursosComprados (id_pedido, user, id_curso) VALUES ( '".$arrArgument["id_pedido"]."', '".$arrArgument["user"]."', '".$arrArgument["id_curso"]."')";
+            // echo ($sql);exit;
+            return $db->ejecutar($sql);
         }
             
     }//End productDAO

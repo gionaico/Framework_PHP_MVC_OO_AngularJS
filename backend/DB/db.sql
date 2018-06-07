@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-05-2018 a las 11:43:09
+-- Tiempo de generación: 07-06-2018 a las 16:17:42
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -19,6 +19,40 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `LearnEasy`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `n_comentario` int(11) NOT NULL COMMENT 'Clave primaria',
+  `id_curso` int(11) NOT NULL COMMENT 'CURSO',
+  `user_name` varchar(200) NOT NULL COMMENT 'USER',
+  `comentario` varchar(200) NOT NULL,
+  `fecha_comentario` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='tabla de comentarios';
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`n_comentario`, `id_curso`, `user_name`, `comentario`, `fecha_comentario`) VALUES
+(1, 1, 'giovani', 'Muy buen curso.', '2018-06-03 22:50:04'),
+(2, 2, 'giovani', 'Muy buen curso para profesionales.', '2018-06-03 22:51:47'),
+(3, 1, 'LyCaMofY0NQiiJmGHxjENsaqRFo2', 'Muy bueno.', '2018-06-03 23:31:07'),
+(4, 1, 'iando', 'Para empezar esta bien.', '2018-06-03 23:31:40'),
+(5, 1, 'pepon', 'Muy bueno.', '2018-06-03 23:45:48'),
+(6, 1, 'prueba', 'Muy bueno.', '2018-06-03 23:46:03'),
+(7, 1, 'YVKlN1Dz2ofnHH1UzGc54AKLfB12', 'Muy bueno.', '2018-06-03 23:46:22'),
+(8, 1, '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', 'En mi opinion es un curso muy completo.', '2018-06-04 14:03:08'),
+(9, 1, '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', 'Como dije es un curso muy completo, pero quiza a nivel profesional habria que profundizar mas.', '2018-06-04 14:07:00'),
+(10, 1, '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, inventore, officiis! Unde quidem, iure quos velit consequuntur, accusantium recusand', '2018-06-04 14:09:06'),
+(11, 1, '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', 'icing elit. Sunt, inventore, officiis! Unde quidem, iure quos', '2018-06-04 14:09:59'),
+(12, 1, 'giovani', 'ipsum dolor sit amet, consectetur adipisicing elit. Sunt, inventore, officiis! Unde quidem, iure quos ve.', '2018-06-04 15:44:06'),
+(13, 1, 'giovani', '777777777777777777777777777777', '2018-06-04 16:37:18'),
+(14, 1, '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', 'ideal para empezar y practicar.', '2018-06-07 12:06:58');
 
 -- --------------------------------------------------------
 
@@ -85,6 +119,31 @@ INSERT INTO `courses` (`id`, `title`, `lenguage`, `ulr`, `duration`, `levelCour`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `cursosComprados`
+--
+
+CREATE TABLE `cursosComprados` (
+  `numerocompra` int(11) NOT NULL,
+  `user` varchar(200) NOT NULL COMMENT 'cliente',
+  `id_curso` varchar(100) NOT NULL COMMENT 'articulo',
+  `id_pedido` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cursosComprados`
+--
+
+INSERT INTO `cursosComprados` (`numerocompra`, `user`, `id_curso`, `id_pedido`) VALUES
+(1, '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', '1', '1OuSdTIEcxYQ1YR5e6JYcUl0yzq12018_06_07_16_09_07'),
+(2, '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', '2', '1OuSdTIEcxYQ1YR5e6JYcUl0yzq12018_06_07_16_09_07'),
+(3, '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', '7', '1OuSdTIEcxYQ1YR5e6JYcUl0yzq12018_06_07_16_09_07'),
+(4, '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', '15', '1OuSdTIEcxYQ1YR5e6JYcUl0yzq12018_06_07_16_09_07'),
+(5, 'giovani', '1', 'giovani2018_06_07_16_16_16'),
+(6, 'giovani', '2', 'giovani2018_06_07_16_16_16');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `likes`
 --
 
@@ -105,7 +164,36 @@ INSERT INTO `likes` (`id`, `user_name`, `id_curso`) VALUES
 ('giovanny_7', 'giovanny', 7),
 ('iando_7', 'iando', 7),
 ('iando_15', 'iando', 15),
-('giovanny_15', 'giovanny', 15);
+('giovanny_15', 'giovanny', 15),
+('1OuSdTIEcxYQ1YR5e6JYcUl0yzq1_2', '2', 1),
+('1OuSdTIEcxYQ1YR5e6JYcUl0yzq1_3', '3', 1),
+('1OuSdTIEcxYQ1YR5e6JYcUl0yzq1_1', '1', 1),
+('1OuSdTIEcxYQ1YR5e6JYcUl0yzq1_5', '5', 1),
+('1OuSdTIEcxYQ1YR5e6JYcUl0yzq1_15', '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', 15),
+('1OuSdTIEcxYQ1YR5e6JYcUl0yzq1_14', '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', 14),
+('giovani_1', 'giovani', 1),
+('giovani_2', 'giovani', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedidos`
+--
+
+CREATE TABLE `pedidos` (
+  `id_pedido` varchar(200) NOT NULL,
+  `user` varchar(200) NOT NULL COMMENT 'cliente',
+  `fechacompra` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ImporteTotal` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`id_pedido`, `user`, `fechacompra`, `ImporteTotal`) VALUES
+('1OuSdTIEcxYQ1YR5e6JYcUl0yzq12018_06_07_16_09_07', '1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', '2018-06-07 16:09:07', '235.22'),
+('giovani2018_06_07_16_16_16', 'giovani', '2018-06-07 16:16:16', '199.98');
 
 -- --------------------------------------------------------
 
@@ -139,20 +227,42 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_name`, `name`, `birth_date`, `genere`, `country`, `province`, `city`, `phone`, `email`, `password`, `interests`, `register_date`, `type`, `token`, `avatar`, `tipo_registro`, `activado`, `primera_visita`) VALUES
-('1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', 'Giovanny Coque', '0000-00-00', 'Man', 'ES', '46', 'Mislata', 602240448, 'mauricio7102@hotmail.com', '', '', '2018-05-23', 1, '926336c052f261f6b8ae646f3bcb47af.OTI2MzM2YzA1MmYyNjFmNmI4YWU2NDZmM2JjYjQ3YWY=', 'media/users/1OuSdTIEcxYQ1YR5e6JYcUl0yzq1.gif', 'f', 'n', 'y'),
-('giovani', 'iando', '2000-05-01', 'Man', 'IT', '', '', 2147483647, 'gm.4int@gmail.com', '$2y$10$V6vVzt3vJkDmBdsTkpnUp.FBbB.dipzXbSX4EU7rHS7D8iFHioDSO', '', '2018-05-21', 0, '377c18b43b998196506480768baffa48.Mzc3YzE4YjQzYjk5ODE5NjUwNjQ4MDc2OGJhZmZhNDg=', 'media/users/giovani.png', 'm', 'y', 'y'),
-('oIZPQZCgO4gmpKcoItlZqhwARhP2', 'gionaico', '0000-00-00', '', '', '', '', 0, 'gmc.yanez@gmail.com', '', '', '2018-05-23', 0, '0a4f244455a561633015ae25fce6b067.MGE0ZjI0NDQ1NWE1NjE2MzMwMTVhZTI1ZmNlNmIwNjc=', 'https://lh3.googleusercontent.com/-jpKH4kruS3k/AAAAAAAAAAI/AAAAAAAAAAo/KJreqSH4Ljw/photo.jpg', 'g', 'n', 'y'),
-('YVKlN1Dz2ofnHH1UzGc54AKLfB12', 'Gionaico', '0000-00-00', '', '', '', '', 0, '', '', '', '2018-05-19', 0, NULL, 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png', 't', 'n', 'y');
+('1OuSdTIEcxYQ1YR5e6JYcUl0yzq1', 'Giovanny Coque', '0000-00-00', 'Man', 'ES', '45', 'Ablates', 602240448, 'mauricio7102@hotmail.com', '', '', '2018-05-23', 1, '46f151afcae3fcca3e054ab5cdf4e9b1.NDZmMTUxYWZjYWUzZmNjYTNlMDU0YWI1Y2RmNGU5YjE=', 'media/users/1OuSdTIEcxYQ1YR5e6JYcUl0yzq1.gif', 'f', 'n', 'y'),
+('fDbUWWxPM7Xa4xD6XIcHqd8N6Jb2', 'gionaico', '0000-00-00', '', '', '', '', 0, 'gm.4int@gmail.com', '', '', '2018-06-04', 0, 'dbfd9c57744ae696edf84ea6d8f789ee.ZGJmZDljNTc3NDRhZTY5NmVkZjg0ZWE2ZDhmNzg5ZWU=', 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg', 'g', 'n', 'y'),
+('giovani', 'iando', '2000-05-01', 'Man', 'IT', '', '', 2147483647, 'gm.44int@gmail.com', '$2y$10$V6vVzt3vJkDmBdsTkpnUp.FBbB.dipzXbSX4EU7rHS7D8iFHioDSO', '', '2018-05-21', 1, '11b15923b8e144600f1d2a2d81c966d2.MTFiMTU5MjNiOGUxNDQ2MDBmMWQyYTJkODFjOTY2ZDI=', 'media/users/giovani.png', 'm', 'y', 'y'),
+('iando', '', '0000-00-00', '', 'ES', '08', 'Alpens', 0, 'gm.4i5nt@gmail.com', '$2y$10$g6MZm9VAtUk5O5M3cECLIeR/RMxczYIoPkIer5rt0URf.hvHx.GAu', '', '2018-05-30', 0, 'af3ae95d2bb88fc6ff79abf0a733ba6d.YWYzYWU5NWQyYmI4OGZjNmZmNzlhYmYwYTczM2JhNmQ=', 'media/users/iando.gif', 'm', 'y', 'y'),
+('LyCaMofY0NQiiJmGHxjENsaqRFo2', 'Giovanny Coque', '0000-00-00', '', '', '', '', 0, 'mauricio7102@hotmail.com', '', '', '2018-06-02', 0, '2f163f7cab9a835bb1bef446bb7584ab.W3sidXNlcl9uYW1lIjoiTHlDYU1vZlkwTlFpaUptR0h4akVOc2FxUkZvMiIsIm5hbWUiOiJHaW92YW5ueSBDb3F1ZSIsInR5cGUiOiIwIiwiYXZhdGFyIjoiaHR0cHM6XC9cL2dyYXBoLmZhY2Vib29rLmNvbVwvMTgyNDM', 'media/users/LyCaMofY0NQiiJmGHxjENsaqRFo2.jpeg', 'f', 'n', 'y'),
+('pepon', '', '0000-00-00', '', '', '', '', 0, 'pepeon@gmail.com', '$2y$10$9CqRGt7eftS9ZU1PMCdPzeqNg.nht3v7i7SHARJYt/GQ.ikyvPBQK', '', '2018-05-30', 0, '06c323108c8ecd6a40d58c0d64973f92', 'media/users/pepon.jpeg', 'm', 'n', 'y'),
+('prueba', '', '0000-00-00', '', '', '', '', 0, 'gm.4int@gmail.com', '$2y$10$OEMjHVgeRMEsURXoI1mRc./1kGQsoRTnk30/fSNKqIKPiindrdKuK', '', '2018-05-30', 0, 'd9ce8a9d031e2b5f9f187fff93ead31e.ZDljZThhOWQwMzFlMmI1ZjlmMTg3ZmZmOTNlYWQzMWU=', 'media/users/prueba.jpg', 'm', 'y', 'y'),
+('YVKlN1Dz2ofnHH1UzGc54AKLfB12', 'Gionaico', '0000-00-00', '', '', '', '', 0, '', '', '', '2018-05-19', 0, NULL, 'media/users/YVKlN1Dz2ofnHH1UzGc54AKLfB12.gif', 't', 'n', 'y');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`n_comentario`);
+
+--
 -- Indices de la tabla `courses`
 --
 ALTER TABLE `courses`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `cursosComprados`
+--
+ALTER TABLE `cursosComprados`
+  ADD PRIMARY KEY (`numerocompra`);
+
+--
+-- Indices de la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`id_pedido`);
 
 --
 -- Indices de la tabla `users`
@@ -165,10 +275,20 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `n_comentario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria', AUTO_INCREMENT=15;
+--
 -- AUTO_INCREMENT de la tabla `courses`
 --
 ALTER TABLE `courses`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT de la tabla `cursosComprados`
+--
+ALTER TABLE `cursosComprados`
+  MODIFY `numerocompra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
