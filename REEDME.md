@@ -93,6 +93,12 @@
 		-Commentarios y scroll
 			*Permite a los usuarios logueados hacer comentarios de un curso y a los que no estan logueados solo permite ver los comentarios de otros usuarios. Todo esto se ve en un modal el cual tiene encapsulado a todos los comentarios en un div al cual se le puede hacer scroll para leer todos los comentarios.
 
+		-Carrito 
+			*Con el carrito hay la posibilidad de comprar desde diferentes vistas de la pliacacion, ya que uso rootScope e inicializo en .run, a su vez los productos seleccionados por un usuario se van guardando (codificados), en localstorage, para mantenerlo por si cierra la pagina y no realizo la compra, con ello se puede recuperar los datos del carrito,  al abrir el navegador nuevamente el carrito tiene los ultimos productos agregados. A la hora del pago el valor total se calcula en backend para que los datos de precio sean mas puros y estar seguros que no han sido manipulados de alguna forma.
+
+		-Panel de Control
+			*Es una vista donde el usuario, puede acceder a ver sus datos, editarlos, ver sus ultimas compras, ver los comentarios hechos, los likes que ha hecho y desde alli poder redireccionarse a las view de cada curso.
+
 
 
 

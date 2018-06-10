@@ -92,4 +92,19 @@ class profile_bll{
     public function insertLike_BLL($arrArgument){    
         return $this->dao->insertLike_DAO($this->db,$arrArgument);
     }
+    public function traerCompras_BLL($arrArgument){    
+        return $this->dao->traerCompras_DAO($this->db,$arrArgument);
+    }
+    public function traercursosComprados_BLL($arrArgument){    
+        return $this->dao->traercursosComprados_DAO($this->db,$arrArgument);
+    }
+    public function traerCursosConLike_BLL($arrArgument){    
+        return $this->dao->traerCursosConLike_DAO($this->db,$arrArgument);
+    }
+    public function traercursosComentados_BLL($arrArgument){    
+        return $this->dao->traercursosComentados_DAO($this->db,$arrArgument);
+    }
+    public function traerInfoCursosComentados_BLL($arrArgument){    
+        return $this->dao->traerInfoCursosComentados_DAO($this->db,$arrArgument);
+    }
 }

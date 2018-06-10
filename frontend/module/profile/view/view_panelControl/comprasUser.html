@@ -1,0 +1,99 @@
+<!-- *******************COMPRAS****************************** -->
+		<div class="panel panel-info" ng-repeat="comp in compras">
+		  	<div class="panel-heading">
+		  		<div class="row">
+					<div class="col-md-6">
+						<p>
+							<span class="text-left">Id de compra:{{" "+comp.id_pedido}}</span>
+						</p>
+					</div>
+
+					<div class="col-md-offset-3 col-md-3">
+						<p>
+							<span class="text-right">Fecha de pedido: {{comp.fechacompra|date}}</span>
+						</p>
+					</div>
+
+				</div>
+		  	</div>
+
+		  	<div class="panel-body">
+		    	<p>...</p>
+		  	</div>
+		 
+		  	<ul class="list-group">
+		    	<li class="list-group-item "  ng-repeat="curso in comp.curso">
+					    	<div class="row"">
+								<div class="col-md-4">
+									<div class="thumbnail">
+										<a class="pointer" href="#/course/{{curso.id}}">
+							      			<img src="backend/{{curso.avatar}}" style="height: 200px;">
+							      		</a>
+							    	</div>
+								</div>
+								
+								<div class="col-md-8">
+									<div class="row">
+										<center>
+											<h3>{{curso.title}}</h3>
+										</center>
+									</div>
+									<div class="row" style="padding-top: 20px">
+
+										<div class="col-md-6">
+											<div class="col-md-6">
+												<p class="text-right">
+									    			<b>Lenguage:</b>
+									    		</p>
+											</div>
+											<div class="col-md-6">
+												<p class="text-left">
+									    			<span>{{curso.lenguage}}</span>
+									    		</p>
+											</div>
+
+											<div class="col-md-6">
+												<p class="text-right">
+									    			<b>Category:</b>
+									    		</p>
+											</div>
+											<div class="col-md-6">
+												<p class="text-left">
+									    			<span>{{curso.subject}}</span>
+									    		</p>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="col-md-6">
+												<p class="text-right">
+									    			<b>Duration:</b>
+									    		</p>
+											</div>
+											<div class="col-md-6">
+												<p class="text-left">
+									    			<span>{{curso.duration}}</span>
+									    		</p>
+											</div>
+
+											<div class="col-md-6">
+												<p class="text-right">
+									    			<b>Country:</b>
+									    		</p>
+											</div>
+											<div class="col-md-6">
+												<p class="text-left">
+									    			<span>{{curso.country}}</span>
+									    		</p>
+											</div>
+										</div>
+									</div>
+									<div class="row" style="padding-top: 30px;">
+										<a href="#/course/{{curso.id}}" class="pointer col-md-offset-3 col-md-6 btn btn-info">Ver curso</a>
+									</div>
+								</div>
+							</div>
+
+					    </li>
+		    	
+		  	</ul>
+		</div>

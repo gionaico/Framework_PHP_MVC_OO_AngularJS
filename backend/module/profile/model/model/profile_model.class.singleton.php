@@ -83,6 +83,21 @@ class profile_model {
     public function insertLike($arrArgument) {
         return $this->bll->insertLike_BLL($arrArgument);
     }
+    public function traerCompras($arrArgument) {
+        return $this->bll->traerCompras_BLL($arrArgument);
+    }
+    public function traercursosComprados($arrArgument) {
+        return $this->bll->traercursosComprados_BLL($arrArgument);
+    }
+    public function traerCursosConLike($arrArgument) {
+        return $this->bll->traerCursosConLike_BLL($arrArgument);
+    }
+    public function traercursosComentados($arrArgument) {
+        return $this->bll->traercursosComentados_BLL($arrArgument);
+    }
+    public function traerInfoCursosComentados($arrArgument) {
+        return $this->bll->traerInfoCursosComentados_BLL($arrArgument);
+    }
 
 
 }

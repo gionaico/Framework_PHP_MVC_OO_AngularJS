@@ -1,0 +1,34 @@
+<!-- *******************Comentarios****************************** -->
+<div ng-repeat="cur in cursosComentados">
+	<div class="panel panel-info" >
+	  	
+	  	<div class="panel-body">
+	  		<div class="row">
+		    	<div class="col-md-offset-3 col-md-6">
+		    		<div class="thumbnail">
+						<a class="pointer" href="#/course/{{cur.id}}">
+			      			<img src="backend/{{cur.avatar}}" style="height: 300px;">
+			      		</a>
+			    	</div>
+	    		</div>
+	    	</div>
+
+	    	<div class="row">
+				<a href="#/course/{{cur.id}}" class="pointer col-md-offset-3 col-md-6 btn btn-info">Ver curso</a>
+	    	</div>
+	  	</div>
+	 
+	  	<ul class="list-group" >
+	    	<li class="list-group-item "  ng-repeat="coment in cur.comentario">
+		    	<p class="lead">{{coment.comentario}}</p>
+				<p class="text-info">{{coment.fecha_comentario|date}}</p>
+		    </li>
+	    	
+	  	</ul>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</div>

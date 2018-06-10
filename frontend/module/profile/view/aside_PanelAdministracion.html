@@ -1,0 +1,51 @@
+<style>
+	.btn1 {
+		/* background-color: #ddd; */
+		color: black;
+		padding: 16px 32px;
+		text-align: center;
+		font-size: 14px;
+		margin: 4px 2px;
+		transition: 0.3s;
+		border-bottom: #e0e0e0 1px solid;
+	}
+
+	.btn1:hover {
+		border: none;
+		background-color: #3e8e41;
+		color: white;
+	}
+</style>
+
+
+<div class="modal-header" style="background: #039be5; color: white;">
+    <h3 class="modal-title">Mi panel de control</h3>
+</div>
+<div class="modal-body">
+
+  <a class="pointer row btn1" style="height: 60px;" ng-click="opcionMenu(datosPer)">
+	  	<p>Ver detalles personales</p>
+  </a>
+
+  <a class="pointer row btn1" style="height: 60px;" ng-click="opcionMenu(compras)">
+	  	<p>Miis comprass</p>
+  </a>
+
+  <a class="pointer row btn1" style="height: 60px;" ng-click="opcionMenu(likes)">
+	  	<p>Cursos que me gustan</p>
+  </a>
+
+  <a class="pointer row btn1" style="height: 60px;" ng-click="opcionMenu(comentarios)">
+	  	<p>Mis comentarios</p>
+  </a>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok($event)">OK</button>
+    <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+</div>

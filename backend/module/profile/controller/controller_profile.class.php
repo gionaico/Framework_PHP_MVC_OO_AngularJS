@@ -19,6 +19,68 @@ class controller_profile {
          loadView( "module/profile/view/", "changePass.html");        
     }*/
 
+    function datosPerfil(){
+        $user["token"]= $_GET['param'];
+        $res["success"]=false;
+        $res["cargaDatos"]=false;
+        $validarToken=$this->getArrayDatos($info["token"]);
+
+        if ($validarToken["success"]) {
+            $res["success"]=true;
+            try {            
+                $usuario = loadModel(MODEL_PROFILE, "profile_model", "userByToken", $user);
+
+                $compras = loadModel(MODEL_PROFILE, "profile_model", "traerCompras", $usuario);
+                $cursosComprados = loadModel(MODEL_PROFILE, "profile_model", "traercursosComprados", $usuario);
+                $cursosConLike = loadModel(MODEL_PROFILE, "profile_model", "traerCursosConLike", $usuario);
+                $cursosComentados = loadModel(MODEL_PROFILE, "profile_model", "traercursosComentados", $usuario);
+
+                /*TRABAJANDO CON CURSOS COMENTADOS*/
+                    $cad="";
+                    $id="";
+                    for ($k=0; $k < count($cursosComentados); $k++) { 
+                        if ($id!=$cursosComentados[$k]["id_curso"]) {
+                            $id=$cursosComentados[$k]["id_curso"];
+                            $cad.="id='".$id."' or ";
+                        }
+                    }
+                    $cursosComentadosInfo = loadModel(MODEL_PROFILE, "profile_model", "traerInfoCursosComentados", substr($cad, 0, -4));
+
+                    for ($s=0; $s <count($cursosComentadosInfo) ; $s++) { 
+                        $cursosComentadosInfo[$s]["comentario"]=array();
+                        for ($v=0; $v <count($cursosComentados) ; $v++) { 
+                            if ($cursosComentadosInfo[$s]["id"]==$cursosComentados[$v]["id_curso"]) {
+                                array_push($cursosComentadosInfo[$s]["comentario"], $cursosComentados[$v]);
+                            }
+                        }
+                    }
+                /*TRABAJANDO CON CURSOS COMPRADOS*/
+                    for ($j=0; $j <count($compras) ; $j++) { 
+                        $compras[$j]["curso"]=array();
+                        for ($i=0; $i <count($cursosComprados) ; $i++) { 
+                            if ($compras[$j]["id_pedido"]===$cursosComprados[$i]["id_pedido"]) {
+                                array_push($compras[$j]["curso"], $cursosComprados[$i]);
+                            }
+                        }    
+                    }
+
+                $res["cursosComentados"]= $cursosComentadosInfo;
+                $res["cursosConLike"]= $cursosConLike;
+                $res["compras"]= $compras;
+                $res["user"]= $usuario[0];
+                $res["cargaDatos"]=true;
+            } catch (Exception $e) {
+                $res["mensaje"]="Fallo en extraccion de datos. Por favor intentelo de nuevo mas tarde";
+            }
+            echo json_encode($res);
+            exit;
+        }else{
+            // $res["mensaje"]="Fallo en autentificacion de usuario, Por favor logueese nuevamente";
+            echo json_encode($res);
+            exit;
+        }
+    }
+
     function deleteUser() {
         $respuesta["success"]=false;
         $respuesta["mensaje"]="Fallo en servidor. Intentelo nuevamente mas tarde.";

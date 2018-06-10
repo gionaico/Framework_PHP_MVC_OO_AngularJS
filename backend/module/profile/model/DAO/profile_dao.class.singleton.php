@@ -234,6 +234,27 @@ class profile_dao {
         // echo json_encode($sql);exit;
         return $db->ejecutar($sql);
     }
+    public function traerCompras_DAO($db, $arrArgument) {
+        $sql = "SELECT * FROM pedidos as p WHERE p.user='".$arrArgument[0]["user_name"]."'";
+        return $db->listar($db->ejecutar($sql));
+    }
+    public function traercursosComprados_DAO($db, $arrArgument) {
+        $sql = "SELECT * FROM cursosComprados as c INNER JOIN courses as co ON c.id_curso=co.id WHERE c.user='".$arrArgument[0]["user_name"]."'";
+        return $db->listar($db->ejecutar($sql));
+    }
+    public function traerCursosConLike_DAO($db, $arrArgument) {
+        $sql = "SELECT * FROM likes as l INNER JOIN courses as co ON l.id_curso=co.id WHERE l.user_name='".$arrArgument[0]["user_name"]."'";
+        return $db->listar($db->ejecutar($sql));
+    }
+    public function traercursosComentados_DAO($db, $arrArgument) {
+        $sql = "SELECT * FROM comentarios as c WHERE c.user_name='".$arrArgument[0]["user_name"]."' ORDER BY c.id_curso";
+        return $db->listar($db->ejecutar($sql));
+    }
+    public function traerInfoCursosComentados_DAO($db, $arrArgument) {
+        $sql = "SELECT * FROM courses WHERE ".$arrArgument." ";
+        // echo $sql;exit;
+        return $db->listar($db->ejecutar($sql));
+    }
 
 
 }//End productDAO

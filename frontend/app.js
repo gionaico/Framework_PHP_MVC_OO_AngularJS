@@ -1,7 +1,7 @@
 
 
 
-    var appLibra = angular.module('appLibra',['ngRoute', 'ngAnimate', 'ngCookies', 'jcs-autoValidate', 'ui.bootstrap',  'ngMaterial', 'ngMessages',  'chat']);
+    var appLibra = angular.module('appLibra',['ngRoute', 'ngAnimate', 'ngCookies', 'jcs-autoValidate', 'ui.bootstrap',  'ngMaterial', 'ngMessages', 'ngAside', 'chat']);
 
     angular.module('chat').constant('config', {
         rltm: {
@@ -70,6 +70,24 @@
                             
                         }
                     }*/
+                })
+
+                /*PsnerAdmin */
+                .when("/panelAdministracion", {
+                    templateUrl: "frontend/module/profile/view/panelAdministracion.html",
+                    controller: "panelAdministracionCtrl",
+                    resolve: {
+                        datosPerfil: function (services, cookiesService) {
+                            var datos = cookiesService.GetToken();
+                            console.log(datos);
+                            if ((datos.success) && (datos.token!=undefined)){
+                                return services.get('profile', 'datosPerfil', datos.token);
+                            }
+                            var user={};
+                            user.success=false;
+                            return user;
+                        }
+                    }
                 })
 
                 .when("/adminChat", {

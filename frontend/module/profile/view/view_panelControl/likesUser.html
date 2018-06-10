@@ -1,0 +1,26 @@
+<div class="panel panel-info" >
+	<!-- <div class="panel-heading">
+		Título del panel
+	</div> -->
+
+	<div class="panel-body">
+		<br>
+		<br>
+		<br>
+		<div ng-repeat="curso in cursosConLike">
+		    <div class="col-md-4" >
+				<div class="thumbnail">
+					<a class="pointer" href="#/course/{{curso.id}}">
+		      			<img src="backend/{{curso.avatar}}" style="height: 200px;">
+		      		</a>
+		    	</div>
+		    	<a href="#/course/{{curso.id}}" class="pointer col-md-12 btn btn-info">Ver curso</a><br>
+		    	<br>
+		    	<br>
+		    	<br>
+		    	<br>
+			</div>
+		</div>
+	</div>
+	
+</div>

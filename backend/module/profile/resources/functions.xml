@@ -94,6 +94,10 @@
         <name>hacerLike</name>
         <uri>hacerLike</uri>
     </function>
+    <function>
+        <name>datosPerfil</name>
+        <uri>datosPerfil</uri>
+    </function>
     
     
 </functions>

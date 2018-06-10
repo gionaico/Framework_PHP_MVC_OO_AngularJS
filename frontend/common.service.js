@@ -23,7 +23,7 @@ appLibra.factory("CommonService", ['$rootScope','$timeout', '$uibModal', '$uibMo
         var carro={enCarrito:[]};
 
         for (var i = nuevoCarrito.length - 1; i >= 0; i--) {
-          carro.enCarrito.push(Base64_encode(nuevoCarrito[i].Producto.id));
+            carro.enCarrito.push(Base64_encode(nuevoCarrito[i].Producto.id));
         }
         setCarrito(carro);
     }

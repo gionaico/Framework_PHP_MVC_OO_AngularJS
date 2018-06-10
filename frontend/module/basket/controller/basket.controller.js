@@ -1,5 +1,5 @@
 
-appLibra.controller('BasketCtrl', ['$scope', '$rootScope', 'basketService', 'services', 'CommonService', 'cookiesService','userService', function ($scope, $rootScope, basketService, services, CommonService, cookiesService, userService) {
+appLibra.controller('BasketCtrl', ['$scope', '$location', '$rootScope', 'basketService', 'services', 'CommonService', 'cookiesService','userService', function ($scope, $location, $rootScope, basketService, services, CommonService, cookiesService, userService) {
     $scope.sinProductos=true;
     $scope.tablaCarrito=false;
     console.log($rootScope.carrito.length);
@@ -7,11 +7,7 @@ appLibra.controller('BasketCtrl', ['$scope', '$rootScope', 'basketService', 'ser
   
 
     console.log($rootScope.carrito);
-    // services.post('basket', 'traerCursosCarrito', "datosinfo")
-    //                 .then(function (response) {
-    //                     console.log(response);
-                        
-    //                 });
+    
     $scope.pagar=function(){
         console.log($rootScope.carrito);
         var datosToken = cookiesService.GetToken();
@@ -28,6 +24,7 @@ appLibra.controller('BasketCtrl', ['$scope', '$rootScope', 'basketService', 'ser
                         $rootScope.carrito = [];
                         basketService.pintarTblCarrito($rootScope.carrito.length, $scope);
                         CommonService.borrarCarritoLocStor();
+                        $location.path("/");
                     }else{
                         CommonService.alert("error", response.mensaje, "Fallo de Autentificacion");            
                     }
