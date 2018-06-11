@@ -28,3 +28,4 @@ error loadView general | 06.06.2018 22:55:12  |  User:   | Controller:basket | f
 error loadView general | 06.06.2018 22:55:16  |  User:   | Controller:basket | function:response 400
 error loadView general | 06.06.2018 22:55:26  |  User:   | Controller:basket | function:response 400
 error loadView general | 06.06.2018 22:56:22  |  User:   | Controller:basket | function:response 400
+error loadView general | 11.06.2018 16:22:17  |  User:   | Controller:courses | function:response 400

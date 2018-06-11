@@ -108,6 +108,9 @@
                     resolve: {
                         coursesCategory: function (services, $route) {
                             return services.get('courses', 'getAllCourses', $route.current.params.id);
+                        },
+                        puntos: function (services, $route) {
+                            return services.get('courses', 'puntos');
                         }
                     }
                 })

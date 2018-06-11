@@ -144,5 +144,31 @@
             // echo json_encode($sql);exit;
             return $db->ejecutar($sql);
         }
+        public function insertarPuntuacion_DAO($db, $arrArgument) {
+            $curso=$arrArgument["id_curso"];
+            $user=$arrArgument["user"];
+            $puntos=$arrArgument["puntos"];
+
+            $sql = "INSERT INTO puntuaciones (id_curso, user, puntuacion) VALUES ('$curso', '$user', '$puntos' )";
+            return $db->ejecutar($sql);
+        }
+        public function cursosPuntos_DAO($db, $arrArgument) {
+            $sql = "SELECT COUNT(DISTINCT p.user) as cantidad, p.id_curso FROM puntuaciones as p GROUP BY p.id_curso";
+            return $db->listar($db->ejecutar($sql));
+        }
+
+        public function cursosPuntuados_DAO($db, $arrArgument) {
+            $sql = "SELECT Avg(p.puntuacion) AS promedio, COUNT(DISTINCT p.user) as cantidad, p.id_curso FROM puntuaciones as p GROUP BY p.id_curso";
+            // $sql = "SELECT COUNT(DISTINCT p.user) as cantidad, p.id_curso FROM puntuaciones as p GROUP BY p.id_curso";
+            return $db->listar($db->ejecutar($sql));
+        }
+        public function verificaPuntos_DAO($db, $arrArgument) {
+            $curso=$arrArgument["id_curso"];
+            $user=$arrArgument["user"];
+
+            $sql = "SELECT * FROM puntuaciones where user='$user' and id_curso='$curso'";
+            // $sql = "SELECT COUNT(DISTINCT p.user) as cantidad, p.id_curso FROM puntuaciones as p GROUP BY p.id_curso";
+            return $db->listar($db->ejecutar($sql));
+        }
             
     }//End productDAO

@@ -56,6 +56,9 @@
 /*module carrito*/
 	define('MODEL_BASKET', SITE_ROOT . 'module/basket/model/model/');
 
+/*module examen*/
+	define('MODEL_EXAMEN', SITE_ROOT . 'module/examen/model/model/');
+
 
 /*module homepage*/
 	define('UTILS_HOMEPAGE', SITE_ROOT . 'module/homepage/utils/');

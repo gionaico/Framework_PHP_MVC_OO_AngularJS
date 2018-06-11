@@ -35,6 +35,8 @@ class controller_profile {
                 $cursosConLike = loadModel(MODEL_PROFILE, "profile_model", "traerCursosConLike", $usuario);
                 $cursosComentados = loadModel(MODEL_PROFILE, "profile_model", "traercursosComentados", $usuario);
 
+                $cursosPuntuados = loadModel(MODEL_PROFILE, "profile_model", "traercursosPuntuados", $usuario[0]["user_name"]);
+
                 /*TRABAJANDO CON CURSOS COMENTADOS*/
                     $cad="";
                     $id="";
@@ -65,6 +67,7 @@ class controller_profile {
                     }
 
                 $res["cursosComentados"]= $cursosComentadosInfo;
+                $res["cursosPuntuados"]= $cursosPuntuados;
                 $res["cursosConLike"]= $cursosConLike;
                 $res["compras"]= $compras;
                 $res["user"]= $usuario[0];

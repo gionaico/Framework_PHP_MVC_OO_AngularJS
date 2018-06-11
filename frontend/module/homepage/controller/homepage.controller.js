@@ -3,6 +3,15 @@
 appLibra.controller('homepageCtrl',  function ($scope, $rootScope, services, cursosMasValorados, categoriaCourses, CommonService,  cursosVisitados) {/*
     console.log(cursosMasValorados);*//*
     console.log(categoriaCourses);*/
+
+    $scope.hacerPrueba=function(){
+        services.get('examen', 'a', "datosAvatar")
+            .then(function (response) {
+                console.log(response);
+                
+            });
+    }
+
     var limite = 0;
     var limite_b = 2;
     var limiteCat = 0;

@@ -107,4 +107,7 @@ class profile_bll{
     public function traerInfoCursosComentados_BLL($arrArgument){    
         return $this->dao->traerInfoCursosComentados_DAO($this->db,$arrArgument);
     }
+    public function traercursosPuntuados_BLL($arrArgument){    
+        return $this->dao->traercursosPuntuados_DAO($this->db,$arrArgument);
+    }
 }

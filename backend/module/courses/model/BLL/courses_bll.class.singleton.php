@@ -55,4 +55,16 @@
         public function insertarComentario_BLL($arrArgument){    
             return $this->dao->insertarComentario_DAO($this->db,$arrArgument);      
         }
+        public function insertarPuntuacion_BLL($arrArgument){    
+            return $this->dao->insertarPuntuacion_DAO($this->db,$arrArgument);      
+        }
+        public function cursosPuntuados_BLL($arrArgument){    
+            return $this->dao->cursosPuntuados_DAO($this->db,$arrArgument);      
+        }
+        public function cursosPuntos_BLL($arrArgument){    
+            return $this->dao->cursosPuntos_DAO($this->db,$arrArgument);      
+        }
+        public function verificaPuntos_BLL($arrArgument){    
+            return $this->dao->verificaPuntos_DAO($this->db,$arrArgument);      
+        }
     }

@@ -20,5 +20,9 @@
         <name>basket</name>
         <uri>basket</uri>
     </module>
+    <module>
+        <name>examen</name>
+        <uri>examen</uri>
+    </module>
 
 </modules>

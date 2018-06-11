@@ -255,6 +255,11 @@ class profile_dao {
         // echo $sql;exit;
         return $db->listar($db->ejecutar($sql));
     }
+    public function traercursosPuntuados_DAO($db, $arrArgument) {
+        $sql = "SELECT * FROM courses c INNER JOIN puntuaciones p ON c.id=p.id_curso WHERE p.user='".$arrArgument."' ";
+        // echo $sql;exit;
+        return $db->listar($db->ejecutar($sql));
+    }
 
 
 }//End productDAO

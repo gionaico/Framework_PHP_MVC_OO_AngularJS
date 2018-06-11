@@ -51,5 +51,16 @@
         public Function insertarComentario($arrArgument){           
             return $this->bll->insertarComentario_BLL($arrArgument);
         }
-
+        public Function insertarPuntuacion($arrArgument){           
+            return $this->bll->insertarPuntuacion_BLL($arrArgument);
+        }
+        public Function cursosPuntuados($arrArgument){           
+            return $this->bll->cursosPuntuados_BLL($arrArgument);
+        }
+        public Function cursosPuntos($arrArgument){           
+            return $this->bll->cursosPuntos_BLL($arrArgument);
+        }
+        public Function verificaPuntos($arrArgument){           
+            return $this->bll->verificaPuntos_BLL($arrArgument);
+        }
     }

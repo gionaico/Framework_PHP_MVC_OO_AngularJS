@@ -88,6 +88,18 @@
         <name>comentarCurso</name>
         <uri>comentarCurso</uri>
     </function>
+    <function>
+        <name>puntuarCurso</name>
+        <uri>puntuarCurso</uri>
+    </function>
+    <function>
+        <name>puntos</name>
+        <uri>puntos</uri>
+    </function>
+    <function>
+        <name>cursosPuntuados</name>
+        <uri>cursosPuntuados</uri>
+    </function>
     
     
 </functions>

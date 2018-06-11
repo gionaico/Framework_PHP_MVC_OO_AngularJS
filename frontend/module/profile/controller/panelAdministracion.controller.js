@@ -12,6 +12,7 @@ appLibra.controller('panelAdministracionCtrl', ['$scope', '$route', '$uibModal',
             $scope.compras=datosPerfil.compras ;
             $scope.cursosConLike=datosPerfil.cursosConLike ;
             $scope.cursosComentados=datosPerfil.cursosComentados ;
+            $scope.cursosPuntuados=datosPerfil.cursosPuntuados ;
         }
     }
 
@@ -22,7 +23,8 @@ appLibra.controller('panelAdministracionCtrl', ['$scope', '$route', '$uibModal',
         { title:'Ver datos personales', content:"frontend/module/profile/view/view_panelControl/datosPersonales.html", index:0 },
         { title:'Ver mis compras', content:'frontend/module/profile/view/view_panelControl/comprasUser.html', disabled: true },
         { title:'Ver cursos con LIKE', content:'frontend/module/profile/view/view_panelControl/likesUser.html', disabled: true },
-        { title:'Ver mis comentarios', content:'frontend/module/profile/view/view_panelControl/comentariosUser.html', disabled: true }
+        { title:'Ver mis comentarios', content:'frontend/module/profile/view/view_panelControl/comentariosUser.html', disabled: true },
+        { title:'cursos puntuados', content:'frontend/module/profile/view/view_panelControl/cursosPuntuados.html', disabled: true }
     ];
 
 

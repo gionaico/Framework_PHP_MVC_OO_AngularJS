@@ -8,6 +8,47 @@ class controller_courses {
         $_SESSION['module'] = "courses";
     }
      
+    function puntos(){
+        echo "string";exit;
+    }
+
+    function puntuarCurso(){
+        $res["success"]=false;
+        $verificaToken=verificaToken($_POST["token"]);
+        if ($verificaToken["success"]) {
+            try{
+                $usuario = loadModel(MODEL_PROFILE, "profile_model", "userByToken", $_POST);
+                if (count($usuario)==1) {
+                    $res["success"]=true;
+                    $datos=array(
+                                "user"=>$usuario[0]["user_name"],
+                                "id_curso"=>$_POST["curso"],
+                                "puntos"=>$_POST["puntos"]);
+                    // echo json_encode($datos);exit;          
+                    
+
+                    $verificaPuntos=loadModel(MODEL_COURSES, "courses_model", "verificaPuntos", $datos );
+                    if (count($verificaPuntos)==0) {
+                        $insertarPuntuacionComentario = loadModel(MODEL_COURSES, "courses_model", "insertarPuntuacion", $datos);
+                        $res["mensaje"]="Puntiacion exitosa";    
+                    }else{
+                        $res["mensaje"]="Ya as puntuado este";        
+                    }
+
+                }else{
+                    $res["mensaje"]="Error comprobacion de token";    
+                }
+            } catch (Exception $e) {
+                $res["mensaje"]="Error comprobacion de datos.";
+            }
+            echo json_encode($res);exit;  
+        }else{
+            $res["mensaje"]="Error comprobacion de credenciales.";
+            echo json_encode($res);exit;    
+        }
+        // echo json_encode($_POST);exit;
+    }
+
 
     function verComentarios(){
         $id=$_GET['param'];
@@ -54,6 +95,37 @@ class controller_courses {
             );
         try {
             $courses=loadModel(MODEL_COURSES, "courses_model", "getAllCourses");
+            $cursosPuntuados=loadModel(MODEL_COURSES, "courses_model", "cursosPuntuados");
+            // $a=array(
+            //         );
+            // $verificaPuntos=loadModel(MODEL_COURSES, "courses_model", "verificaPuntos" );
+
+            $cursosPuntos=loadModel(MODEL_COURSES, "courses_model", "cursosPuntos");
+            // $cursosMedia=loadModel(MODEL_COURSES, "courses_model", "cursosMedia");
+            // SELECT Avg(p.puntuacion) AS Promedio FROM puntuaciones as p GROUP BY p.id_curso 
+
+            for ($j=0; $j <count($courses) ; $j++) { 
+                // $courses[$j]["cantPuntuaciones"]="0";
+                $courses[$j]["media"]="0";
+                for ($i=0; $i <count($cursosPuntuados) ; $i++) { 
+                    if ($courses[$j]["id"]===$cursosPuntuados[$i]["id_curso"]) {
+                        // $courses[$j]["cantPuntuaciones"]=$cursosPuntuados[$i]["cantidad"];
+                        $courses[$j]["media"]=$cursosPuntuados[$i]["promedio"];
+                    }
+                }    
+            }
+
+            for ($j=0; $j <count($courses) ; $j++) { 
+                $courses[$j]["cantPuntuaciones"]="0";
+                // $courses[$j]["media"]="0";
+                for ($i=0; $i <count($cursosPuntuados) ; $i++) { 
+                    if ($courses[$j]["id"]===$cursosPuntos[$i]["id_curso"]) {
+                        $courses[$j]["cantPuntuaciones"]=$cursosPuntos[$i]["cantidad"];
+                        // $courses[$j]["media"]=$cursosPuntuados[$i]["promedio"];
+                    }
+                }    
+            }
+
             $res["success"]=true;
             $res["category"]=$_GET['param'];
             $res["datos"]=$courses;

@@ -1,5 +1,30 @@
 
-appLibra.controller('coursesCategoryCtrl', ['$rootScope', '$scope', '$timeout', 'services', '$uibModal', 'coursesCategory', 'courses_map', 'CommonService',function ($rootScope, $scope, $timeout, services, $uibModal, coursesCategory, courses_map, CommonService) {
+appLibra.controller('coursesCategoryCtrl', ['$rootScope', '$scope', '$timeout', 'services', '$uibModal', 'coursesCategory', 'courses_map', 'CommonService', 'cookiesService', 'puntos',function ($rootScope, $scope, $timeout, services, $uibModal, coursesCategory, courses_map, CommonService, cookiesService, puntos) {
+    console.log(puntos);
+
+
+    $scope.puntuar=function(puntuacion, id){
+        console.log(puntuacion);
+        console.log(id);
+        var datos = cookiesService.GetToken();
+        console.log(datos);
+        if ((datos.success) && (datos.token!=undefined)){
+            var info={token:datos.token,
+                    curso:id,
+                    puntos:puntuacion};
+            services.post('courses', 'puntuarCurso', info)
+                .then(function (response) {
+                    console.log(response);
+                    CommonService.alert("info", response.mensaje, "PUNTUAR");  
+                });
+        }else{
+            CommonService.alert("error", "error de identidad", "PUNTUAR");   
+        }
+    }
+
+
+
+
     window.scrollTo(0, 0);
     /*Categoria que viene por ulr*/
     var category=coursesCategory.category;
@@ -11,12 +36,14 @@ appLibra.controller('coursesCategoryCtrl', ['$rootScope', '$scope', '$timeout', 
     $scope.markers = [];
         
 	if (category!=" ") {
+        console.log(category);
         for (var i =0; i<datos.length; i++) {
             if (datos[i].subject==category) 
                 array.push(datos[i]);
         }
     } else {
         array=coursesCategory.datos;
+        console.log(array);
     }
     $rootScope.pp = array;
     $scope.file = array;

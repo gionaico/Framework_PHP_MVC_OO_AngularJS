@@ -98,6 +98,9 @@ class profile_model {
     public function traerInfoCursosComentados($arrArgument) {
         return $this->bll->traerInfoCursosComentados_BLL($arrArgument);
     }
+    public function traercursosPuntuados($arrArgument) {
+        return $this->bll->traercursosPuntuados_BLL($arrArgument);
+    }
 
 
 }
