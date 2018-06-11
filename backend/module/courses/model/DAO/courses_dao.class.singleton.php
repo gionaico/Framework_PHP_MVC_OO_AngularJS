@@ -170,5 +170,16 @@
             // $sql = "SELECT COUNT(DISTINCT p.user) as cantidad, p.id_curso FROM puntuaciones as p GROUP BY p.id_curso";
             return $db->listar($db->ejecutar($sql));
         }
+        public function updatePuntos_DAO($db, $arrArgument) {
+            $curso=$arrArgument["id_curso"];
+            $user=$arrArgument["user"];
+            $puntos=$arrArgument["puntos"];
+
+            $sql = "UPDATE puntuaciones SET puntuacion='$puntos' WHERE id_curso='$curso' and user='$user'";
+            return $db->ejecutar($sql);
+        }
+                /*UPDATE table_name
+        SET column1=value, column2=value2,...
+        WHERE some_column=some_value */
             
     }//End productDAO

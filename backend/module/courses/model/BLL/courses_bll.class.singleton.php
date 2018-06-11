@@ -67,4 +67,7 @@
         public function verificaPuntos_BLL($arrArgument){    
             return $this->dao->verificaPuntos_DAO($this->db,$arrArgument);      
         }
+        public function updatePuntos_BLL($arrArgument){    
+            return $this->dao->updatePuntos_DAO($this->db,$arrArgument);      
+        }
     }

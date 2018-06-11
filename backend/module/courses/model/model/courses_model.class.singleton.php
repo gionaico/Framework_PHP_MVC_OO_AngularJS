@@ -63,4 +63,7 @@
         public Function verificaPuntos($arrArgument){           
             return $this->bll->verificaPuntos_BLL($arrArgument);
         }
+        public Function updatePuntos($arrArgument){           
+            return $this->bll->updatePuntos_BLL($arrArgument);
+        }
     }

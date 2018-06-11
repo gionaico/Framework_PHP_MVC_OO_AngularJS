@@ -30,9 +30,10 @@ class controller_courses {
                     $verificaPuntos=loadModel(MODEL_COURSES, "courses_model", "verificaPuntos", $datos );
                     if (count($verificaPuntos)==0) {
                         $insertarPuntuacionComentario = loadModel(MODEL_COURSES, "courses_model", "insertarPuntuacion", $datos);
-                        $res["mensaje"]="Puntiacion exitosa";    
+                        $res["mensaje"]="HECHO";    
                     }else{
-                        $res["mensaje"]="Ya as puntuado este";        
+                        $updatePuntos = loadModel(MODEL_COURSES, "courses_model", "updatePuntos", $datos);
+                        $res["mensaje"]="PUNTOS ACTUALIZADOS";        
                     }
 
                 }else{

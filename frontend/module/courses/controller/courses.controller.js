@@ -15,10 +15,14 @@ appLibra.controller('coursesCategoryCtrl', ['$rootScope', '$scope', '$timeout', 
             services.post('courses', 'puntuarCurso', info)
                 .then(function (response) {
                     console.log(response);
-                    CommonService.alert("info", response.mensaje, "PUNTUAR");  
+                    if (response.success) {
+                        CommonService.alert("success", response.mensaje, "PUNTUAR");  
+                    }else{
+                        CommonService.alert("error", response.mensaje, "PUNTUAR");  
+                    }
                 });
         }else{
-            CommonService.alert("error", "error de identidad", "PUNTUAR");   
+            CommonService.alert("error", "error de identidad. Inicie sesion nuevamente y vuelva a intentar puntuar", "PUNTUAR");   
         }
     }
 
